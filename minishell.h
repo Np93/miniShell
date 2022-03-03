@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/03 21:06:33 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/03 21:51:43 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,12 @@
 # include <sys/stat.h>
 
 typedef struct s_para {
-	char	*prompt;
-	char	*current;
-	int		cmd;
+	char			*prompt;
+	char			*current;
+	int				cmd;
+	int				s_quote;
+	int				d_quote;
+	char			**env_var;
 }			t_para;
 
 t_para	g_para;
