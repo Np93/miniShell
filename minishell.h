@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/03 21:51:43 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/03 22:15:45 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_para {
 	int				s_quote;
 	int				d_quote;
 	char			**env_var;
+	int				test_git;
 }			t_para;
 
 t_para	g_para;
