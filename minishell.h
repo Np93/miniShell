@@ -6,7 +6,11 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/03/04 19:15:49 by rmonney          ###   ########.fr       */
+=======
+/*   Updated: 2022/03/04 19:04:17 by rmonney          ###   ########.fr       */
+>>>>>>> d5620cbf97803f4be6b40d05bbc3645c2d788bcb
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +51,10 @@ t_para	g_para;
 int		search_fct(char *str);
 void	do_fct(int cmd, char *current);
 void	ft_echo(int mode, char *str);
+<<<<<<< HEAD
 int		ft_strstr(char *str, char *tofind);
+=======
+int		ft_strstr(char *str, char *tofind
+>>>>>>> d5620cbf97803f4be6b40d05bbc3645c2d788bcb
 
 #endif
