@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/03 21:07:27 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/04 18:45:44 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -33,6 +33,8 @@ void	do_fct(int cmd, char *current)
 		ft_echo(1, current + 8);
 	else if (cmd == 2)
 		ft_echo(2, current + 5);
+	else if (cmd == 8)
+		exit(0);
 }
 
 int	main(void)

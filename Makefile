@@ -6,11 +6,12 @@
 #    By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 19:09:32 by rmonney           #+#    #+#              #
-#    Updated: 2022/03/03 20:53:55 by rmonney          ###   ########.fr        #
+#    Updated: 2022/03/04 18:46:36 by rmonney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= 	main.c\
 				echo.c\
+				ft_strstr.c\
 
 OBJS		= ${SRCS:.c=.o}
 
