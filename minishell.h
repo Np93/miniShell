@@ -6,11 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-<<<<<<< HEAD
 /*   Updated: 2022/03/04 19:15:49 by rmonney          ###   ########.fr       */
-=======
-/*   Updated: 2022/03/04 19:04:17 by rmonney          ###   ########.fr       */
->>>>>>> d5620cbf97803f4be6b40d05bbc3645c2d788bcb
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +39,6 @@ typedef struct s_para {
 	int				s_quote;
 	int				d_quote;
 	char			**env_var;
-	int				test_git;
 }			t_para;
 
 t_para	g_para;
