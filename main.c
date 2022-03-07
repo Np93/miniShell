@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/07 17:36:36 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/07 18:46:04 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -35,14 +35,18 @@ int	search_fct(char *str)
 	return (0);
 }
 
-void	do_fct(int cmd, char *current)
+void	do_fct(int cmd, t_para *para)
 {
 	if (cmd == 0)
-		printf("%s: command not found\n", current);
+		printf("%s: command not found\n", para->current);
 	else if (cmd == 1)
-		ft_echo(1, current + 8);
+		ft_echo(1, para->current + 8);
 	else if (cmd == 2)
-		ft_echo(2, current + 5);
+		ft_echo(2, para->current + 5);
+	else if (cmd == 4)
+		ft_pwd(para);
+	else if (cmd == 7)
+		ft_env(para->env);
 	else if (cmd == 8)
 		exit(0);
 }
@@ -88,7 +92,7 @@ int	main(int argc, char **argv, char **env)
 		while (*para->current == ' ')
 			para->current++;
 		para->cmd = search_fct(para->current);
-		do_fct(para->cmd, para->current);
+		do_fct(para->cmd, para);
 		add_history(para->current);
 	}
 	return (0);

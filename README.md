@@ -11,6 +11,10 @@ ft_calloc.c : ft_bzero, ft_calloc
 
 ft_strdup.c : ft_strdup
 
+ft_env.c : ft_env
+
+ft_pwd.c : ft_pwd
+
 
 
 
@@ -40,9 +44,9 @@ je pensais utiliser un int pour verifier que dans current il n'y ait pas de quot
 
 
 
-`char **env_var`
+`char **env`
 
-on va stocker les variable d'environnement la dedans (pour les fonctions env et export)
+stocke les variable d'environnement (pour les fonctions env et export)
 
 
 
@@ -65,7 +69,7 @@ exit = 8;
 
 
 
-`void	do_fct(int cmd, char *current)`
+`void	do_fct(int cmd, t_para *para)`
 
 Reçoit en arg l'int revoyé par search_fct et exécute la commande correspondante.
 
@@ -82,3 +86,15 @@ echo = mode 2;
 `int	ft_strstr(char *str, char *tofind)`
 
 Un peu différente de la version originale. Cherche la premiere occurence de tofind dans str et renvoie l'index du caractere qui suit cette apparition ou 0 si aucune occurence n'apparait. (sera utile pour search_fct)
+
+
+
+`void	ft_env(char **env)`
+
+meme que bash : ecrit toutes les variables d'environnement
+
+
+
+`ft_pwd(t_para *para)`
+
+meme que bash : ecrit le chemin ou on se trouve
