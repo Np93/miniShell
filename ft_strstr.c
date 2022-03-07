@@ -6,20 +6,28 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 18:21:15 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/04 18:45:28 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/07 15:18:03 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
+
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
 
 int	ft_strstr2(char *str, char *tofind)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] == tofind[i])
-	{
+	while (str[i] == tofind[i] && str[i] != '\0')
 		i++;
-	}
 	if (tofind[i] == '\0')
 		return (1);
 	else
@@ -38,7 +46,7 @@ int	ft_strstr(char *str, char *tofind)
 		else
 		{
 			if (ft_strstr2(str + i, tofind))
-				return (1);
+				return (i + ft_strlen(tofind));
 			else
 				i++;
 		}
@@ -48,11 +56,11 @@ int	ft_strstr(char *str, char *tofind)
 /*
 int main()
 {
-	char *str = "echo bonjour lalatina lala ";
-	char *tofind = "lala";
+	char *str = "lalatina lala ";
+	char *tofind = "lala ";
 
 	if (ft_strstr(str, tofind))
-		printf("found one\n");
+		printf("found one in position %d\n", ft_strstr(str, tofind));
 	else
 		printf("nothing found\n");
 	return (0);

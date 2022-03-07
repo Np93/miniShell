@@ -65,4 +65,4 @@ echo = mode 2;
 
 `int	ft_strstr(char *str, char *tofind)`
 
-Un peu différente de la version originale. Cherche si tofind apparait dans str puis renvoie 1 si oui et 0 si aucune occurence n'apparait. (sera utile pour search_fct)
+Un peu différente de la version originale. Cherche la premiere occurence de tofind dans str et renvoie l'index du caractere qui suit cette apparition ou 0 si aucune occurence n'apparait. (sera utile pour search_fct)

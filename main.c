@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/07 14:28:20 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/07 14:50:09 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -50,7 +50,7 @@ void	do_fct(int cmd, char *current)
 int	main(void)
 {
 	g_para = *(t_para *)malloc(sizeof(t_para));
-	g_para.prompt = "default_user@minishell % ";
+	g_para.prompt = "Judas@minishell % ";
 	while (1)
 	{
 		g_para.current = readline(g_para.prompt);
