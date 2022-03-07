@@ -1,3 +1,19 @@
+//Contenu des fichiers//
+
+
+main.c : search_fct, do_fct, cpy_env, init_para, main
+
+echo.c : ft_echo
+
+ft_strstr.c : ft_strlen, ft_strstr
+
+ft_calloc.c : ft_bzero, ft_calloc
+
+ft_strdup.c : ft_strdup
+
+
+
+
 //Explications de la struct//
 
 
@@ -66,7 +82,3 @@ echo = mode 2;
 `int	ft_strstr(char *str, char *tofind)`
 
 Un peu différente de la version originale. Cherche la premiere occurence de tofind dans str et renvoie l'index du caractere qui suit cette apparition ou 0 si aucune occurence n'apparait. (sera utile pour search_fct)
-
-
-
-// Con
