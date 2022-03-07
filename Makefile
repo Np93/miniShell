@@ -6,11 +6,11 @@
 #    By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 19:09:32 by rmonney           #+#    #+#              #
-#    Updated: 2022/03/07 18:39:26 by rmonney          ###   ########.fr        #
+#    Updated: 2022/03/07 18:50:33 by rmonney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= 	main.c\
-				echo.c\
+				ft_echo.c\
 				ft_strstr.c\
 				ft_calloc.c\
 				ft_strdup.c\

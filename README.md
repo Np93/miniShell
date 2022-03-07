@@ -11,7 +11,7 @@ ft_calloc.c : ft_bzero, ft_calloc
 
 ft_strdup.c : ft_strdup
 
-ft_env.c : ft_env
+ft_env.c : ft_env, ft_export
 
 ft_pwd.c : ft_pwd
 
@@ -92,6 +92,12 @@ Un peu différente de la version originale. Cherche la premiere occurence de tofi
 `void	ft_env(char **env)`
 
 meme que bash : ecrit toutes les variables d'environnement
+
+
+
+`int	ft_export(t_para *para)`
+
+meme que bash : ajoute une variable d'environnement a la char `**env`
 
 
 

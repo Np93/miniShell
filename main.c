@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/07 18:46:04 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/07 19:26:08 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -45,6 +45,8 @@ void	do_fct(int cmd, t_para *para)
 		ft_echo(2, para->current + 5);
 	else if (cmd == 4)
 		ft_pwd(para);
+	else if (cmd == 5)
+		ft_export(para);
 	else if (cmd == 7)
 		ft_env(para->env);
 	else if (cmd == 8)
@@ -60,7 +62,8 @@ char	**cpy_env(char **env)
 	len = 0;
 	while (env[len])
 		len++;
-	if (!(cpy = (char **)ft_calloc(sizeof(char *), (len + 1))))
+	cpy = (char **)ft_calloc(sizeof(char *), (len + 1));
+	if (!cpy)
 		return (0);
 	i = 0;
 	while (i < len)
