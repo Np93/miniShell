@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/07 14:50:09 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/07 17:36:36 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -47,18 +47,49 @@ void	do_fct(int cmd, char *current)
 		exit(0);
 }
 
-int	main(void)
+char	**cpy_env(char **env)
 {
-	g_para = *(t_para *)malloc(sizeof(t_para));
-	g_para.prompt = "Judas@minishell % ";
+	int		len;
+	int		i;
+	char	**cpy;
+
+	len = 0;
+	while (env[len])
+		len++;
+	if (!(cpy = (char **)ft_calloc(sizeof(char *), (len + 1))))
+		return (0);
+	i = 0;
+	while (i < len)
+	{
+		cpy[i] = ft_strdup(env[i]);
+		i++;
+	}
+	return (cpy);
+}
+
+void	init_para(t_para **para, char **argv, char **env)
+{
+	(*para) = (t_para *)malloc(sizeof(t_para));
+	(*para)->argv = argv;
+	(*para)->env = cpy_env(env);
+}
+
+int	main(int argc, char **argv, char **env)
+{
+	t_para	*para;
+
+	if (argc != 1)
+		return (0);
+	init_para(&para, argv, env);
+	para->prompt = "Judas@minishell % ";
 	while (1)
 	{
-		g_para.current = readline(g_para.prompt);
-		while (*g_para.current == ' ')
-			g_para.current++;
-		g_para.cmd = search_fct(g_para.current);
-		do_fct(g_para.cmd, g_para.current);
-		add_history(g_para.current);
+		para->current = readline(para->prompt);
+		while (*para->current == ' ')
+			para->current++;
+		para->cmd = search_fct(para->current);
+		do_fct(para->cmd, para->current);
+		add_history(para->current);
 	}
 	return (0);
 }

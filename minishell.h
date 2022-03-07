@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/07 15:10:30 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/07 17:28:41 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,17 @@ typedef struct s_para {
 	char			*current;
 	int				cmd;
 	int				quote;
-	char			**env_var;
+	char			**argv;
+	char			**env;
 }			t_para;
-
-t_para	g_para;
 
 int		search_fct(char *str);
 void	do_fct(int cmd, char *current);
 void	ft_echo(int mode, char *str);
 int		ft_strstr(char *str, char *tofind);
 int		ft_strlen(char *str);
+char	*ft_strdup(const char *s1);
+void	*ft_calloc(size_t count, size_t size);
+void	ft_bzero(void *s, size_t n);
 
 #endif
