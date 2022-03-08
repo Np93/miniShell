@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/08 20:58:31 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/08 22:41:48 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -87,12 +87,12 @@ int	main(int argc, char **argv, char **env)
 {
 	t_para	*para;
 
-	if (argc != 1)
+	if (argc > 2)
 		return (0);
 	init_para(&para, argv, env);
-	para->prompt = "Judas@PROJET_EN_COURS % ";
 	while (1)
 	{
+		para->prompt = prompt_init(argc, argv);
 		para->current = readline(para->prompt);
 		while (*para->current == ' ')
 			para->current++;

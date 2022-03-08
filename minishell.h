@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/08 21:31:08 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/08 22:40:18 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,7 @@ int		ft_export(t_para *para);
 int		ft_unset(t_para *para);
 void	ft_unset2(t_para *para, char *arg);
 char	**ft_split(char *s, char c);
+char	*ft_strjoin(char *s1, char *s2);
+char	*prompt_init(int argc, char **argv);
 
 #endif

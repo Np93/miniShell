@@ -15,7 +15,11 @@ ft_env.c : ft_env, ft_export, ft_unset(et ft_unset2)
 
 ft_pwd.c : ft_pwd
 
-ft_split : ft_split
+ft_split.c : ft_split
+
+ft_strjoin.c : ft_strjoin
+
+init.c : prompt_init
 
 
 
@@ -112,3 +116,9 @@ meme que bash : supprime les variable d'environnement designees si elles existen
 `ft_pwd(t_para *para)`
 
 meme que bash : ecrit le chemin ou on se trouve
+
+
+
+`prompt_init(int argc, char **argv, t_para *para)`
+
+Met a jour le promt selon le pwd et le user(optionnel) donne en arg de ./minishell (="default_user" si pas d'argument)
