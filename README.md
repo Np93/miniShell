@@ -11,9 +11,11 @@ ft_calloc.c : ft_bzero, ft_calloc
 
 ft_strdup.c : ft_strdup
 
-ft_env.c : ft_env, ft_export
+ft_env.c : ft_env, ft_export, ft_unset(et ft_unset2)
 
 ft_pwd.c : ft_pwd
+
+ft_split : ft_split
 
 
 
@@ -98,6 +100,12 @@ meme que bash : ecrit toutes les variables d'environnement
 `int	ft_export(t_para *para)`
 
 meme que bash : ajoute une variable d'environnement a la char `**env`
+
+
+
+`int	ft_unset(t_para *para)`
+
+meme que bash : supprime les variable d'environnement designees si elles existent
 
 
 
