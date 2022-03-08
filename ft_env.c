@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 18:19:29 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/07 20:08:30 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/08 21:30:04 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -15,38 +15,66 @@ int	ft_export(t_para *para)
 {
 	char	*arg;
 	int		i;
+	int		j;
+	char	**split;
 
 	i = 0;
+	j = 0;
 	arg = ft_strdup(para->current + ft_strstr(para->current, "export "));
-	if (!ft_strstr(arg, "="))
-		return (0);
-	while (para->env[i] != NULL)
-		i++;
-	para->env[i] = arg;
+	split = ft_split(arg, ' ');
+	while (para->env[j] != NULL)
+		j++;
+	while (split[i] != NULL)
+	{
+		if (!ft_strstr(split[i], "="))
+			i++;
+		else
+			para->env[j++] = ft_strdup(split[i++]);
+	}
 	free(arg);
-	para->env[++i] = NULL;
+	free(split);
+	para->env[j] = NULL;
 	return (1);
 }
 
-int	ft_unset(t_para* para)
+void	ft_unset2(t_para *para, char *arg)
 {
-	char	*arg;
-	int		i;
+	int	i;
+
 	i = 0;
-	arg = ft_strdup(para->current + ft_strstr(para->current, "unset "));
-	while (!ft_strstr(para->env[i], arg) && para->env[i] != NULL)
+	while (!ft_strstr(para->env[i], arg))
 		i++;
-	if (para->env[i] == NULL)
-		return (0);
-	if (ft_strstr(para->env[i], "=") != ft_strlen(arg))
-		return (0);
 	while (para->env[i + 1] != NULL)
 	{
-		para->env[i] = NULL;
-		para->env[i] = ft_strdup(para->env[i + 1]);
+		para->env[i] = para->env[i + 1];
 		i++;
 	}
 	para->env[i] = NULL;
+}
+
+int	ft_unset(t_para *para)
+{
+	char	*arg;
+	char	**split;
+	int		i;
+	int		j;
+
+	i = 0;
+	arg = ft_strdup(para->current + ft_strstr(para->current, "unset "));
+	split = ft_split(arg, ' ');
+	while (split[i] != NULL)
+	{
+		j = 0;
+		if (getenv(split[i]) == NULL)
+			i++;
+		else
+		{
+			ft_unset2(para, split[i]);
+			i++;
+		}
+	}
+	free(arg);
+	free(split);
 	return (1);
 }
 

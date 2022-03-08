@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/07 19:26:08 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/08 20:58:31 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -47,6 +47,8 @@ void	do_fct(int cmd, t_para *para)
 		ft_pwd(para);
 	else if (cmd == 5)
 		ft_export(para);
+	else if (cmd == 6)
+		ft_unset(para);
 	else if (cmd == 7)
 		ft_env(para->env);
 	else if (cmd == 8)
@@ -78,7 +80,7 @@ void	init_para(t_para **para, char **argv, char **env)
 {
 	(*para) = (t_para *)malloc(sizeof(t_para));
 	(*para)->argv = argv;
-	(*para)->env = cpy_env(env);
+	(*para)->env = env;
 }
 
 int	main(int argc, char **argv, char **env)
@@ -88,7 +90,7 @@ int	main(int argc, char **argv, char **env)
 	if (argc != 1)
 		return (0);
 	init_para(&para, argv, env);
-	para->prompt = "Judas@minishell % ";
+	para->prompt = "Judas@PROJET_EN_COURS % ";
 	while (1)
 	{
 		para->current = readline(para->prompt);

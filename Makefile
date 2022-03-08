@@ -6,7 +6,7 @@
 #    By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 19:09:32 by rmonney           #+#    #+#              #
-#    Updated: 2022/03/07 18:50:33 by rmonney          ###   ########.fr        #
+#    Updated: 2022/03/08 21:33:40 by rmonney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= 	main.c\
@@ -16,6 +16,7 @@ SRCS		= 	main.c\
 				ft_strdup.c\
 				ft_env.c\
 				ft_pwd.c\
+				ft_split.c\
 
 OBJS		= ${SRCS:.c=.o}
 
