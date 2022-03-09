@@ -11,7 +11,7 @@ ft_calloc.c : ft_bzero, ft_calloc
 
 ft_strdup.c : ft_strdup
 
-ft_env.c : ft_env, ft_export, ft_unset(et ft_unset2)
+ft_env.c : ft_env, ft_export, ft_unset(et ft_unset2), ft_getenv
 
 ft_pwd.c : ft_pwd
 
@@ -21,10 +21,14 @@ ft_strjoin.c : ft_strjoin
 
 init.c : prompt_init
 
+current_parser.c : get_dollar, current_parser(+ 2, 3 et 4)
+
+error_handler : error_handler
 
 
 
-//Explications de la struct//
+
+//Explications de la struct// (j'ai add une struct t_parse pour une fonction qui me les brisait t'en soucie pas)
 
 
 `char *prompt`
@@ -38,15 +42,16 @@ C'est la ptite ligne qui apparait quand on attend une commande, je pensais la pi
 la ligne de commande tapee qui contient du coup tous ce qui a a faire... Faudra voir pour la modifier selon les quotes, pipes,...
 
 
+
+`char *out`
+
+C'est en gros la string une fois qu'on a remove les quotes et add les variables d'environnement car la string current doit rester sans modif pour matcher avec l'historique
+
+
+
 `int cmd`
 
 int que search_fct a renvoye apres avoir cherche dans current.
-
-
-
-`int quote`
-
-je pensais utiliser un int pour verifier que dans current il n'y ait pas de quote non ferme et sera aussi surement utile pour supprimer les quotes de la char * sur un echo par exemple.
 
 
 
@@ -113,7 +118,7 @@ meme que bash : supprime les variable d'environnement designees si elles existen
 
 
 
-`ft_pwd(t_para *para)`
+`void ft_pwd(t_para *para)`
 
 meme que bash : ecrit le chemin ou on se trouve
 
@@ -122,3 +127,25 @@ meme que bash : ecrit le chemin ou on se trouve
 `prompt_init(int argc, char **argv, t_para *para)`
 
 Met a jour le promt selon le pwd et le user(optionnel) donne en arg de ./minishell (="default_user" si pas d'argument)
+
+
+
+`char *current_parser(t_para *para)`
+
+Parse la string current et remove les quotes (singles et double) selon les regles et ajoute les variable d'environnement (genre $PWD) et renvoie une nouvelle string car on doit laisser la current intacte pour la mettre tel quel dans l'historique. renvoie NULL si yavait des quotes non fermees.
+
+
+
+`char *get_dollar(char *current, int i, t_para *para)`
+
+il va chercher la variable d'environnement qui est a l'index [i] de la string current et renvoier la string correspondante ou NULL si aucune var_env ne correspond a la recherche.
+
+
+
+`void	error_handler(int error)`
+
+il fait des actions selon le numero d'erreur envoie
+
+0 = erreur de malloc : ecrit qu'un prob est arrive et quitte tout avec exit(0)
+
+1 = quotes non fermees dans la current : ecrit que t'as pas fermee tes quotes

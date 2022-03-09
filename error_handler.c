@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/07 18:38:44 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/09 23:50:58 by rmonney          ###   ########.fr       */
+/*   Created: 2022/03/09 20:12:19 by rmonney           #+#    #+#             */
+/*   Updated: 2022/03/09 20:15:33 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
 
-void	ft_pwd(t_para *para)
+void	error_handler(int error)
 {
-	int	i;
-
-	i = 0;
-	while (!ft_strstr(para->env[i], "PWD="))
-		i++;
-	printf("%s\n", para->env[i] + ft_strstr(para->env[i], "PWD="));
+	if (error == 0)
+	{
+		printf("There was an issue with a malloc\n");
+		exit(0);
+	}
+	if (error == 1)
+		printf("It seems you didn't close your quote... \n");
 }

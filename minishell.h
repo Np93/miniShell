@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/08 22:40:18 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/09 23:51:13 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,19 @@
 typedef struct s_para {
 	char			*prompt;
 	char			*current;
+	char			*out;
 	int				cmd;
-	int				quote;
 	char			**argv;
 	char			**env;
 }			t_para;
+
+typedef struct s_parse {
+	char	*str;
+	char	*tmp;
+	int		i;
+	int		j;
+	int		k;
+}			t_parse;
 
 int		search_fct(char *str);
 void	do_fct(int cmd, t_para *para);
@@ -57,5 +65,12 @@ void	ft_unset2(t_para *para, char *arg);
 char	**ft_split(char *s, char c);
 char	*ft_strjoin(char *s1, char *s2);
 char	*prompt_init(int argc, char **argv);
+char	*current_parser(t_para *para);
+void	current_parser2(t_para *para, t_parse *p);
+int		current_parser3(t_para *para, t_parse *p);
+int		current_parser4(t_para *para, t_parse *p);
+char	*get_dollar(char *current, int i, t_para *para);
+void	error_handler(int error);
+char	*ft_getenv(t_para *para, char *var);
 
 #endif

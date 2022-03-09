@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 18:19:29 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/08 21:30:04 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/09 22:20:56 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -85,4 +85,19 @@ void	ft_env(char **env)
 	i = 0;
 	while (env[i] != NULL)
 		printf("%s\n", env[i++]);
+}
+
+char	*ft_getenv(t_para *para, char *var)
+{
+	int	i;
+
+	i = 0;
+	while (para->env[i] != NULL)
+	{
+		if (ft_strstr(para->env[i], var) == ft_strlen(var))
+			return (&(*(para->env[i] + ft_strlen(var) + 1)));
+		else
+			i++;
+	}
+	return (NULL);
 }

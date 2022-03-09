@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/08 22:41:48 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/09 22:26:47 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -38,11 +38,11 @@ int	search_fct(char *str)
 void	do_fct(int cmd, t_para *para)
 {
 	if (cmd == 0)
-		printf("%s: command not found\n", para->current);
+		printf("%s: command not found\n", para->out);
 	else if (cmd == 1)
-		ft_echo(1, para->current + 8);
+		ft_echo(1, para->out + 8);
 	else if (cmd == 2)
-		ft_echo(2, para->current + 5);
+		ft_echo(2, para->out + 5);
 	else if (cmd == 4)
 		ft_pwd(para);
 	else if (cmd == 5)
@@ -92,13 +92,21 @@ int	main(int argc, char **argv, char **env)
 	init_para(&para, argv, env);
 	while (1)
 	{
+		rl_on_new_line();
 		para->prompt = prompt_init(argc, argv);
 		para->current = readline(para->prompt);
 		while (*para->current == ' ')
 			para->current++;
-		para->cmd = search_fct(para->current);
-		do_fct(para->cmd, para);
+		para->out = current_parser(para);
+		if (para->out == NULL)
+			error_handler(1);
+		else
+		{
+			para->cmd = search_fct(para->out);
+			do_fct(para->cmd, para);
+		}
 		add_history(para->current);
+		rl_redisplay();
 	}
 	return (0);
 }

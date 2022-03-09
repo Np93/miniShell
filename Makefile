@@ -6,7 +6,7 @@
 #    By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 19:09:32 by rmonney           #+#    #+#              #
-#    Updated: 2022/03/08 22:35:37 by rmonney          ###   ########.fr        #
+#    Updated: 2022/03/09 22:27:32 by rmonney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= 	main.c\
@@ -19,10 +19,12 @@ SRCS		= 	main.c\
 				ft_split.c\
 				ft_strjoin.c\
 				init.c\
+				current_parser.c\
+				error_handler.c\
 
 OBJS		= ${SRCS:.c=.o}
 
-INCLUDE		= -lreadline
+INCLUDE		= -lreadline -I${HOME}/.brew/Cellar/readline/8.1.1/include/ -L${HOME}/.brew/Cellar/readline/8.1.1/lib/
 
 RM			= rm -f
 
