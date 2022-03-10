@@ -6,14 +6,14 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/10 19:09:19 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/10 20:06:22 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
 
 int	search_fct(char *str)
 {
-	if (ft_strstr(str, "echo "))
+	if (ft_strstr(str, "echo ") == 5)
 	{
 		if (ft_strstr(str, "echo -n "))
 			return (1);
@@ -101,6 +101,7 @@ int	main(int argc, char **argv, char **env)
 		rl_on_new_line();
 		para->prompt = prompt_init(argc, argv);
 		para->current = readline(para->prompt);
+		add_history(para->current);
 		while (*para->current == ' ')
 			para->current++;
 		if (current_parser(para))
@@ -110,7 +111,6 @@ int	main(int argc, char **argv, char **env)
 			para->cmd = search_fct(para->out);
 			do_fct(para->cmd, para);
 		}
-		add_history(para->current);
 		rl_redisplay();
 	}
 	return (0);
