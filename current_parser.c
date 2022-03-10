@@ -6,12 +6,12 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 18:55:51 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/09 23:46:31 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/10 19:46:45 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
 
-/* 39 = ' // 34 = " */
+/*  92 = \  //  39 = '  //  34 = "  */
 
 char	*get_dollar(char *current, int i, t_para *para)
 {
@@ -81,9 +81,10 @@ int	current_parser4(t_para *para, t_parse *p)
 	return (1);
 }
 
-char	*current_parser(t_para *para)
+int	current_parser(t_para *para)
 {
 	t_parse	*p;
+	int		err;
 
 	p = malloc(sizeof(t_parse));
 	if (!p)
@@ -93,18 +94,16 @@ char	*current_parser(t_para *para)
 	p->str = malloc(sizeof(char) * ft_strlen(para->current) * 10);
 	if (!p->str)
 		error_handler(0);
-	while (para->current[p->i] != '\0')
-	{	
-		if (para->current[p->i] == 39 || para->current[p->i] == 34)
-		{
-			if (!current_parser4(para, p))
-				return (NULL);
-		}
-		else if (para->current[p->i] == '$')
-			current_parser2(para, p);
-		else
-			p->str[p->j++] = para->current[p->i++];
+	err = current_parser6(para, p);
+	if (err != 0)
+	{
+		free(p);
+		return (err);
 	}
-	p->str[p->j] = '\0';
-	return (p->str);
+	else
+	{
+		para->out = ft_strdup(p->str);
+		free(p);
+	}
+	return (0);
 }

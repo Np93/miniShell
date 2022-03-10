@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/09 23:51:13 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/10 19:45:38 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,17 @@ void	ft_unset2(t_para *para, char *arg);
 char	**ft_split(char *s, char c);
 char	*ft_strjoin(char *s1, char *s2);
 char	*prompt_init(int argc, char **argv);
-char	*current_parser(t_para *para);
+int		current_parser(t_para *para);
 void	current_parser2(t_para *para, t_parse *p);
 int		current_parser3(t_para *para, t_parse *p);
 int		current_parser4(t_para *para, t_parse *p);
+int		current_parser5(t_para *para, t_parse *p);
+int		current_parser6(t_para *para, t_parse *p);
 char	*get_dollar(char *current, int i, t_para *para);
 void	error_handler(int error);
 char	*ft_getenv(t_para *para, char *var);
 void	ft_cd(t_para *para, int cmd);
+int		ft_memecmp(const void *s1, const void *s2, size_t n);
+char	*get_env(char **env, char *envi);
 
 #endif

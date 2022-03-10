@@ -6,7 +6,7 @@
 #    By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 19:09:32 by rmonney           #+#    #+#              #
-#    Updated: 2022/03/09 22:27:32 by rmonney          ###   ########.fr        #
+#    Updated: 2022/03/10 19:10:01 by rmonney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= 	main.c\
@@ -20,6 +20,7 @@ SRCS		= 	main.c\
 				ft_strjoin.c\
 				init.c\
 				current_parser.c\
+				current_parser2.c\
 				error_handler.c\
 				ft_cd.c\
 

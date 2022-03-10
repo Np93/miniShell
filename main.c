@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/09 22:26:47 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/10 19:09:19 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -32,7 +32,7 @@ int	search_fct(char *str)
 		return (7);
 	else if (ft_strstr(str, "exit"))
 		return (8);
-	else if(ft_strstr(str, "cd .. "))
+	else if (ft_strstr(str, "cd .. "))
 		return (9);
 	return (0);
 }
@@ -103,9 +103,8 @@ int	main(int argc, char **argv, char **env)
 		para->current = readline(para->prompt);
 		while (*para->current == ' ')
 			para->current++;
-		para->out = current_parser(para);
-		if (para->out == NULL)
-			error_handler(1);
+		if (current_parser(para))
+			error_handler(current_parser(para));
 		else
 		{
 			para->cmd = search_fct(para->out);

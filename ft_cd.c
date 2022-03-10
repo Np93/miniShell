@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_cd.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nhirzel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/10 19:53:20 by nhirzel           #+#    #+#             */
+/*   Updated: 2022/03/10 19:53:53 by rmonney          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "minishell.h"
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
@@ -36,7 +47,7 @@ char	*get_env(char **env, char *envi)
 
 void	ft_cd(t_para *para, int cmd)
 {
-	char *path;
+	char	*path;
 
 	if (cmd == 3)
 		path = get_env(para->env, "HOME");

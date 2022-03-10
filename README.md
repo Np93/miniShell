@@ -25,7 +25,11 @@ init.c : prompt_init
 
 current_parser.c : get_dollar, current_parser(+ 2, 3 et 4)
 
+current_parser2.c : current_parser5 (=+ 6)
+
 error_handler : error_handler
+
+ft_cd.c : ft_memcmp, ft_getenv, ft_cd
 
 
 
@@ -79,6 +83,7 @@ export = 5;
 unset = 6;
 env = 7;
 exit = 8;
+cd .. = 9;
 
 
 
@@ -132,11 +137,9 @@ Met a jour le promt selon le pwd et le user(optionnel) donne en arg de ./minishe
 
 
 
-`char *current_parser(t_para *para)`
+`int *current_parser(t_para *para)`
 
-Parse la string current et remove les quotes (singles et double) selon les regles et ajoute les variable d'environnement (genre $PWD) et renvoie une nouvelle string car on doit laisser la current intacte pour la mettre tel quel dans l'historique. renvoie NULL si yavait des quotes non fermees.
-
-
+Parse la string current et remove les quotes (singles et double) selon les regles, ajoute les variable d'environnement (genre $PWD), check si ya des ";" et remove les "\" au besoin puis renvoie 0 si tout s'est bien passe ou un int d'erreur. La string para->out est finalement modifiee par pointeur.
 
 `char *get_dollar(char *current, int i, t_para *para)`
 
@@ -157,3 +160,5 @@ il fait des actions selon le numero d'erreur envoie
 0 = erreur de malloc : ecrit qu'un prob est arrive et quitte tout avec exit(0)
 
 1 = quotes non fermees dans la current : ecrit que t'as pas fermee tes quotes
+
+2 = presence d'une ; dans la current : ecrit qu'on handle pas ce cas
