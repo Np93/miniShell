@@ -15,6 +15,8 @@ ft_env.c : ft_env, ft_export, ft_unset(et ft_unset2), ft_getenv
 
 ft_pwd.c : ft_pwd
 
+ft_cd.c : ft_cd, get_env, ft_memcmp
+
 ft_split.c : ft_split
 
 ft_strjoin.c : ft_strjoin
@@ -140,6 +142,12 @@ Parse la string current et remove les quotes (singles et double) selon les regle
 
 il va chercher la variable d'environnement qui est a l'index [i] de la string current et renvoier la string correspondante ou NULL si aucune var_env ne correspond a la recherche.
 
+
+`void	ft_cd(t_para *para, int cmd)`
+
+il effectue la commande cd le cd .. fonctinne aussi mais quand on l'effectue il ne met pas 
+encore les parametre (env) du terminal a jour, j'ai aussi utiliser les numeros 3 et 9 de la 
+variable cmd dans le main.
 
 
 `void	error_handler(int error)`
