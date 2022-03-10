@@ -6,7 +6,7 @@
 #    By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 19:09:32 by rmonney           #+#    #+#              #
-#    Updated: 2022/03/10 19:10:01 by rmonney          ###   ########.fr        #
+#    Updated: 2022/03/10 23:04:21 by rmonney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= 	main.c\
@@ -23,6 +23,7 @@ SRCS		= 	main.c\
 				current_parser2.c\
 				error_handler.c\
 				ft_cd.c\
+				cmd_not_found.c\
 
 OBJS		= ${SRCS:.c=.o}
 

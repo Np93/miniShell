@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 18:55:51 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/10 19:46:45 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/10 23:05:09 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -88,22 +88,18 @@ int	current_parser(t_para *para)
 
 	p = malloc(sizeof(t_parse));
 	if (!p)
-		error_handler(0);
+		error_handler(0, para);
 	p->i = 0;
 	p->j = 0;
 	p->str = malloc(sizeof(char) * ft_strlen(para->current) * 10);
 	if (!p->str)
-		error_handler(0);
+		error_handler(0, para);
 	err = current_parser6(para, p);
+	para->out = ft_strdup(p->str);
+	free(p);
 	if (err != 0)
-	{
-		free(p);
 		return (err);
-	}
-	else
-	{
-		para->out = ft_strdup(p->str);
-		free(p);
-	}
+	if (verif_fquote(para))
+		return (3);
 	return (0);
 }

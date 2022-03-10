@@ -31,6 +31,8 @@ error_handler : error_handler
 
 ft_cd.c : ft_memcmp, ft_getenv, ft_cd
 
+cmd_not_found : cmd_cmp, verif_fquote, cmd_not_found, cmd_not_found2
+
 
 
 
@@ -52,6 +54,12 @@ la ligne de commande tapee qui contient du coup tous ce qui a a faire... Faudra 
 `char *out`
 
 C'est en gros la string une fois qu'on a remove les quotes et add les variables d'environnement car la string current doit rester sans modif pour matcher avec l'historique
+
+
+
+`char *bait`
+
+string qui me sert quand le debut de current est quoté car la verif est un peu differente et c'est chiant
 
 
 
@@ -153,7 +161,7 @@ encore les parametre (env) du terminal a jour, j'ai aussi utiliser les numeros 3
 variable cmd dans le main.
 
 
-`void	error_handler(int error)`
+`void	error_handler(int error, t_ara *para)`
 
 il fait des actions selon le numero d'erreur envoie
 
@@ -162,3 +170,29 @@ il fait des actions selon le numero d'erreur envoie
 1 = quotes non fermees dans la current : ecrit que t'as pas fermee tes quotes
 
 2 = presence d'une ; dans la current : ecrit qu'on handle pas ce cas
+
+3 = ya eu une tentative de bait dans la para->current : utilise une version alternative de cmd_not_found
+
+
+
+`void cmd_not_found(char *str)`
+
+ecrit qu'aucune fonction ne correspond a la string passee en argument
+
+
+
+`void cmd_not_found2(char *str)`
+
+la meme mais c'est pour le cas ou ya eu le debut de la current qui etait quote ce qui change un peu la sortie
+
+
+
+`int verif_fquote(t_para *para)`
+
+verifie si le debut de para->current etait quoté car ca modifie un peu la recherche et la sortie. revoie 0 si on peut continuer sans soucis et 1 si l'argument pose soucis auquel cas on stock ledit argument dans para->bait.
+
+
+
+`int	cmd_cmp(char *str)`
+
+en gros c'est un peu commme search_fct mais modifiee pour pouvoir etre utilisee par verif_fquote.
