@@ -21,6 +21,7 @@ SRCS		= 	main.c\
 				init.c\
 				current_parser.c\
 				error_handler.c\
+				ft_cd.c\
 
 OBJS		= ${SRCS:.c=.o}
 

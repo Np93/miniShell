@@ -72,5 +72,6 @@ int		current_parser4(t_para *para, t_parse *p);
 char	*get_dollar(char *current, int i, t_para *para);
 void	error_handler(int error);
 char	*ft_getenv(t_para *para, char *var);
+void	ft_cd(t_para *para, int cmd);
 
 #endif

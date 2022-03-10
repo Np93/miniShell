@@ -32,6 +32,8 @@ int	search_fct(char *str)
 		return (7);
 	else if (ft_strstr(str, "exit"))
 		return (8);
+	else if(ft_strstr(str, "cd .. "))
+		return (9);
 	return (0);
 }
 
@@ -43,6 +45,8 @@ void	do_fct(int cmd, t_para *para)
 		ft_echo(1, para->out + 8);
 	else if (cmd == 2)
 		ft_echo(2, para->out + 5);
+	else if (cmd == 3)
+		ft_cd(para, cmd);
 	else if (cmd == 4)
 		ft_pwd(para);
 	else if (cmd == 5)
@@ -53,6 +57,8 @@ void	do_fct(int cmd, t_para *para)
 		ft_env(para->env);
 	else if (cmd == 8)
 		exit(0);
+	else if (cmd == 9)
+		ft_cd(para, cmd);
 }
 
 char	**cpy_env(char **env)
