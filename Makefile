@@ -6,10 +6,11 @@
 #    By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 19:09:32 by rmonney           #+#    #+#              #
-#    Updated: 2022/03/10 23:04:21 by rmonney          ###   ########.fr        #
+#    Updated: 2022/03/11 17:52:37 by rmonney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= 	main.c\
+				search_fct.c\
 				ft_echo.c\
 				ft_strstr.c\
 				ft_calloc.c\
@@ -24,6 +25,7 @@ SRCS		= 	main.c\
 				error_handler.c\
 				ft_cd.c\
 				cmd_not_found.c\
+				sig_handler.c\
 
 OBJS		= ${SRCS:.c=.o}
 

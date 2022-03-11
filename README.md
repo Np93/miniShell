@@ -1,7 +1,9 @@
 //Contenu des fichiers//
 
 
-main.c : search_fct, do_fct, cpy_env, init_para, main
+main.c : cpy_env, init_para, main
+
+search_fct.c : search_fct, do_fct
 
 echo.c : ft_echo
 
@@ -31,7 +33,9 @@ error_handler : error_handler
 
 ft_cd.c : ft_memcmp, ft_getenv, ft_cd
 
-cmd_not_found : cmd_cmp, verif_fquote, cmd_not_found, cmd_not_found2
+cmd_not_found.c : cmd_cmp, verif_fquote, cmd_not_found, cmd_not_found2
+
+sig_handler.c : sig_handler
 
 
 
@@ -196,3 +200,14 @@ verifie si le debut de para->current etait quoté car ca modifie un peu la recher
 `int	cmd_cmp(char *str)`
 
 en gros c'est un peu commme search_fct mais modifiee pour pouvoir etre utilisee par verif_fquote.
+
+
+`void	ft_signal(void)`
+
+initialise le captage des signaux dans le main.
+
+
+
+`void	sig_handler(int sig)`
+
+il gere les signaux envoyé (en gros de ce que j'ai compris les CTRL+key) pour l'instant j'ai que reussi a faire marcher le CTRL+C.
