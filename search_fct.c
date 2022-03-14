@@ -20,7 +20,7 @@ int	search_fct(char *str)
 		else
 			return (2);
 	}
-	else if (ft_strstr(str, "cd "))
+	else if (ft_strstr(str, "cd .."))
 		return (3);
 	else if (ft_strstr(str, "pwd") == 3)
 		return (4);
@@ -32,7 +32,7 @@ int	search_fct(char *str)
 		return (7);
 	else if (ft_strstr(str, "exit") == 4)
 		return (8);
-	else if (ft_strstr(str, "cd .. "))
+	else if (ft_strstr(str, "cd "))
 		return (9);
 	return (0);
 }
