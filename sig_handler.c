@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 17:30:45 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/16 15:30:03 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/16 17:09:54 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -14,6 +14,7 @@
 void	ft_signal(void)
 {
 	signal(SIGINT, sig_handler);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 void	sig_handler(int sig)
