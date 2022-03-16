@@ -210,4 +210,4 @@ initialise le captage des signaux dans le main.
 
 `void	sig_handler(int sig)`
 
-il gere les signaux envoyé (en gros de ce que j'ai compris les CTRL+key) pour l'instant j'ai que reussi a faire marcher le CTRL+C.
+il gere les signaux envoyé ("CTRL+C" et "CTRL+\") pour le CTRL+D c'est directement dans le main c'est plus tricky car CTRL+D fait quit le programme si le stdin a atteint EOF donc est NULL.
