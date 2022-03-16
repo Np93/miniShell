@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/11 18:01:54 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/16 15:21:12 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -39,56 +39,44 @@ void	init_para(t_para **para, char **argv, char **env)
 	(*para)->env = env;
 }
 
-void	ft_readline(int argc, char **argv, char **env, t_para *para)
+void	ft_readline(char **env, t_para *para)
 {
 	(void)env;
-	rl_on_new_line();
-	para->prompt = prompt_init(argc, argv);
 	para->current = readline(para->prompt);
-//	if (STDIN_FILENO == EOF)
-//		exit(0);
-	add_history(para->current);
-	while (*para->current == ' ')
-		para->current++;
-	if (current_parser(para))
-		error_handler(current_parser(para), para);
-	else
+	if (para->current != NULL)
 	{
-		para->cmd = search_fct(para->out);
-		do_fct(para->cmd, para);
+		if (para->current[0])
+		{
+			add_history(para->current);
+			while (*para->current == ' ')
+				para->current++;
+			if (current_parser(para))
+				error_handler(current_parser(para), para);
+			else
+			{
+				para->cmd = search_fct(para->out);
+				do_fct(para->cmd, para);
+			}
+		}
 	}
-	rl_redisplay();
+	else
+		exit (0);
 }
 
 int	main(int argc, char **argv, char **env)
 {
 	t_para	*para;
+	char	*str;
 
+	str = malloc(sizeof(char) * 42);
 	if (argc > 2)
 		return (0);
 	ft_signal();
 	init_para(&para, argv, env);
+	para->prompt = prompt_init(argc, argv);
 	while (1)
 	{
-		ft_readline(argc, argv, env, para);
-		/*
-		rl_on_new_line();
-		para->prompt = prompt_init(argc, argv);
-		para->current = readline(para->prompt);
-		if (STDIN_FILENO == NULL)
-			exit(0);
-		add_history(para->current);
-		while (*para->current == ' ')
-			para->current++;
-		if (current_parser(para))
-			error_handler(current_parser(para), para);
-		else
-		{
-			para->cmd = search_fct(para->out);
-			do_fct(para->cmd, para);
-		}
-		rl_redisplay();
-		*/
+		ft_readline(env, para);
 	}
 	return (0);
 }

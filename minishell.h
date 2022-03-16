@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/11 18:02:00 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/16 15:12:14 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct s_parse {
 	int		j;
 	int		k;
 }			t_parse;
+
+# define STDIN STDIN_FILENO
 
 int		search_fct(char *str);
 void	do_fct(int cmd, t_para *para);

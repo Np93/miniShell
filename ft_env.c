@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 18:19:29 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/09 22:20:56 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/16 15:34:41 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -60,12 +60,12 @@ int	ft_unset(t_para *para)
 	int		j;
 
 	i = 0;
-	arg = ft_strdup(para->current + ft_strstr(para->current, "unset "));
+	arg = ft_strdup(para->out + ft_strstr(para->out, "unset "));
 	split = ft_split(arg, ' ');
 	while (split[i] != NULL)
 	{
 		j = 0;
-		if (getenv(split[i]) == NULL)
+		if (ft_getenv(para, split[i]) == NULL)
 			i++;
 		else
 		{
