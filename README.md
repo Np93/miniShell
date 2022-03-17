@@ -37,6 +37,8 @@ cmd_not_found.c : cmd_cmp, verif_fquote, cmd_not_found, cmd_not_found2
 
 sig_handler.c : sig_handler
 
+execve_default.c : ft_execve, free_exec
+
 
 
 
@@ -211,3 +213,9 @@ initialise le captage des signaux dans le main.
 `void	sig_handler(int sig)`
 
 il gere les signaux envoyé ("CTRL+C" et "CTRL+\") pour le CTRL+D c'est directement dans le main c'est plus tricky car CTRL+D fait quit le programme si le stdin a atteint EOF donc est NULL.
+
+
+
+`int	ft_execve(t_para *para)`
+
+si la commande passee dans para->current ne correspond a rien qu'on a du construire, il va tenter de lancer la commande avec le vrai shell. Pour l'instant ça marche un peu (genre ls, ls -la, cat file.c) mais par contre j'ai pete le process principal car ca ouvre un nouveau shell quand on fait une commande qui marche pas...

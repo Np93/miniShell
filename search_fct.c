@@ -6,39 +6,10 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 17:51:16 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/16 19:01:09 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/17 16:23:03 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
-/*
-int	ft_execve(t_para *para)
-{
-	int		ret;
-	char	*path;
-	char	**argv;
-	char	**envp;
-
-	argv = malloc(sizeof(char *) * 10);
-	ret = 0;
-	if (para->current[0] == 'l' && para->current[1] == 's')
-	{
-//		path = ft_getenv(para, "PWD");
-		path = "/bin/bash";
-		argv[0] = path;
-		argv[1] = "-c";
-		argv[2] = "./minishell";
-		argv[3] = NULL;
-		envp = para->env;
-		ret = execve(path, argv, envp);
-		if (ret == -1)
-		{
-			printf("echec critique\n");
-		}
-		else
-			return (1);
-	}
-	return (0);
-}
 
 int	search_fct(char *str)
 {
@@ -65,12 +36,12 @@ int	search_fct(char *str)
 		return (9);
 	return (0);
 }
-*/
+
 void	do_fct(int cmd, t_para *para)
 {
 	if (cmd == 0)
 	{
-//		if (ft_execve(para) == 0)
+		if (ft_execve(para) == 0)
 			cmd_not_found(para->out);
 	}
 	else if (cmd == 1)
