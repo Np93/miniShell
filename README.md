@@ -1,7 +1,7 @@
 //Contenu des fichiers//
 
 
-main.c : cpy_env, init_para, main
+main.c : welcome, cpy_env, init_para, main
 
 search_fct.c : search_fct, do_fct
 
@@ -38,6 +38,10 @@ cmd_not_found.c : cmd_cmp, verif_fquote, cmd_not_found, cmd_not_found2
 sig_handler.c : sig_handler
 
 execve_default.c : ft_execve, free_exec, all_path_exec, exec_and_return
+
+welcome1.c : les welcome 1 a 5
+
+welcome2.c : les welcome 6 a 10
 
 
 
@@ -231,3 +235,9 @@ si la commande passee dans para->current ne correspond a rien qu'on a du constru
 `int	exec_and_return(char **all_path, char **argv, t_para *para)`
 
 split de fonction a cause de la norminette c'est l'executeur du process ft_execve.
+
+
+
+`void	welcome(void)`
+
+print un ptit accueil sympa quand on lance le shell

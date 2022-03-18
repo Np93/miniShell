@@ -6,7 +6,7 @@
 #    By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 19:09:32 by rmonney           #+#    #+#              #
-#    Updated: 2022/03/17 16:23:19 by rmonney          ###   ########.fr        #
+#    Updated: 2022/03/18 20:26:18 by rmonney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= 	main.c\
@@ -27,6 +27,8 @@ SRCS		= 	main.c\
 				cmd_not_found.c\
 				sig_handler.c\
 				execve_default.c\
+				welcome1.c\
+				welcome2.c\
 
 OBJS		= ${SRCS:.c=.o}
 
