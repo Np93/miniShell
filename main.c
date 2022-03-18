@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/18 20:23:44 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/18 21:16:49 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -80,18 +80,17 @@ void	ft_readline(char **env, t_para *para)
 int	main(int argc, char **argv, char **env)
 {
 	t_para	*para;
-	char	*str;
 
-	welcome();
-	str = malloc(sizeof(char) * 42);
 	if (argc > 2)
+	{
+		error_handler(4, NULL);
 		return (0);
+	}
+	welcome();
 	ft_signal();
 	init_para(&para, argv, env);
 	para->prompt = prompt_init(argc, argv);
 	while (1)
-	{
 		ft_readline(env, para);
-	}
 	return (0);
 }

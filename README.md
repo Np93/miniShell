@@ -183,6 +183,8 @@ il fait des actions selon le numero d'erreur envoie
 
 3 = ya eu une tentative de bait dans la para->current : utilise une version alternative de cmd_not_found
 
+4 = erreur dans l'appel de minishell : Usage : ./minishell ([username])
+
 
 
 `void cmd_not_found(char *str)`
