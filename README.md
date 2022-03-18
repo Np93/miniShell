@@ -37,7 +37,7 @@ cmd_not_found.c : cmd_cmp, verif_fquote, cmd_not_found, cmd_not_found2
 
 sig_handler.c : sig_handler
 
-execve_default.c : ft_execve, free_exec
+execve_default.c : ft_execve, free_exec, all_path_exec, exec_and_return
 
 
 
@@ -218,4 +218,16 @@ il gere les signaux envoyé ("CTRL+C" et "CTRL+\") pour le CTRL+D c'est directeme
 
 `int	ft_execve(t_para *para)`
 
-si la commande passee dans para->current ne correspond a rien qu'on a du construire, il va tenter de lancer la commande avec le vrai shell. Pour l'instant ça marche un peu (genre ls, ls -la, cat file.c) mais par contre j'ai pete le process principal car ca ouvre un nouveau shell quand on fait une commande qui marche pas...
+si la commande passee dans para->current ne correspond a rien qu'on a du construire, il va tenter de lancer la commande avec le vrai shell. Si elle existe pas non plus dans le vrai shell, c'est comme meme minishell qui dit commande not found.
+
+
+
+`char	**all_path_exec(t_para *para, char *end`
+
+ça va chercher tous les chemins pssoible pour executer les cmd avec execve et renvoier le tableaux de str pour les tests.
+
+
+
+`int	exec_and_return(char **all_path, char **argv, t_para *para)`
+
+split de fonction a cause de la norminette c'est l'executeur du process ft_execve.
