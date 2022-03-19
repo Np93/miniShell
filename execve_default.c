@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 16:21:38 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/18 17:18:37 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/19 18:54:03 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -78,6 +78,7 @@ int	ft_execve(t_para *para)
 		error_handler(0, para);
 	all_path = NULL;
 	argv = ft_split(para->out, ' ');
+	ft_check_path(argv);
 	all_path = all_path_exec(para, argv[0]);
 	return (exec_and_return(all_path, argv, para));
 }

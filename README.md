@@ -39,6 +39,8 @@ sig_handler.c : sig_handler
 
 execve_default.c : ft_execve, free_exec, all_path_exec, exec_and_return
 
+execve_default2.c : last_path, ft_check_path
+
 welcome1.c : les welcome 1 a 5
 
 welcome2.c : les welcome 6 a 10
@@ -237,6 +239,18 @@ il gere les signaux envoyé ("CTRL+C" et "CTRL+\") pour le CTRL+D c'est directeme
 `int	ft_execve(t_para *para)`
 
 si la commande passee dans para->current ne correspond a rien qu'on a du construire, il va tenter de lancer la commande avec le vrai shell. Si elle existe pas non plus dans le vrai shell, c'est comme meme minishell qui dit commande not found.
+
+
+
+`void	ft_check_path(char **argv)`
+
+il va check les str de argv qu'on donne a execve() car si ya genre "/bin/ls" on doit que garder le ls de fin du coup on modifie les strings en fonctions
+
+
+
+`char	*last_path(char *arg)`
+
+c'est lui qui fait la modif des str de argv dans ft_check_path juste plus haut.
 
 
 

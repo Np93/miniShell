@@ -6,7 +6,7 @@
 #    By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 19:09:32 by rmonney           #+#    #+#              #
-#    Updated: 2022/03/19 18:19:31 by rmonney          ###   ########.fr        #
+#    Updated: 2022/03/19 18:51:14 by rmonney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= 	main.c\
@@ -27,6 +27,7 @@ SRCS		= 	main.c\
 				cmd_not_found.c\
 				sig_handler.c\
 				execve_default.c\
+				execve_default2.c\
 				welcome1.c\
 				welcome2.c\
 				ft_termios.c\

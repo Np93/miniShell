@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/19 18:35:42 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/19 18:52:06 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ int		ft_execve(t_para *para);
 char	**all_path_exec(t_para *para, char *end);
 void	free_exec(char **argv, char **path);
 int		exec_and_return(char **all_path, char **argv, t_para *para);
+void	ft_check_path(char **argv);
+char	*last_path(char *arg);
 void	welcome(void);
 void	welcome1(void);
 void	welcome2(void);
