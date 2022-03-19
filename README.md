@@ -43,6 +43,8 @@ welcome1.c : les welcome 1 a 5
 
 welcome2.c : les welcome 6 a 10
 
+ft_termios.c : ft_termios
+
 
 
 
@@ -82,6 +84,12 @@ int que search_fct a renvoye apres avoir cherche dans current.
 `char **env`
 
 stocke les variable d'environnement (pour les fonctions env et export)
+
+
+
+`struct termios term`
+
+utile pour ft_termios en gros on peut toucher aux parametre du terminal
 
 
 
@@ -185,6 +193,10 @@ il fait des actions selon le numero d'erreur envoie
 
 4 = erreur dans l'appel de minishell : Usage : ./minishell ([username])
 
+5 = le fd utilise est pas TTY (man isatty) et c'est chiant pour l'utilisation de ft_termios
+
+6 = une erreur est arrivee quand on a voulu toucher aux parametres de la struct termios
+
 
 
 `void cmd_not_found(char *str)`
@@ -243,3 +255,9 @@ split de fonction a cause de la norminette c'est l'executeur du process ft_execv
 `void	welcome(void)`
 
 print un ptit accueil sympa quand on lance le shell
+
+
+
+`void	ft_termios(t_para *para)`
+
+Est utilisé pour inhiber le print du "¿c" quand on faisait CTRL+C, la ligne importante c'est `para->term.c_lflag &= ~ECHCTL` qui met le bit de ECHOCTL (donc "echo" la touche CTRL) a 0

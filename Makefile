@@ -6,7 +6,7 @@
 #    By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 19:09:32 by rmonney           #+#    #+#              #
-#    Updated: 2022/03/18 20:26:18 by rmonney          ###   ########.fr        #
+#    Updated: 2022/03/19 15:14:43 by rmonney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= 	main.c\
@@ -29,6 +29,7 @@ SRCS		= 	main.c\
 				execve_default.c\
 				welcome1.c\
 				welcome2.c\
+				ft_termios.c\
 
 OBJS		= ${SRCS:.c=.o}
 

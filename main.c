@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/18 21:16:49 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/19 15:26:04 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -89,6 +89,7 @@ int	main(int argc, char **argv, char **env)
 	welcome();
 	ft_signal();
 	init_para(&para, argv, env);
+	ft_termios(para);
 	para->prompt = prompt_init(argc, argv);
 	while (1)
 		ft_readline(env, para);

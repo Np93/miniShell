@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/18 20:22:17 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/19 16:12:29 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include <sys/ioctl.h>
 # include <termios.h>
 # include <sys/stat.h>
+# include <errno.h>
 
 typedef struct s_para {
 	char			*prompt;
@@ -40,6 +41,7 @@ typedef struct s_para {
 	int				cmd;
 	char			**argv;
 	char			**env;
+	struct termios	term;
 }			t_para;
 
 typedef struct s_parse {
@@ -103,5 +105,6 @@ void	welcome7(void);
 void	welcome8(void);
 void	welcome9(void);
 void	welcome10(void);
+void	ft_termios(t_para *para);
 
 #endif

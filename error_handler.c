@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 20:12:19 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/18 21:15:40 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/19 15:49:53 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -26,4 +26,14 @@ void	error_handler(int error, t_para *para)
 		cmd_not_found2(para->bait);
 	if (error == 4)
 		printf("Usage : ./minishell ([username])\n");
+	if (error == 5)
+	{
+		printf("Fd is non TTY\n");
+		exit(0);
+	}
+	if (error == 6)
+	{
+		printf("An error occured with the termios structure\n");
+		exit(0);
+	}
 }
