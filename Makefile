@@ -6,7 +6,7 @@
 #    By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 19:09:32 by rmonney           #+#    #+#              #
-#    Updated: 2022/03/19 15:14:43 by rmonney          ###   ########.fr        #
+#    Updated: 2022/03/19 18:19:31 by rmonney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= 	main.c\
@@ -36,6 +36,8 @@ OBJS		= ${SRCS:.c=.o}
 INCLUDE		= -lreadline -I${HOME}/.brew/Cellar/readline/8.1.1/include/ -L${HOME}/.brew/Cellar/readline/8.1.1/lib/
 
 RM			= rm -f
+
+SAN 		= -g -fsanitize=address
 
 NAME		= minishell
 

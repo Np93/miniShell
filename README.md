@@ -27,7 +27,7 @@ init.c : prompt_init
 
 current_parser.c : get_dollar, current_parser(+ 2, 3 et 4)
 
-current_parser2.c : current_parser5 (=+ 6)
+current_parser2.c : current_parser5 (+ 6 et 7)
 
 error_handler : error_handler
 

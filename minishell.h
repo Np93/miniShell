@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/19 16:12:29 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/19 18:35:42 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int		current_parser3(t_para *para, t_parse *p);
 int		current_parser4(t_para *para, t_parse *p);
 int		current_parser5(t_para *para, t_parse *p);
 int		current_parser6(t_para *para, t_parse *p);
+void	current_parser7(t_para *para, t_parse *p);
 char	*get_dollar(char *current, int i, t_para *para);
 void	error_handler(int error, t_para *para);
 char	*ft_getenv(t_para *para, char *var);

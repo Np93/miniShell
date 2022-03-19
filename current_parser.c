@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 18:55:51 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/10 23:05:09 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/19 18:35:54 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -53,6 +53,8 @@ int	current_parser3(t_para *para, t_parse *p)
 			if (para->current[p->i] == '\0')
 				return (0);
 		}
+		else if (para->current[p->i] == 92)
+			current_parser7(para, p);
 		else
 			p->str[p->j++] = para->current[p->i++];
 	}

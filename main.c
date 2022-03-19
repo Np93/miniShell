@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/19 16:50:55 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/19 18:24:16 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -64,12 +64,15 @@ void	ft_readline(char **env, t_para *para)
 			add_history(para->current);
 			while (*para->current == ' ')
 				para->current++;
-			if (current_parser(para))
-				error_handler(current_parser(para), para);
-			else
+			if (*para->current != '\0')
 			{
-				para->cmd = search_fct(para->out);
-				do_fct(para->cmd, para);
+				if (current_parser(para))
+					error_handler(current_parser(para), para);
+				else
+				{
+					para->cmd = search_fct(para->out);
+					do_fct(para->cmd, para);
+				}
 			}
 		}
 	}
