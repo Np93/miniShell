@@ -1,3 +1,12 @@
+A faire :
+- < : 
+- > :
+- << :
+- >> :
+- | :
+-$? : R
+
+
 //Contenu des fichiers//
 
 

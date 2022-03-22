@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:20:19 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/08 17:38:43 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/22 17:47:32 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -87,7 +87,6 @@ char	**ft_split(char *s, char c)
 	split = spliter(split, s, c);
 	return (split);
 }
-
 /*
 int	main(void)
 {
