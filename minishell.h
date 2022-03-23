@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/19 18:52:06 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/23 19:57:35 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,12 @@ typedef struct s_parse {
 	int		j;
 	int		k;
 }			t_parse;
+
+typedef struct s_glob {
+	int		exit_status;
+}			t_glob;
+
+t_glob	g_glob;
 
 # define STDIN STDIN_FILENO
 

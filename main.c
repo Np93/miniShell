@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/19 18:24:16 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/23 20:16:20 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -51,6 +51,7 @@ void	init_para(t_para **para, char **argv, char **env)
 	(*para) = (t_para *)malloc(sizeof(t_para));
 	(*para)->argv = argv;
 	(*para)->env = env;
+	g_glob.exit_status = 0;
 }
 
 void	ft_readline(char **env, t_para *para)

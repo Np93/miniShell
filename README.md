@@ -46,7 +46,7 @@ cmd_not_found.c : cmd_cmp, verif_fquote, cmd_not_found, cmd_not_found2
 
 sig_handler.c : sig_handler
 
-execve_default.c : ft_execve, free_exec, all_path_exec, exec_and_return
+execve_default.c : ft_execve, free_exec, all_path_exec, exec_and_return(+2)
 
 execve_default2.c : last_path, ft_check_path
 
@@ -59,7 +59,7 @@ ft_termios.c : ft_termios
 
 
 
-//Explications de la struct// (j'ai add une struct t_parse pour une fonction qui me les brisait t'en soucie pas)
+//Explications de la struct// (J'ai add une struc t_glob que j'ai déclaré en globale dans le .h pour pouvoir catch l'int exit status dont on a besoin pour "$?")
 
 
 `char *prompt`
@@ -212,7 +212,7 @@ il fait des actions selon le numero d'erreur envoie
 
 `void cmd_not_found(char *str)`
 
-ecrit qu'aucune fonction ne correspond a la string passee en argument
+ecrit qu'aucune fonction ne correspond a la string passee en argument, elle set aussi le g_glob.exit_status à 127
 
 
 
