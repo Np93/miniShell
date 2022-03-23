@@ -108,13 +108,13 @@ void	magic(char *str)
 
 void	ft_cd(t_para *para, int cmd)
 {
-	char temp_pwd[4097];
-	char *path;
+	char 	temp_pwd[4097];
+	char 	*path;
 
 	magic(para->out);
 	getcwd(temp_pwd, 4096);
 	if (cmd == 3)
-		path = get_env(para->env, "HOME");
+	 	path = ft_strdup("..");
 	if (cmd == 9)
 		path = ft_strjoin(get_env(para->env, "PWD"), para->out);
 	if (chdir(path) == 0)
