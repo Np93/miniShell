@@ -6,7 +6,7 @@
 #    By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 19:09:32 by rmonney           #+#    #+#              #
-#    Updated: 2022/03/29 16:06:36 by rmonney          ###   ########.fr        #
+#    Updated: 2022/03/29 20:11:24 by rmonney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= 	main.c\
@@ -40,11 +40,15 @@ INCLUDE		= -lreadline -I${HOME}/.brew/Cellar/readline/8.1.1/include/ -L${HOME}/.
 
 RM			= rm -f
 
-SAN 		= -g -fsanitize=address
+SAN 		= -fsanitize=address
 
 NAME		= minishell
 
+DNAME		= dockedshell
+
 FLAGS		= -Wall -Wextra -Werror
+
+DFLAG		= -fcommon
 
 CC			= gcc
 
@@ -60,10 +64,16 @@ clean:
 			${RM} ${OBJS}
 
 fclean:		clean
-			${RM} ${NAME}
+			${RM} ${NAME} ${DNAME}
 
 re:			fclean all
 
 good:		${NAME} clean
 
-.PHONY:		all clean fclean re
+sani:		${OBJS}
+			${CC} ${FLAGS} ${SAN} ${INCLUDE} -o ${NAME} ${OBJS}
+
+docker:
+			${CC} ${DFLAG} ${FLAGS} ${SAN} ${INCLUDE} ${SRCS} -o ${DNAME}
+
+.PHONY:		all clean fclean re good docker sani
