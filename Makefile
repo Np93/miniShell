@@ -6,7 +6,7 @@
 #    By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 19:09:32 by rmonney           #+#    #+#              #
-#    Updated: 2022/03/23 20:40:38 by rmonney          ###   ########.fr        #
+#    Updated: 2022/03/29 16:06:36 by rmonney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= 	main.c\
@@ -63,5 +63,7 @@ fclean:		clean
 			${RM} ${NAME}
 
 re:			fclean all
+
+good:		${NAME} clean
 
 .PHONY:		all clean fclean re

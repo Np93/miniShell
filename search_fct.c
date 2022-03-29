@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 17:51:16 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/19 18:23:30 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/29 16:39:48 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -43,6 +43,7 @@ void	do_fct(int cmd, t_para *para)
 	{
 		if (ft_execve(para) == 0)
 			cmd_not_found(para->out);
+		return ;
 	}
 	else if (cmd == 1)
 		ft_echo(1, para->out + 8);
@@ -62,4 +63,5 @@ void	do_fct(int cmd, t_para *para)
 		exit(0);
 	else if (cmd == 9)
 		ft_cd(para, cmd);
+	g_glob.exit_status = 0;
 }
