@@ -1,10 +1,10 @@
 A faire :
 - < : 
-- > :
+- > : Reno
 - << :
 - >> :
 - | :
--$? : R
+-$? : Done
 
 
 //Contenu des fichiers//
