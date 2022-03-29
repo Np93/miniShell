@@ -56,6 +56,8 @@ welcome2.c : les welcome 6 a 10
 
 ft_termios.c : ft_termios
 
+ft_readline.c : ft_readline(+2), search_redirection(+2), exec_redirection
+
 
 
 
@@ -283,4 +285,24 @@ print un ptit accueil sympa quand on lance le shell
 
 `void	ft_termios(t_para *para)`
 
-Est utilisé pour inhiber le print du "¿c" quand on faisait CTRL+C, la ligne importante c'est `para->term.c_lflag &= ~ECHCTL` qui met le bit de ECHOCTL (donc "echo" la touche CTRL) a 0
+Est utilisé pour inhiber le print du "^c" quand on faisait CTRL+C, la ligne importante c'est `para->term.c_lflag &= ~ECHCTL` qui met le bit de ECHOCTL (donc "echo" la touche CTRL) a 0
+
+
+
+`void ft_readline(t_para *para`
+
+il coupé du main pour des raisons de norminette, il va lancer le current parser sur la str lue par readline et lancer search_fct et do_fct.
+
+
+
+`int	search_redirection(char *str)`
+
+cherche dans la str passee en parametre si il y a une redirection et renvoie un int selon la rd rencontrée (et si elle n'est pas inhibée par du quotage). Renvoie 0 si rien n'a ete trouve
+
+code des redirections :
+
+1 = >
+2 = >>
+3 = <
+4 = <<
+5 = |

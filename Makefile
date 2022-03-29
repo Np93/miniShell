@@ -6,7 +6,7 @@
 #    By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 19:09:32 by rmonney           #+#    #+#              #
-#    Updated: 2022/03/29 20:11:24 by rmonney          ###   ########.fr        #
+#    Updated: 2022/03/29 20:25:26 by rmonney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= 	main.c\
@@ -33,6 +33,7 @@ SRCS		= 	main.c\
 				ft_termios.c\
 				ft_atoi.c\
 				ft_itoa.c\
+				ft_readline.c\
 
 OBJS		= ${SRCS:.c=.o}
 

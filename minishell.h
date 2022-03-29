@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/29 19:03:24 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/29 20:26:04 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,6 @@ void	welcome10(void);
 void	ft_termios(t_para *para);
 int		ft_atoi(char *str);
 char	*ft_itoa(int n);
+void	ft_readline(t_para *para);
 
 #endif
