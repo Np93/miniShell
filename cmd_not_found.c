@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 22:42:04 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/23 19:59:48 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/29 18:14:26 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -36,6 +36,8 @@ int	cmd_cmp(char *str)
 		return (9);
 	return (0);
 }
+
+/*     34 = "    39 = '    */
 
 int	verif_fquote(t_para *para)
 {

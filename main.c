@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/29 16:44:37 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/29 18:24:24 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -54,9 +54,8 @@ void	init_para(t_para **para, char **argv, char **env)
 	g_glob.exit_status = 0;
 }
 
-void	ft_readline(char **env, t_para *para)
+void	ft_readline(t_para *para)
 {
-	(void)env;
 	para->current = readline(para->prompt);
 	if (para->current != NULL)
 	{
@@ -97,7 +96,7 @@ int	main(int argc, char **argv, char **env)
 	para->prompt = prompt_init(argc, argv);
 	while (1)
 	{
-		ft_readline(env, para);
+		ft_readline(para);
 		if (current_parser(para))
 			g_glob.exit_status = 1;
 	}
