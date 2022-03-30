@@ -6,85 +6,59 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 20:26:16 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/29 21:45:18 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/30 23:18:28 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
 
-/*    34 = "    39 = '    */
-
-int	search_redirection2(char *str, int i)
+char	*cpy_bf_redi(char *str, int i)
 {
-	if (str[i] == '>')
+	char	*ret;
+	int		j;
+	int		a;
+
+	a = 0;
+	j = i - 1;
+	while (str[j - 1] != '<' && str[j - 1] != '>'
+		&& str[j - 1] != '|' && j != 0)
+		j--;
+	ret = malloc(sizeof(char) * (i - j) + 1);
+	if (!ret)
+		error_handler(0, NULL);
+	if (str[i - 1] == ' ')
+		i--;
+	if (str[j] == ' ')
+		j++;
+	while (j < i)
 	{
-		if (str[i + 1] == '>')
-			return (2);
-		else
-			return (1);
+		ret[a++] = str[j++];
 	}
-	if (str[i] == '<')
-	{
-		if (str[i + 1] == '<')
-			return (4);
-		else
-			return (3);
-	}
-	if (str[i] == '|')
-		return (5);
-	return (0);
+	ret[a] = '\0';
+	return (ret);
 }
 
-int	search_redirection(char *str)
+char	*int_to_str_redi(int code)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == 34)
-		{
-			i++;
-			while (str[i] != 34)
-				i++;
-		}
-		if (str[i] == 39)
-		{
-			i++;
-			while (str[i] != 39)
-				i++;
-		}
-		if (search_redirection2(str, i))
-			return (search_redirection2(str, i));
-		else
-			i++;
-	}
-	return (0);
-}
-
-void	exec_redirection(t_para *para, int redi)
-{
-	(void)para;
-	if (redi == 1)
-		printf("redirection = >\n");
-	if (redi == 2)
-		printf("redirection = >>\n");
-	if (redi == 3)
-		printf("redirection = <\n");
-	if (redi == 4)
-		printf("redirection = <<\n");
-	if (redi == 5)
-		printf("redirection = |\n");
+	if (code == 0)
+		return (">");
+	else if (code == 1)
+		return (">>");
+	else if (code == 2)
+		return ("<");
+	else if (code == 3)
+		return ("<<");
+	else if (code == 4)
+		return ("|");
+	else
+		return (NULL);
 }
 
 void	ft_readline2(t_para *para)
 {
-	int	redi;
-
 	if (*para->current != '\0')
 	{
-		redi = search_redirection(para->current);
-		if (redi)
-			exec_redirection(para, redi);
+		if (search_redirect(para))
+			launch_redirect(para);
 		else
 		{
 			if (current_parser(para))

@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/29 20:26:04 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/30 23:48:35 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_para {
 	int				cmd;
 	char			**argv;
 	char			**env;
+	char			**split_redi;
 	struct termios	term;
 }			t_para;
 
@@ -118,5 +119,13 @@ void	ft_termios(t_para *para);
 int		ft_atoi(char *str);
 char	*ft_itoa(int n);
 void	ft_readline(t_para *para);
+void	ft_readline2(t_para *para);
+int		search_redirect(t_para *para);
+int		search_redirect2(char *str, int i);
+int		search_redirect3(t_para *para, int i);
+void	launch_redirect(t_para *para);
+int		exec_redirect1(t_para *para);
+char	*cpy_bf_redi(char *str, int i);
+char	*int_to_str_redi(int code);
 
 #endif

@@ -56,7 +56,11 @@ welcome2.c : les welcome 6 a 10
 
 ft_termios.c : ft_termios
 
-ft_readline.c : ft_readline(+2), search_redirection(+2), exec_redirection
+ft_readline.c : ft_readline(+2), int_to_str_redi, cpy_bf_redi
+
+search_redirect.c : search_redirect(+2 & 3)
+
+exec_redirect.c : exec_redirect, launch_redirect
 
 
 
@@ -295,14 +299,21 @@ il coupé du main pour des raisons de norminette, il va lancer le current parser 
 
 
 
-`int	search_redirection(char *str)`
+`int	search_redirect(char *str)`
 
-cherche dans la str passee en parametre si il y a une redirection et renvoie un int selon la rd rencontrée (et si elle n'est pas inhibée par du quotage). Renvoie 0 si rien n'a ete trouve
+cherche dans la str passee en parametre si il y a une redirection et renvoie 1 si elle trouve qqchose (et si elle n'est pas inhibée par du quotage). Renvoie 0 si rien n'a ete trouve
 
 code des redirections :
 
-1 = >
-2 = >>
-3 = <
-4 = <<
-5 = |
+0 = >
+1 = >>
+2 = <
+3 = <<
+4 = |
+
+
+
+
+`void	launch_redirect(t_para *para, int redi)`
+
+lance les fonctions en fonction des redirections. Renvoie 0 en cas de succes et un int d'erreur en cas de probleme.
