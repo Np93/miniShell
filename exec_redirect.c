@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 18:46:42 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/31 17:48:23 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/31 18:02:52 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -40,7 +40,7 @@ char	*unquoter(char *str, t_para *para)
 	ret = malloc(sizeof(char *));
 	if (!ret)
 		error_handler(0, para);
-//	unquoter6(str, p, para);
+//	unquoter6(para, p, str);
 	ret = ft_strdup(p->str);
 	free(p);
 	free(str);

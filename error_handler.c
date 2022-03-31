@@ -6,12 +6,12 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 20:12:19 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/29 16:39:15 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/31 17:55:43 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
 
-void
+void	error_handler(int error, t_para *para)
 {
 	if (error == 0)
 	{
