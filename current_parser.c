@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 18:55:51 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/31 15:14:31 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/31 17:00:04 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -100,7 +100,7 @@ int	current_parser(t_para *para)
 		error_handler(0, para);
 	p->i = 0;
 	p->j = 0;
-	p->str = malloc(sizeof(char) * ft_strlen(para->current) * 10);
+	p->str = malloc(sizeof(char *));
 	if (!p->str)
 		error_handler(0, para);
 	err = current_parser6(para, p);
