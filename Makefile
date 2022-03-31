@@ -24,6 +24,7 @@ SRCS		= 	main.c\
 				current_parser2.c\
 				error_handler.c\
 				ft_cd.c\
+				ft_cd_tool.c\
 				cmd_not_found.c\
 				sig_handler.c\
 				execve_default.c\

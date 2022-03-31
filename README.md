@@ -26,7 +26,7 @@ ft_env.c : ft_env, ft_export, ft_unset(et ft_unset2), ft_getenv
 
 ft_pwd.c : ft_pwd
 
-ft_cd.c : ft_cd, get_env, ft_memcmp
+ft_cd.c : ft_cd, magic, update_pwd, update_oldpwd
 
 ft_split.c : ft_split
 
@@ -63,6 +63,8 @@ search_redirect.c : search_redirect(+2 & 3)
 exec_redirect.c : exec_redirect1, launch_redirect
 
 init_redirect.c : int_to_str_redi, cpy_bf_redi
+
+ft_cd_tool.c : ft_memcmp, ft_strncmp, get_env (fichier norminette)
 
 
 
