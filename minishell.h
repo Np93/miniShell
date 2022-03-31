@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/30 23:48:35 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/31 15:13:52 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char	*get_env(char **env, char *envi);
 void	rl_replace_line(const char *s, int i);
 void	cmd_not_found(char *str);
 void	cmd_not_found2(char *str);
-int		verif_fquote(t_para *para);
+int		verif_fquote(t_para *para, char *str);
 int		cmd_cmp(char *str);
 void	ft_signal(void);
 void	sig_handler(int sig);

@@ -60,7 +60,9 @@ ft_readline.c : ft_readline(+2), int_to_str_redi, cpy_bf_redi
 
 search_redirect.c : search_redirect(+2 & 3)
 
-exec_redirect.c : exec_redirect, launch_redirect
+exec_redirect.c : exec_redirect1, launch_redirect
+
+init_redirect.c : int_to_str_redi, cpy_bf_redi
 
 
 
@@ -107,6 +109,12 @@ stocke les variable d'environnement (pour les fonctions env et export)
 `struct termios term`
 
 utile pour ft_termios en gros on peut toucher aux parametre du terminal
+
+
+
+`char *split_redi`
+
+pointeur sur string pour stocker les differentes operations en cas de redirection, les args impaires sont systematiquement une string qui contient la redirection (par ex. {"echo judas", ">", "outfile"})
 
 
 
@@ -228,9 +236,9 @@ la meme mais c'est pour le cas ou ya eu le debut de la current qui etait quote c
 
 
 
-`int verif_fquote(t_para *para)`
+`int verif_fquote(t_para *para, char *str)`
 
-verifie si le debut de para->current etait quoté car ca modifie un peu la recherche et la sortie. revoie 0 si on peut continuer sans soucis et 1 si l'argument pose soucis auquel cas on stock ledit argument dans para->bait.
+verifie si le debut de str etait quoté car ca modifie un peu la recherche et la sortie. revoie 0 si on peut continuer sans soucis et 1 si l'argument pose soucis auquel cas on stock ledit argument dans para->bait.
 
 
 
@@ -310,6 +318,18 @@ code des redirections :
 2 = <
 3 = <<
 4 = |
+
+
+
+`char	*cpy_bf_redi(char *str, int i)`
+
+va copier la la partie de l'arg qui se trouve avant une redirection dans current parser et le mettre dans split_redi.
+
+
+
+`char *int_to_str_redi(int code)`
+
+mets dans split_redi la string qui correspond au code de redirection de search_redirect
 
 
 

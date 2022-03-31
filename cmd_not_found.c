@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 22:42:04 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/29 19:04:14 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/31 15:15:24 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -39,15 +39,15 @@ int	cmd_cmp(char *str)
 
 /*     34 = "    39 = '    */
 
-int	verif_fquote(t_para *para)
+int	verif_fquote(t_para *para, char *str)
 {
 	char	**split;
 
 	split = NULL;
-	if (para->current[0] == 39)
-		split = ft_split(para->current, 39);
-	else if (para->current[0] == 34)
-		split = ft_split(para->current, 34);
+	if (str[0] == 39)
+		split = ft_split(str, 39);
+	else if (str[0] == 34)
+		split = ft_split(str, 34);
 	else
 		return (0);
 	if (cmd_cmp(split[0]))
