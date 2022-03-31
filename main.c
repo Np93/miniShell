@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/19 18:24:16 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/30 22:13:10 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -49,35 +49,10 @@ char	**cpy_env(char **env)
 void	init_para(t_para **para, char **argv, char **env)
 {
 	(*para) = (t_para *)malloc(sizeof(t_para));
+	(*para)->split_redi = malloc(sizeof(char *) * 99);
 	(*para)->argv = argv;
 	(*para)->env = env;
-}
-
-void	ft_readline(char **env, t_para *para)
-{
-	(void)env;
-	para->current = readline(para->prompt);
-	if (para->current != NULL)
-	{
-		if (para->current[0])
-		{
-			add_history(para->current);
-			while (*para->current == ' ')
-				para->current++;
-			if (*para->current != '\0')
-			{
-				if (current_parser(para))
-					error_handler(current_parser(para), para);
-				else
-				{
-					para->cmd = search_fct(para->out);
-					do_fct(para->cmd, para);
-				}
-			}
-		}
-	}
-	else
-		exit (0);
+	g_glob.exit_status = 0;
 }
 
 int	main(int argc, char **argv, char **env)
@@ -95,6 +70,10 @@ int	main(int argc, char **argv, char **env)
 	ft_termios(para);
 	para->prompt = prompt_init(argc, argv);
 	while (1)
-		ft_readline(env, para);
+	{
+		ft_readline(para);
+		if (current_parser(para))
+			g_glob.exit_status = 1;
+	}
 	return (0);
 }

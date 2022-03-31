@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/19 18:52:06 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/31 15:13:52 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_para {
 	int				cmd;
 	char			**argv;
 	char			**env;
+	char			**split_redi;
 	struct termios	term;
 }			t_para;
 
@@ -51,6 +52,12 @@ typedef struct s_parse {
 	int		j;
 	int		k;
 }			t_parse;
+
+typedef struct s_glob {
+	int		exit_status;
+}			t_glob;
+
+t_glob	g_glob;
 
 # define STDIN STDIN_FILENO
 
@@ -87,7 +94,7 @@ char	*get_env(char **env, char *envi);
 void	rl_replace_line(const char *s, int i);
 void	cmd_not_found(char *str);
 void	cmd_not_found2(char *str);
-int		verif_fquote(t_para *para);
+int		verif_fquote(t_para *para, char *str);
 int		cmd_cmp(char *str);
 void	ft_signal(void);
 void	sig_handler(int sig);
@@ -109,5 +116,16 @@ void	welcome8(void);
 void	welcome9(void);
 void	welcome10(void);
 void	ft_termios(t_para *para);
+int		ft_atoi(char *str);
+char	*ft_itoa(int n);
+void	ft_readline(t_para *para);
+void	ft_readline2(t_para *para);
+int		search_redirect(t_para *para);
+int		search_redirect2(char *str, int i);
+int		search_redirect3(t_para *para, int i);
+void	launch_redirect(t_para *para);
+int		exec_redirect1(t_para *para);
+char	*cpy_bf_redi(char *str, int i);
+char	*int_to_str_redi(int code);
 
 #endif

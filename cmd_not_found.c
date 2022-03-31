@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 22:42:04 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/10 23:35:26 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/31 15:15:24 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -37,15 +37,17 @@ int	cmd_cmp(char *str)
 	return (0);
 }
 
-int	verif_fquote(t_para *para)
+/*     34 = "    39 = '    */
+
+int	verif_fquote(t_para *para, char *str)
 {
 	char	**split;
 
 	split = NULL;
-	if (para->current[0] == 39)
-		split = ft_split(para->current, 39);
-	else if (para->current[0] == 34)
-		split = ft_split(para->current, 34);
+	if (str[0] == 39)
+		split = ft_split(str, 39);
+	else if (str[0] == 34)
+		split = ft_split(str, 34);
 	else
 		return (0);
 	if (cmd_cmp(split[0]))
@@ -81,10 +83,12 @@ void	cmd_not_found(char *str)
 	}
 	out[i] = '\0';
 	printf("minishell: %s: command not found\n", out);
+	g_glob.exit_status = 127;
 	free(out);
 }
 
 void	cmd_not_found2(char *str)
 {
 	printf("minishell: %s: command not found\n", str);
+	g_glob.exit_status = 127;
 }

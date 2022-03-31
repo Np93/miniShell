@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 18:55:51 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/19 18:35:54 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/03/31 15:14:31 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -20,6 +20,8 @@ char	*get_dollar(char *current, int i, t_para *para)
 	char	*ret;
 
 	j = 0;
+	if (current[i] == '?')
+		return (ft_itoa(g_glob.exit_status));
 	while (current[i] != ' ' && current[i] != 34
 		&& current[i] != 39 && current[i] != '\0')
 		arg[j++] = current[i++];
@@ -35,9 +37,14 @@ void	current_parser2(t_para *para, t_parse *p)
 {
 	p->k = 0;
 	p->tmp = get_dollar(para->current, ++p->i, para);
-	while (para->current[p->i] != ' ' && para->current[p->i] != 39
-		&& para->current[p->i] != 34 && para->current[p->i] != '\0')
+	if (para->current[p->i] == '?')
 		p->i++;
+	else
+	{
+		while (para->current[p->i] != ' ' && para->current[p->i] != 39
+			&& para->current[p->i] != 34 && para->current[p->i] != '\0')
+			p->i++;
+	}
 	while (p->tmp[p->k] != '\0')
 		p->str[p->j++] = p->tmp[p->k++];
 }
@@ -101,7 +108,7 @@ int	current_parser(t_para *para)
 	free(p);
 	if (err != 0)
 		return (err);
-	if (verif_fquote(para))
+	if (verif_fquote(para, para->current))
 		return (3);
 	return (0);
 }

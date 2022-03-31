@@ -6,7 +6,7 @@
 #    By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 19:09:32 by rmonney           #+#    #+#              #
-#    Updated: 2022/03/19 18:51:14 by rmonney          ###   ########.fr        #
+#    Updated: 2022/03/31 14:43:23 by rmonney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= 	main.c\
@@ -31,18 +31,28 @@ SRCS		= 	main.c\
 				welcome1.c\
 				welcome2.c\
 				ft_termios.c\
+				ft_atoi.c\
+				ft_itoa.c\
+				ft_readline.c\
+				exec_redirect.c\
+				search_redirect.c\
+				init_redirect.c\
 
 OBJS		= ${SRCS:.c=.o}
 
-INCLUDE		= -lreadline -I${HOME}/.brew/Cellar/readline/8.1.1/include/ -L${HOME}/.brew/Cellar/readline/8.1.1/lib/
+INCLUDE		= -lreadline -I${HOME}/.brew/Cellar/readline/8.1.2/include/ -L${HOME}/.brew/Cellar/readline/8.1.2/lib/
 
 RM			= rm -f
 
-SAN 		= -g -fsanitize=address
+SAN 		= -fsanitize=address
 
 NAME		= minishell
 
+DNAME		= dockedshell
+
 FLAGS		= -Wall -Wextra -Werror
+
+DFLAG		= -fcommon
 
 CC			= gcc
 
@@ -58,8 +68,16 @@ clean:
 			${RM} ${OBJS}
 
 fclean:		clean
-			${RM} ${NAME}
+			${RM} ${NAME} ${DNAME}
 
 re:			fclean all
 
-.PHONY:		all clean fclean re
+good:		${NAME} clean
+
+sani:		${OBJS}
+			${CC} ${FLAGS} ${SAN} ${INCLUDE} -o ${NAME} ${OBJS}
+
+docker:
+			${CC} ${DFLAG} ${FLAGS} ${SAN} ${INCLUDE} ${SRCS} -o ${DNAME}
+
+.PHONY:		all clean fclean re good docker sani

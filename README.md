@@ -1,10 +1,10 @@
 A faire :
 - < : 
-- > :
+- > : Reno
 - << :
 - >> :
 - | :
--$? : R
+-$? : Done
 
 
 //Contenu des fichiers//
@@ -46,7 +46,7 @@ cmd_not_found.c : cmd_cmp, verif_fquote, cmd_not_found, cmd_not_found2
 
 sig_handler.c : sig_handler
 
-execve_default.c : ft_execve, free_exec, all_path_exec, exec_and_return
+execve_default.c : ft_execve, free_exec, all_path_exec, exec_and_return(+2)
 
 execve_default2.c : last_path, ft_check_path
 
@@ -56,10 +56,18 @@ welcome2.c : les welcome 6 a 10
 
 ft_termios.c : ft_termios
 
+ft_readline.c : ft_readline(+2), int_to_str_redi, cpy_bf_redi
+
+search_redirect.c : search_redirect(+2 & 3)
+
+exec_redirect.c : exec_redirect1, launch_redirect
+
+init_redirect.c : int_to_str_redi, cpy_bf_redi
 
 
 
-//Explications de la struct// (j'ai add une struct t_parse pour une fonction qui me les brisait t'en soucie pas)
+
+//Explications de la struct// (J'ai add une struc t_glob que j'ai déclaré en globale dans le .h pour pouvoir catch l'int exit status dont on a besoin pour "$?")
 
 
 `char *prompt`
@@ -101,6 +109,12 @@ stocke les variable d'environnement (pour les fonctions env et export)
 `struct termios term`
 
 utile pour ft_termios en gros on peut toucher aux parametre du terminal
+
+
+
+`char *split_redi`
+
+pointeur sur string pour stocker les differentes operations en cas de redirection, les args impaires sont systematiquement une string qui contient la redirection (par ex. {"echo judas", ">", "outfile"})
 
 
 
@@ -212,7 +226,7 @@ il fait des actions selon le numero d'erreur envoie
 
 `void cmd_not_found(char *str)`
 
-ecrit qu'aucune fonction ne correspond a la string passee en argument
+ecrit qu'aucune fonction ne correspond a la string passee en argument, elle set aussi le g_glob.exit_status à 127
 
 
 
@@ -222,9 +236,9 @@ la meme mais c'est pour le cas ou ya eu le debut de la current qui etait quote c
 
 
 
-`int verif_fquote(t_para *para)`
+`int verif_fquote(t_para *para, char *str)`
 
-verifie si le debut de para->current etait quoté car ca modifie un peu la recherche et la sortie. revoie 0 si on peut continuer sans soucis et 1 si l'argument pose soucis auquel cas on stock ledit argument dans para->bait.
+verifie si le debut de str etait quoté car ca modifie un peu la recherche et la sortie. revoie 0 si on peut continuer sans soucis et 1 si l'argument pose soucis auquel cas on stock ledit argument dans para->bait.
 
 
 
@@ -283,4 +297,43 @@ print un ptit accueil sympa quand on lance le shell
 
 `void	ft_termios(t_para *para)`
 
-Est utilisé pour inhiber le print du "¿c" quand on faisait CTRL+C, la ligne importante c'est `para->term.c_lflag &= ~ECHCTL` qui met le bit de ECHOCTL (donc "echo" la touche CTRL) a 0
+Est utilisé pour inhiber le print du "^c" quand on faisait CTRL+C, la ligne importante c'est `para->term.c_lflag &= ~ECHCTL` qui met le bit de ECHOCTL (donc "echo" la touche CTRL) a 0
+
+
+
+`void ft_readline(t_para *para`
+
+il coupé du main pour des raisons de norminette, il va lancer le current parser sur la str lue par readline et lancer search_fct et do_fct.
+
+
+
+`int	search_redirect(char *str)`
+
+cherche dans la str passee en parametre si il y a une redirection et renvoie 1 si elle trouve qqchose (et si elle n'est pas inhibée par du quotage). Renvoie 0 si rien n'a ete trouve
+
+code des redirections :
+
+0 = >
+1 = >>
+2 = <
+3 = <<
+4 = |
+
+
+
+`char	*cpy_bf_redi(char *str, int i)`
+
+va copier la la partie de l'arg qui se trouve avant une redirection dans current parser et le mettre dans split_redi.
+
+
+
+`char *int_to_str_redi(int code)`
+
+mets dans split_redi la string qui correspond au code de redirection de search_redirect
+
+
+
+
+`void	launch_redirect(t_para *para, int redi)`
+
+lance les fonctions en fonction des redirections. Renvoie 0 en cas de succes et un int d'erreur en cas de probleme.
