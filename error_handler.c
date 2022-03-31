@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "minishell.h"
 
-void	error_handler(int error, t_para *para)
+void
 {
 	if (error == 0)
 	{
@@ -36,4 +36,6 @@ void	error_handler(int error, t_para *para)
 		printf("An error occured with the termios structure\n");
 		exit(0);
 	}
+	if (error == 7)
+		printf("cd Error loser :)\n");
 }
