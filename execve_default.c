@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 16:21:38 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/31 16:32:35 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/05 20:56:05 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -32,6 +32,8 @@ char	**all_path_exec(t_para *para, char *end)
 	while (all_path[i] != NULL)
 		i++;
 	all_path[i++] = path;
+	if (ft_strstr(end, "/"))
+		all_path[i++] = end;
 	all_path[i] = NULL;
 	i = -1;
 	while (all_path[++i] != NULL)
@@ -47,7 +49,7 @@ int	exec_and_return2(char **all_path, char **argv, t_para *para, int i)
 	pid_t	pid;
 	int		status;
 
-	if (access(all_path[i], X_OK) == 0)
+	if (access(all_path[i], F_OK) == 0)
 	{
 		pid = fork();
 		if (pid == 0)
@@ -92,6 +94,7 @@ int	ft_execve(t_para *para)
 	char	**all_path;
 	char	**argv;
 
+	all_path = NULL;
 	argv = malloc(sizeof(argv));
 	if (!argv)
 		error_handler(0, para);

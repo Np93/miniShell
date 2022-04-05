@@ -6,7 +6,7 @@
 #    By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 19:09:32 by rmonney           #+#    #+#              #
-#    Updated: 2022/03/31 17:54:17 by rmonney          ###   ########.fr        #
+#    Updated: 2022/04/05 18:19:00 by rmonney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= 	main.c\
@@ -35,9 +35,10 @@ SRCS		= 	main.c\
 				ft_atoi.c\
 				ft_itoa.c\
 				ft_readline.c\
-				exec_redirect.c\
+				launch_redirect.c\
 				search_redirect.c\
 				init_redirect.c\
+				unquoter.c\
 
 OBJS		= ${SRCS:.c=.o}
 

@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:50:46 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/19 18:52:32 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/05 18:49:41 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -33,7 +33,7 @@ void	ft_check_path(char **argv)
 	i = 0;
 	while (argv[i] != NULL)
 	{
-		if (ft_strstr(argv[i], "/"))
+		if (ft_strstr(argv[i], "/bin/"))
 		{
 			argv[i] = last_path(argv[i]);
 			i++;

@@ -60,11 +60,13 @@ ft_readline.c : ft_readline(+2), int_to_str_redi, cpy_bf_redi
 
 search_redirect.c : search_redirect(+2 & 3)
 
-exec_redirect.c : exec_redirect1, launch_redirect
+launch_redirect.c : unquoter, unquoter6, exec_redirect1, launch_redirect
 
 init_redirect.c : int_to_str_redi, cpy_bf_redi
 
 ft_cd_tool.c : ft_memcmp, ft_strncmp, get_env (fichier norminette)
+
+unquoter : unquoter(2, 3, 4, 5, 7)
 
 
 
@@ -246,7 +248,7 @@ verifie si le debut de str etait quoté car ca modifie un peu la recherche et la 
 
 `int	cmd_cmp(char *str)`
 
-en gros c'est un peu commme search_fct mais modifiee pour pouvoir etre utilisee par verif_fquote.
+utilisee pour verif_fquote : regarde dans str si ya un bait de fonction quotée avec un esape genre "echo ", renvoie 0 si RaS et 1 si probleme.
 
 
 `void	ft_signal(void)`
@@ -332,6 +334,12 @@ va copier la la partie de l'arg qui se trouve avant une redirection dans current
 `char *int_to_str_redi(int code)`
 
 mets dans split_redi la string qui correspond au code de redirection de search_redirect
+
+
+
+`char *unquoter(char *str, t_para *para)`
+
+unquote chaque element de split_redi selon les regles mandatory.
 
 
 

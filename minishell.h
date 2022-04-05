@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/31 16:56:06 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/05 17:05:10 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,11 @@ int		exec_redirect1(t_para *para);
 char	*cpy_bf_redi(char *str, int i);
 char	*int_to_str_redi(int code);
 char	*unquoter(char *str, t_para *para);
+void	unquoter2(t_para *para, t_parse *p, char *str);
+int		unquoter3(t_para *para, t_parse *p, char *str);
+int		unquoter4(t_para *para, t_parse *p, char *str);
+int		unquoter5(t_parse *p, char *str);
+int		unquoter6(t_para *para, t_parse *p, char *str);
+void	unquoter7(t_parse *p, char *str);
 
 #endif
