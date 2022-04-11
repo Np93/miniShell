@@ -6,7 +6,7 @@
 /*   By: nhirzel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 19:53:20 by nhirzel           #+#    #+#             */
-/*   Updated: 2022/03/10 19:53:53 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/11 22:51:25 by nhirzel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -73,12 +73,12 @@ void	magic(char *str)
 
 void	ft_cd(t_para *para, int cmd)
 {
-	char 	temp_pwd[4097];
-	char 	*path;
+	char	temp_pwd[4097];
+	char	*path;
 
 	getcwd(temp_pwd, 4096);
 	if (cmd == 3)
-	 	path = ft_strdup("..");
+		path = ft_strdup("..");
 	if (cmd == 9)
 	{
 		magic(para->out);
@@ -90,7 +90,7 @@ void	ft_cd(t_para *para, int cmd)
 	if (chdir(path) == 0)
 	{
 		update_oldpwd(para->env, temp_pwd);
-		update_pwd(para->env);	
+		update_pwd(para->env);
 	}
 	else
 		error_handler(7, para);
