@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 17:51:16 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/29 19:05:24 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/12 00:17:56 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -20,7 +20,7 @@ int	search_fct(char *str)
 		else
 			return (2);
 	}
-	else if (ft_strstr(str, "cd .."))
+	else if (ft_strstr(str, "cd") == 2)
 		return (3);
 	else if (ft_strstr(str, "pwd") == 3)
 		return (4);
