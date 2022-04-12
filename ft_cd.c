@@ -6,7 +6,7 @@
 /*   By: nhirzel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 19:53:20 by nhirzel           #+#    #+#             */
-/*   Updated: 2022/04/12 00:16:49 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/12 00:20:07 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -81,6 +81,8 @@ void	ft_cd(t_para *para, int cmd)
 		path = ft_strdup("..");
 	if (cmd == 9)
 	{
+//		while(*para->out == ' ')
+//			para->out++;
 		magic(para->out);
 		if (ft_strstr(para->out, "/Users"))
 			path = para->out;
