@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 18:46:42 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/05 22:17:44 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/12 23:08:39 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -19,7 +19,16 @@ void	launch_redirect(t_para *para)
 	while (para->split_redi[++a] != NULL)
 	{
 		if (!(a % 2))
-			para->split_redi[a] = unquoter(para->split_redi[a], para);
+		{
+			if ((ft_strstr(para->split_redi[a], "grep") == 4
+					|| ft_strstr(para->split_redi[a], "grep") == 5)
+				&& (para->split_redi[a][0] == 'g'
+				|| para->split_redi[a][0] == 34
+				|| para->split_redi[a][0] == 39))
+				para->split_redi[a] = grep_spec(para->split_redi[a], para, 0);
+			else
+				para->split_redi[a] = unquoter(para->split_redi[a], para);
+		}
 	}
 	a = -1;
 	while (para->split_redi[++a] != NULL)
@@ -65,25 +74,5 @@ int	unquoter6(t_para *para, t_parse *p, char *str)
 				return (unquoter5(p, str));
 	}
 	p->str[p->j] = '\0';
-	return (0);
-}
-
-int	exec_redirect1(t_para *para)
-{
-	char	**all_path;
-	char	**argv;
-
-	argv = malloc(sizeof(argv));
-	if (!argv)
-		error_handler(0, para);
-	argv = ft_split(para->out, ' ');
-	ft_check_path(argv);
-	all_path = all_path_exec(para, argv[0]);
-
-	int		a = -1;
-	while (argv[++a] != NULL)
-		printf ("argv nº%d = %s\n", a, argv[a]);
-
-//	argv = split_redirect(argv);
 	return (0);
 }

@@ -58,7 +58,9 @@ ft_termios.c : ft_termios
 
 ft_readline.c : ft_readline(+2), int_to_str_redi, cpy_bf_redi
 
-search_redirect.c : search_redirect(+2 & 3)
+search_redirect.c : search_redirect(+2 & 3), grep_spec(+1)
+
+search_redirect2.c : grep_spec(2, 3, 4, 5)
 
 launch_redirect.c : unquoter, unquoter6, exec_redirect1, launch_redirect
 
@@ -343,7 +345,12 @@ unquote chaque element de split_redi selon les regles mandatory.
 
 
 
-
 `void	launch_redirect(t_para *para, int redi)`
 
 lance les fonctions en fonction des redirections. Renvoie 0 en cas de succes et un int d'erreur en cas de probleme.
+
+
+
+`char *grep_spec(char *str, t_para *para, int mod)`
+
+parser special pour le cas grep dont on a parlé. renvoie une str ou le premier argument de grep sera double quoté pour etre surs de lancer la bonne recherche

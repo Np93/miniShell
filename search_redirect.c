@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 23:11:51 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/30 23:50:22 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/12 23:02:06 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -77,4 +77,40 @@ int	search_redirect(t_para *para)
 		return (1);
 	}
 	return (a + 1);
+}
+
+char	*grep_spec(char *str, t_para *para, int mod)
+{
+	char	*ret;
+	t_parse	*p;
+
+	if ((ft_strstr(str, "grep") == 4 || ft_strstr(str, "grep") == 5)
+		&& (str[0] == 34 || str[0] == 39 || str[0] == 'g'))
+	{
+		p = malloc(sizeof(t_parse));
+		p->str = malloc(sizeof(char) * ft_strlen(str) * 99);
+		if (!p->str || !p)
+			error_handler(0, para);
+	}
+	else
+		return (str);
+	grep_spec5(para, p, str);
+	p->str[p->j++] = 34;
+	unquoter6(para, p, str);
+	ret = ft_strdup(p->str);
+	if (mod == 0)
+		free(str);
+	free(p);
+	return (ret);
+}
+
+void	grep_spec1(t_parse *p)
+{
+	p->str[0] = 'g';
+	p->str[1] = 'r';
+	p->str[2] = 'e';
+	p->str[3] = 'p';
+	p->str[4] = ' ';
+	p->str[5] = 34;
+	p->j = 6;
 }
