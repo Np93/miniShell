@@ -47,47 +47,21 @@ static void	update_pwd(char **env)
 	}
 }
 
-void	magic(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (str[3] != '/')
-	{
-		while (str[i])
-		{
-			str[i] = str[i + 2];
-			i++;
-		}
-		str[0] = '/';
-	}
-	if (str[3] == '/')
-	{
-		while (str[i])
-		{
-			str[i] = str[i + 3];
-			i++;
-		}
-	}
-}
-
-void	ft_cd(t_para *para, int cmd)
+void	ft_cd(t_para *para)
 {
 	char	temp_pwd[4097];
 	char	*path;
 
 	getcwd(temp_pwd, 4096);
-	if (cmd == 3)
-		path = ft_strdup("..");
-	if (cmd == 9)
+	if (para->out[3] == '\0')
+		path = ("/Users");
+	else
 	{
-		magic(para->out);
-		if (ft_strstr(para->out, "/Users"))
-			path = para->out;
-		else
-			path = ft_strjoin(get_env(para->env, "PWD"), para->out);
+		while (*para->out != ' ')
+			para->out++;
+		para->out++;
+		path = para->out;
 	}
-//	chdir("../test");
 	if (chdir(path) == 0)
 	{
 		update_oldpwd(para->env, temp_pwd);

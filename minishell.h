@@ -88,7 +88,7 @@ void	current_parser7(t_para *para, t_parse *p);
 char	*get_dollar(char *current, int i, t_para *para);
 void	error_handler(int error, t_para *para);
 char	*ft_getenv(t_para *para, char *var);
-void	ft_cd(t_para *para, int cmd);
+void	ft_cd(t_para *para);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*get_env(char **env, char *envi);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
