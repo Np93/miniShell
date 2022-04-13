@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/12 23:08:17 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/13 16:48:02 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,5 +140,8 @@ void	grep_spec2(t_parse *p, char *str);
 void	grep_spec3(t_para *para, t_parse *p, char *str);
 void	grep_spec4(t_para *para, t_parse *p, char *str);
 void	grep_spec5(t_para *para, t_parse *p, char *str);
+int		grepxec(t_para *para);
+int		grepr(t_para *para);
+char	**split_grep(char **argv);
 
 #endif
