@@ -6,7 +6,7 @@
 /*   By: nhirzel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 19:53:20 by nhirzel           #+#    #+#             */
-/*   Updated: 2022/04/12 00:16:49 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/12 23:10:35 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -97,6 +97,7 @@ void	ft_cd(t_para *para)
 		update_pwd(para->env);
 	}
 	else
-//		printf("Error : %s\n", strerror(errno));
 		error_handler(7, para);
 }
+//		printf("Error : %s\n", strerror(errno));
+//		//a la place de error_handler7 si veut erreur sys exacte

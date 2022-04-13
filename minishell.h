@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/05 17:05:10 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/12 23:08:17 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,6 @@ int		search_redirect(t_para *para);
 int		search_redirect2(char *str, int i);
 int		search_redirect3(t_para *para, int i);
 void	launch_redirect(t_para *para);
-int		exec_redirect1(t_para *para);
 char	*cpy_bf_redi(char *str, int i);
 char	*int_to_str_redi(int code);
 char	*unquoter(char *str, t_para *para);
@@ -135,5 +134,11 @@ int		unquoter4(t_para *para, t_parse *p, char *str);
 int		unquoter5(t_parse *p, char *str);
 int		unquoter6(t_para *para, t_parse *p, char *str);
 void	unquoter7(t_parse *p, char *str);
+char	*grep_spec(char *str, t_para *para, int mod);
+void	grep_spec1(t_parse *p);
+void	grep_spec2(t_parse *p, char *str);
+void	grep_spec3(t_para *para, t_parse *p, char *str);
+void	grep_spec4(t_para *para, t_parse *p, char *str);
+void	grep_spec5(t_para *para, t_parse *p, char *str);
 
 #endif

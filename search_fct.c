@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 17:51:16 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/12 00:17:56 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/12 23:06:00 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -32,6 +32,8 @@ int	search_fct(char *str)
 		return (7);
 	else if (ft_strstr(str, "exit") == 4)
 		return (8);
+	else if (ft_strstr(str, "grep") == 4)
+		return (9);
 	return (0);
 }
 
@@ -59,5 +61,7 @@ void	do_fct(int cmd, t_para *para)
 		ft_env(para->env);
 	else if (cmd == 8)
 		exit(0);
+	else if (cmd == 9)
+		printf("%s\n", para->out);
 	g_glob.exit_status = 0;
 }
