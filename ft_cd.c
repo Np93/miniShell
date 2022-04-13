@@ -47,19 +47,48 @@ static void	update_pwd(char **env)
 	}
 }
 
+int	magic(t_para *para)
+{
+	int	i;
+	int	count;
+
+	i = 2;
+	count = 0;
+	if (para->out[3] == '\0')
+		return (1);
+	else if (ft_strncmp(para->out, "cd ~", 4) == 0)
+		return (1);
+	else if (para->out[3] == ' ' && para->out[4] != '~')
+	{
+		while (para->out[i] != '\0' && (para->out[i] == ' ' || para->out[i] == '~'))
+		{
+			if (para->out[i] == '~')
+				count++;
+			i++;
+		}
+		if (count == 1)
+			return (1);
+	}
+	return (0);
+}
+
 void	ft_cd(t_para *para)
 {
 	char	temp_pwd[4097];
 	char	*path;
 
 	getcwd(temp_pwd, 4096);
-	if (para->out[3] == '\0')
+	if (magic(para) == 1)
 		path = ("/Users");
 	else
 	{
 		while (*para->out != ' ')
 			para->out++;
-		para->out++;
+		if (*para->out == ' ')
+		{
+			while (*para->out == ' ')
+				para->out++;
+		}
 		path = para->out;
 	}
 	if (chdir(path) == 0)
