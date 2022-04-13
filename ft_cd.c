@@ -66,7 +66,7 @@ int	magic(t_para *para)
 				count++;
 			i++;
 		}
-		if (count == 1)
+		if (count <= 1)
 			return (1);
 	}
 	return (0);
