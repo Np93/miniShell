@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 16:31:42 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/13 18:24:27 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/13 18:41:08 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -34,12 +34,12 @@ int	grepr(t_para *para)
 
 int	grepxec(t_para *para)
 {
-	char **argv;
+	char	**argv;
 
 	argv = ft_split(para->out, '\"');
-//	if (ft_strstr(argv[2], " "))
-//		argv = split_grep(argv);
-	int a = -1;
+	if (argv[2] != NULL)
+		argv = split_grep(argv);
+	int	a = -1;
 	while (argv[++a] != NULL)
 		printf("arg %d = '%s'\n", a, argv[a]);
 	if (execve("/usr/bin/grep", argv, para->env) == -1)
@@ -56,7 +56,22 @@ int	grepxec(t_para *para)
 
 char	**split_grep(char **argv)
 {
-	(void)argv;
-	// virer les espace de mert et ev ceux de larg 2
-	return (NULL);
+	int		i;
+	char	**split;
+
+	i = 0;
+	split = ft_split(argv[2], ' ');
+	while (split[i + 1] != NULL)
+		i++;
+	if (i = 0)
+		argv[2] = ft_strdup(split[0]);
+	else
+	{
+		i = -1;
+		while (split[++i] != NULL)
+			argv[i + 2] = ft_strdup(split[i]);
+		argv[i + 2] = NULL;
+	}
+	free(split);
+	return (argv);
 }
