@@ -54,11 +54,9 @@ int	magic(t_para *para)
 
 	i = 2;
 	count = 0;
-	if (para->out[3] == '\0')
+	if (para->out[2] == '\0')
 		return (1);
-	else if (ft_strncmp(para->out, "cd ~", 4) == 0)
-		return (1);
-	else if (para->out[3] == ' ' && para->out[4] != '~')
+	else if (para->out[2] == ' ')
 	{
 		while (para->out[i] != '\0' && (para->out[i] == ' ' || para->out[i] == '~'))
 		{
@@ -66,7 +64,7 @@ int	magic(t_para *para)
 				count++;
 			i++;
 		}
-		if (count <= 1)
+		if (count <= 1 && ft_strlen(para->out) == i)
 			return (1);
 	}
 	return (0);
