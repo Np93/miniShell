@@ -6,7 +6,7 @@
 /*   By: nhirzel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 19:53:20 by nhirzel           #+#    #+#             */
-/*   Updated: 2022/04/12 23:10:35 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/19 22:37:21 by nhirzel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -58,7 +58,8 @@ int	magic(t_para *para)
 		return (1);
 	else if (para->out[2] == ' ')
 	{
-		while (para->out[i] != '\0' && (para->out[i] == ' ' || para->out[i] == '~'))
+		while (para->out[i] != '\0' && (para->out[i] == ' '
+				|| para->out[i] == '~'))
 		{
 			if (para->out[i] == '~')
 				count++;
