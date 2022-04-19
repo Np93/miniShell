@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 16:31:42 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/13 18:41:08 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/19 17:12:18 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -39,9 +39,6 @@ int	grepxec(t_para *para)
 	argv = ft_split(para->out, '\"');
 	if (argv[2] != NULL)
 		argv = split_grep(argv);
-	int	a = -1;
-	while (argv[++a] != NULL)
-		printf("arg %d = '%s'\n", a, argv[a]);
 	if (execve("/usr/bin/grep", argv, para->env) == -1)
 	{
 		free(argv);
@@ -63,7 +60,7 @@ char	**split_grep(char **argv)
 	split = ft_split(argv[2], ' ');
 	while (split[i + 1] != NULL)
 		i++;
-	if (i = 0)
+	if (i == 0)
 		argv[2] = ft_strdup(split[0]);
 	else
 	{
