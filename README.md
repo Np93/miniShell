@@ -64,7 +64,7 @@ search_redirect2.c : grep_spec(2, 3, 4, 5)
 
 search_redirect3.c : grepr, grepxec, split_grep
 
-launch_redirect.c : unquoter, unquoter6, exec_redirect1, launch_redirect
+launch_redirect.c : unquoter, unquoter6, launch_redirect
 
 init_redirect.c : int_to_str_redi, cpy_bf_redi
 

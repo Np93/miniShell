@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/13 16:48:02 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/19 23:29:31 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_glob {
 t_glob	g_glob;
 
 # define STDIN STDIN_FILENO
+# define STDOUT STDOUT_FILENO
 
 int		search_fct(char *str);
 void	do_fct(int cmd, t_para *para);
@@ -143,5 +144,10 @@ void	grep_spec5(t_para *para, t_parse *p, char *str);
 int		grepxec(t_para *para);
 int		grepr(t_para *para);
 char	**split_grep(char **argv);
+void	init_redi(t_para *para);
+int		exec_redi(t_para *para, int i);
+int		redi1(t_para *para, int i);
+int		ft_exec_red(t_para *para, char *str);
+char	**ft_freeee_split_redi(t_para *para);
 
 #endif
