@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 20:26:16 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/19 22:32:36 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/21 17:44:13 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -32,17 +32,22 @@ void	ft_readline2(t_para *para)
 
 void	ft_readline(t_para *para)
 {
-	para->current = readline(para->prompt);
-	if (para->current != NULL)
+	if (g_glob.main == 1)
 	{
-		if (para->current[0])
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		para->current = readline(para->prompt);
+		if (para->current != NULL)
 		{
-			add_history(para->current);
-			while (*para->current == ' ')
-				para->current++;
-			ft_readline2(para);
+			if (para->current[0])
+			{
+				add_history(para->current);
+				while (*para->current == ' ')
+					para->current++;
+				ft_readline2(para);
+			}
 		}
+		else
+			exit (0);
 	}
-	else
-		exit (0);
 }

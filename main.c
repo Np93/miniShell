@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/12 22:59:03 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/21 17:35:11 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -65,15 +65,19 @@ int	main(int argc, char **argv, char **env)
 		return (0);
 	}
 	welcome();
+	g_glob.main = 1;
 	ft_signal();
 	init_para(&para, argv, env);
 	ft_termios(para);
 	para->prompt = prompt_init(argc, argv);
 	while (1)
 	{
-		ft_readline(para);
-		if (current_parser(para))
-			g_glob.exit_status = 1;
+		if (g_glob.main == 1)
+		{
+			ft_readline(para);
+			if (current_parser(para))
+				g_glob.exit_status = 1;
+		}
 	}
 	return (0);
 }

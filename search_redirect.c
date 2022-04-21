@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 23:11:51 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/19 23:29:16 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/21 17:14:53 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -58,7 +58,7 @@ int	search_redirect(t_para *para)
 
 	a = -1;
 	i = 0;
-	para->split_redi = ft_freeee_split_redi(para);
+	ft_freeee_split_redi(para);
 	while (para->current[i] != '\0')
 	{
 		i = search_redirect3(para, i);
@@ -89,7 +89,8 @@ char	*grep_spec(char *str, t_para *para, int mod)
 		&& (str[0] == 34 || str[0] == 39 || str[0] == 'g'))
 	{
 		p = malloc(sizeof(t_parse));
-		p->str = malloc(sizeof(char) * ft_strlen(str) * 99);
+		if (p)
+			p->str = malloc(sizeof(char) * ft_strlen(str) * 99);
 		if (!p->str || !p)
 			error_handler(0, para);
 	}

@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 16:21:38 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/19 21:24:54 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/21 16:37:45 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -60,10 +60,12 @@ int	exec_and_return2(char **all_path, char **argv, t_para *para, int i)
 		}
 		else
 		{
+			g_glob.main = 0;
 			waitpid(pid, &status, 0);
 			if (WIFEXITED(status))
 				g_glob.exit_status = WEXITSTATUS(status);
 			free_exec(argv, all_path);
+			g_glob.main = 1;
 			return (1);
 		}
 	}

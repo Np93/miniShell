@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 22:11:56 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/12 22:13:34 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/21 17:31:54 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -75,7 +75,7 @@ void	grep_spec5(t_para *para, t_parse *p, char *str)
 		grep_spec3(para, p, str);
 	else
 	{
-		while (str[p->i] != ' ')
+		while (str[p->i] != ' ' && str[p->i] != '\0')
 		{
 			if (str[p->i] == 39)
 				grep_spec2(p, str);

@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/19 23:29:31 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/21 16:39:23 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_parse {
 
 typedef struct s_glob {
 	int		exit_status;
+	int		main;
 }			t_glob;
 
 t_glob	g_glob;
@@ -148,6 +149,6 @@ void	init_redi(t_para *para);
 int		exec_redi(t_para *para, int i);
 int		redi1(t_para *para, int i);
 int		ft_exec_red(t_para *para, char *str);
-char	**ft_freeee_split_redi(t_para *para);
+void	ft_freeee_split_redi(t_para *para);
 
 #endif

@@ -6,10 +6,16 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 18:46:42 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/19 23:58:46 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/21 17:37:37 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
+
+int	cat_exec(char **env);	//1
+int	wc_exec(char **env);	//3
+int	grep_exec(char **env);	//2
+int	piper(char **env);
+int	piper2(char **env);
 
 void	launch_redirect(t_para *para)
 {
@@ -30,7 +36,27 @@ void	launch_redirect(t_para *para)
 				para->split_redi[a] = unquoter(para->split_redi[a], para);
 		}
 	}
-	init_redi(para);
+
+	a = 0;
+	while (para->split_redi[a] != NULL)
+		a++;
+	if (3 < a)
+	{
+		g_glob.main = 0;
+		a = fork();
+		if (a == 0)
+		{
+			init_redi(para);
+			close(STDIN);
+		}
+		else
+			waitpid(a, NULL, 0);
+		g_glob.main = 1;
+	}
+	else
+		init_redi(para);
+
+//	piper(para->env);
 
 /*	a = -1;
 	while (para->split_redi[++a] != NULL)
@@ -87,8 +113,8 @@ void	init_redi(t_para *para)
 	while (para->split_redi[i] != NULL)
 		i++;
 	i -= 2;
-	if (exec_redi(para, i) == 0)
-		printf("redirection kk\n");
+	exec_redi(para, i);
+//		printf("redirection kk\n");
 	//	error_handler(10, para);
 }
 
@@ -119,8 +145,7 @@ int	redi1(t_para *para, int i)
 	int		fd[2];
 	int		status[2];
 	pid_t	pid[2];
-	//   copie conforme //
-
+	
 	pipe(fd);
 	pid[0] = fork();
 	if (pid[0] == 0)
@@ -128,14 +153,10 @@ int	redi1(t_para *para, int i)
 		close(fd[1]);
 		dup2(fd[0], STDIN);
 		close(fd[0]);
-		if (ft_exec_red(para, para->split_redi[i + 1]) == 1)
-			return (1);
-		else
-		{
-			printf("kk1\n");
-			return (0);
-		}
+		ft_exec_red(para, para->split_redi[i + 1]);
 	}
+	else if (pid[0] == -1)
+		printf("fork1 failed\n");
 	else
 	{
 		pid[1] = fork();
@@ -145,37 +166,22 @@ int	redi1(t_para *para, int i)
 			dup2(fd[1], STDOUT);
 			close(fd[1]);
 			if (1 < i)
-			{
-				if (exec_redi(para, (i - 2)) == 1)
-					return (1);
-				else
-				{
-					printf("kk2\n");
-					return (0);
-				}
-			}
+				exec_redi(para, (i - 2));
 			else
-			{
-				if (ft_exec_red(para, para->split_redi[i - 1]) == 1)
-					return (1);
-				else
-				{
-					printf("kk3\n");
-					return (0);
-				}
-			}
+				ft_exec_red(para, para->split_redi[i - 1]);
 		}
+		else if (pid[1] == -1)
+			printf("fork2 failed\n");
 		else
 		{
 			close(fd[0]);
 			close(fd[1]);
-			waitpid(pid[0], &status[0], 0);
 			waitpid(pid[1], &status[1], 0);
+			waitpid(pid[0], &status[0], 0);
 			return (1);
 		}
 	}
-	printf("kk4\n");
-	return (0);
+	return (1);
 }
 
 int	ft_exec_red(t_para *para, char *str)
@@ -198,22 +204,22 @@ int	ft_exec_red(t_para *para, char *str)
 	while (all_path[++i] != NULL)
 		printf("path = %s\n", all_path[i]);
 	printf("\n");
-
-	i = 0;
+*/
+/*	i = 0;
 	while (para->split_redi[i] != NULL)
 	{
-		printf("split %d = %s\n", i, para->split_redi[i]);
+		printf("split_redi %d = %s\n", i, para->split_redi[i]);
 		i++;
 	}
 	printf("\n");
-
-	i = 0;
+*/
+/*	i = 0;
 	while (argv[i] != NULL)
 	{
 		printf("argv %d = %s\n", i, argv[i]);
 		i++;
-	}*/
-
+	}
+*/
 	i = 0;
 	while (all_path[i] != NULL)
 	{
@@ -234,21 +240,153 @@ int	ft_exec_red(t_para *para, char *str)
 	return (0);
 }
 
-char	**ft_freeee_split_redi(t_para *para)
+void	ft_freeee_split_redi(t_para *para)
 {
-	char	**ret;
 	int		i;
 
 	i = 0;
-//	while (para->split_redi[i] != NULL)
-//		i++;
-//	i--;
-//	while (i <= 0)
-//		free(para->split_redi[i--]);
-	if (para->split_redi)
-		free(para->split_redi);
-	ret = malloc(sizeof(char *) * 99);
-	if (!ret)
-		error_handler(0, para);
-	return (ret);
+	while (para->split_redi[i] != NULL)
+	{
+		para->split_redi[i] = NULL;
+		i++;
+	}
+}
+
+int	cat_exec(char **env)
+{
+	char	**argv;
+
+	argv = malloc(sizeof(char *) * 2);
+	argv[0] = "cat";
+	argv[1] = "livre.txt";
+	argv[2] = NULL;
+	if (execve("/bin/cat", argv, env) == -1)
+	{
+		printf("execve of cat failed\n");
+		return (0);
+	}
+	else
+		return (1);
+}
+
+int	wc_exec(char **env)
+{
+	char	**argv;
+
+	argv = malloc(sizeof(char *) * 2);
+	argv[0] = "wc";
+	argv[1] = "-l";
+	argv[3] = NULL;
+	if (execve("/usr/bin/wc", argv, env) == -1)
+	{
+		printf("execve of wc failed\n");
+		return (0);
+	}
+	else
+		return (1);
+}
+
+int	grep_exec(char **env)
+{
+	char	**argv;
+
+	argv = malloc(sizeof(char *) * 3);
+	argv[0] = "grep";
+	argv[1] = "his";
+	argv[2] = NULL;
+	if (execve("/usr/bin/grep", argv, env) == -1)
+	{
+		printf("execve of grep failed\n");
+		return (0);
+	}
+	else
+		return (1);
+}
+
+int	piper(char **env)
+{
+	int		fd[2];
+	int		status1;
+	int		status2;
+	pid_t	pid1;
+	pid_t	pid2;
+
+	pipe(fd);
+	pid1 = fork();
+	if (pid1 == 0)
+	{
+		close(fd[1]);
+		dup2(fd[0], STDIN_FILENO);
+		close(fd[0]);
+		if (wc_exec(env) == 1)
+			return (1);
+		else
+			return (0);
+	}
+	else
+	{
+		pid2 = fork();
+		if (pid2 == 0)
+		{
+			close(fd[0]);
+			dup2(fd[1], STDOUT_FILENO);
+			close(fd[1]);
+			if (piper2(env) == 1)
+				return (1);
+			else
+				return (0);
+		}
+		else
+		{
+			close(fd[0]);
+			close(fd[1]);
+			waitpid(pid2, &status2, 0);
+			waitpid(pid1, &status1, 0);
+			return (1);
+		}
+	}
+	return (0);
+}
+
+int	piper2(char **env)
+{
+	int		fd[2];
+	int		status1;
+	int		status2;
+	pid_t	pid1;
+	pid_t	pid2;
+
+	pipe(fd);
+	pid1 = fork();
+	if (pid1 == 0)
+	{
+		(close(fd[1]), dup2(fd[0], STDIN_FILENO), close(fd[0]));
+		if (grep_exec(env) == 1)
+			return (1);
+		else
+			return (0);
+	}
+	else
+	{
+		pid2 = fork();
+		if (pid2 == 0)
+		{
+			close(fd[0]);
+			dup2(fd[1], STDOUT_FILENO);
+			close(fd[1]);
+			if (cat_exec(env) == 1)
+				return (1);
+			else
+				return (0);
+		}
+		else
+		{
+			close(fd[0]);
+			close(fd[1]);
+			waitpid(pid2, &status2, 0);
+			waitpid(pid1, &status1, 0);
+			return (1);
+		}
+	}
+	return (0);
 }

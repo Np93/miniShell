@@ -6,7 +6,7 @@
 #    By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 19:09:32 by rmonney           #+#    #+#              #
-#    Updated: 2022/04/13 16:44:50 by rmonney          ###   ########.fr        #
+#    Updated: 2022/04/20 23:50:11 by rmonney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= 	main.c\
@@ -44,7 +44,9 @@ SRCS		= 	main.c\
 
 OBJS		= ${SRCS:.c=.o}
 
-INCLUDE		= -lreadline -I${HOME}/.brew/Cellar/readline/8.1.2/include/ -L${HOME}/.brew/Cellar/readline/8.1.2/lib/
+INCLUDE2	= -lreadline -I${HOME}/.brew/Cellar/readline/8.1.2/include/ -L${HOME}/.brew/Cellar/readline/8.1.2/lib/
+
+INCLUDE		= -lreadline -L${HOME}/.brew/opt/readline/lib -I${HOME}/.brew/opt/readline/lib
 
 RM			= rm -f
 
@@ -84,4 +86,7 @@ sani:		${OBJS}
 docker:
 			${CC} ${DFLAG} ${FLAGS} ${SAN} ${INCLUDE} ${SRCS} -o ${DNAME}
 
+lldb:
+			gcc -g3 ${SRCS} ${INCLUDE} -o ${NAME}
+	
 .PHONY:		all clean fclean re good docker sani
