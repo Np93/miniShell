@@ -2,8 +2,8 @@ A faire :
 - < : 
 - > : Reno
 - << :
-- >> :
-- | :
+- >> : Reno
+- | : Done
 -$? : Done
 
 
