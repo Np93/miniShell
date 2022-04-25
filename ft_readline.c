@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 20:26:16 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/21 17:44:13 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/25 19:51:53 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -20,7 +20,7 @@ void	ft_readline2(t_para *para)
 		else
 		{
 			if (search_redirect(para))
-				launch_redirect(para);
+				launch_redi(para);
 			else
 			{
 				para->cmd = search_fct(para->out);

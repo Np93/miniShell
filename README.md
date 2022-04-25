@@ -64,7 +64,7 @@ search_redirect2.c : grep_spec(2, 3, 4, 5)
 
 search_redirect3.c : grepr, grepxec, split_grep
 
-launch_redirect.c : unquoter, unquoter6, launch_redirect
+launch_redirect.c : unquoter, unquoter6, launch_redi(+1, 2);
 
 init_redirect.c : int_to_str_redi, cpy_bf_redi
 
@@ -72,10 +72,29 @@ ft_cd_tool.c : ft_memcmp, ft_strncmp, get_env (fichier norminette)
 
 unquoter : unquoter(2, 3, 4, 5, 7)
 
+redirect_utils.c : ft_freeee_split_redi, choose_redi, ft_exec_red(+2)
+
+redirecter1.c : redi1(+1_2)
 
 
 
-//Explications de la struct// (J'ai add une struc t_glob que j'ai déclaré en globale dans le .h pour pouvoir catch l'int exit status dont on a besoin pour "$?")
+
+//Explications de la struct globale//
+
+`int exit_status`
+
+utilisé pour catch l'exit status de des commandes lancées (lu avec la var $?)
+
+
+
+`int main`
+
+utilisé pour reconnaitre le process principal notamment pour le CTRL+C qui, si non innhibé, va print un nouveau prompt sur tous les minishell ouverts.
+
+
+
+
+//Explications de la struct//
 
 
 `char *prompt`
@@ -263,7 +282,7 @@ initialise le captage des signaux dans le main.
 
 `void	sig_handler(int sig)`
 
-il gere les signaux envoyé ("CTRL+C" et "CTRL+\") pour le CTRL+D c'est directement dans le main c'est plus tricky car CTRL+D fait quit le programme si le stdin a atteint EOF donc est NULL.
+il gere les signaux envoyé ("CTRL+C" et "CTRL+\") pour le CTRL+D c'est directement dans le main c'est plus tricky car CTRL+D fait quit le programme si le stdin a atteint EOF donc est NULL. il va aussi prendre le SIGUSR1 en compte qui est envoyé par un éventuel child issu d'un fork() pour signifier qu'un process enfant s'est mal terminé et set donc la g_glob.exit_status a 1 pour le $?.
 
 
 
@@ -347,12 +366,36 @@ unquote chaque element de split_redi selon les regles mandatory.
 
 
 
-`void	launch_redirect(t_para *para, int redi)`
-
-lance les fonctions en fonction des redirections. Renvoie 0 en cas de succes et un int d'erreur en cas de probleme.
-
-
-
 `char *grep_spec(char *str, t_para *para, int mod)`
 
 parser special pour le cas grep dont on a parlé. renvoie une str ou le premier argument de grep sera double quoté pour etre surs de lancer la bonne recherche
+
+
+
+`void	launch_redi(t_para *para) (+1, 2)`
+
+une fois la redirection set par search_redirect, elle va lancer le dequotage special pour les redirections et les process de redirection en soit.
+
+
+
+`int	choose_redi(t_para *para, int i)`
+
+c'est elle qui selon l'int i qui sert d'index pour la `char **split_redi` va determiner quelle type de redirection on va lancer. retourne 0 si succes et l'int qui correspond a la cmd de split_redi qui fait a fail en cas d'echec
+
+
+
+`void ft_freeee_split_redi(t_para *para)`
+
+il vide le split_redi en settant tous ses args a NULL pour eviter des baits
+
+
+
+`int	ft_exec_red(t_para *para, char *str)`
+
+il execute les commande que lui envoie les differents redirecteurs selon la `char *str`. Si la commande s'est lancée sans  probleme, retourne 0 sinon retourne 1.
+
+
+
+`int	redi1(t_para para) (+2)`
+
+la redirection qui correspond au pipe "|". elle renvoie 0 si ok, et l'index de split_redi qui foire en cas d'echec.

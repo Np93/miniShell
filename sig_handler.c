@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 17:30:45 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/21 16:39:15 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/25 19:29:04 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -15,6 +15,7 @@ void	ft_signal(void)
 {
 	signal(SIGINT, sig_handler);
 	signal(SIGQUIT, SIG_IGN);
+	signal(SIGUSR1, sig_handler);
 }
 
 void	sig_handler(int sig)
@@ -29,4 +30,6 @@ void	sig_handler(int sig)
 			rl_redisplay();
 		}
 	}
+	else if (sig == SIGUSR1)
+		g_glob.exit_status = 1;
 }

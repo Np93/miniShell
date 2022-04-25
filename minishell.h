@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/21 16:39:23 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/25 20:19:56 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,9 @@ void	ft_readline2(t_para *para);
 int		search_redirect(t_para *para);
 int		search_redirect2(char *str, int i);
 int		search_redirect3(t_para *para, int i);
-void	launch_redirect(t_para *para);
+void	launch_redi(t_para *para);
+void	launch_redi1(t_para *para);
+void	launch_redi2(t_para *para);
 char	*cpy_bf_redi(char *str, int i);
 char	*int_to_str_redi(int code);
 char	*unquoter(char *str, t_para *para);
@@ -145,10 +147,11 @@ void	grep_spec5(t_para *para, t_parse *p, char *str);
 int		grepxec(t_para *para);
 int		grepr(t_para *para);
 char	**split_grep(char **argv);
-void	init_redi(t_para *para);
-int		exec_redi(t_para *para, int i);
+int		choose_redi(t_para *para, int i);
 int		redi1(t_para *para, int i);
+int		redi1_2(t_para *para, pid_t pid[2], int fd[2], int i);
 int		ft_exec_red(t_para *para, char *str);
+int		ft_exec_red2(t_para *para, char **argv, char **all_path);
 void	ft_freeee_split_redi(t_para *para);
 
 #endif
