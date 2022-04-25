@@ -4,7 +4,7 @@ A faire :
 - << :
 - >> : Reno
 - | : Done
--$? : Done
+- $? : Done
 
 
 //Contenu des fichiers//
