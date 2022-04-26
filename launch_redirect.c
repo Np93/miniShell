@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 18:46:42 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/25 19:58:36 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/26 20:37:48 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -35,26 +35,16 @@ void	launch_redi(t_para *para)
 
 void	launch_redi1(t_para *para)
 {
-	int	a;
+	int	pid;
 
-	a = 0;
-	while (para->split_redi[a] != NULL)
-		a++;
-	if (3 < a)
+	pid = fork();
+	if (pid == 0)
 	{
-		g_glob.main = 0;
-		a = fork();
-		if (a == 0)
-		{
-			launch_redi2(para);
-			exit(0);
-		}
-		else
-			waitpid(a, NULL, 0);
-		g_glob.main = 1;
+		launch_redi2(para);
+		exit(0);
 	}
 	else
-		launch_redi2(para);
+		waitpid(pid, NULL, 0);
 }
 
 void	launch_redi2(t_para *para)
@@ -62,6 +52,9 @@ void	launch_redi2(t_para *para)
 	int	ret;
 	int	i;
 
+/*	i = -1;
+	while (para->split_redi[++i] != NULL)
+		printf("split %d = '%s'\n", i, para->split_redi[i]);*/
 	i = 0;
 	while (para->split_redi[i] != NULL)
 		i++;

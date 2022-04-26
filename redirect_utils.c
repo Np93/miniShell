@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 19:36:36 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/25 20:09:57 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/26 21:03:17 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -30,9 +30,9 @@ int	choose_redi(t_para *para, int i)
 	ret = 0;
 	if (ft_strstr(para->split_redi[i], "|"))
 		ret = redi1(para, i);
-/*	else if (ft_strstr(para->split_redi[i], ">>"))
+	else if (ft_strstr(para->split_redi[i], ">>"))
 		ret = redi2(para, i);
-	else if (ft_strstr(para->split_redi[i], ">"))
+/*	else if (ft_strstr(para->split_redi[i], ">"))
 		ret = redi3(para, i);
 	else if (ft_strstr(para->split_redi[i], "<<"))
 		ret = redi4(para, i);
@@ -40,6 +40,30 @@ int	choose_redi(t_para *para, int i)
 		ret = redi5(para, i);
 */
 	return (ret);
+}
+
+void	rm_sp_grep(char **argv)
+{
+	int		i;
+	int		j;
+	char	*tmp;
+
+	i = -1;
+	while (argv[++i] != NULL)
+	{
+		j = 0;
+		if (argv[i][0] == ' ')
+		{
+			tmp = malloc(sizeof(ft_strlen(argv[i])) + 1);
+			while (argv[i][++j] != '\0')
+				tmp[j - 1] = argv[i][j];
+			tmp[j - 1] = '\0';
+			free(argv[i]);
+			argv[i] = tmp;
+			free(tmp);
+			printf("'%s'\n", argv[i]);
+		}
+	}
 }
 
 int	ft_exec_red(t_para *para, char *str)
@@ -53,7 +77,10 @@ int	ft_exec_red(t_para *para, char *str)
 	if (ft_strstr(str, "grep") == 4)
 		argv = ft_split(str, 34);
 	else
+	{
 		argv = ft_split(str, ' ');
+		rm_sp_grep(argv);
+	}
 	ft_check_path(argv);
 	all_path = all_path_exec(para, argv[0]);
 	return (ft_exec_red2(para, argv, all_path));

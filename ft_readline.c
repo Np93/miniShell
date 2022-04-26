@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 20:26:16 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/25 19:51:53 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/26 19:41:57 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -48,6 +48,6 @@ void	ft_readline(t_para *para)
 			}
 		}
 		else
-			exit (0);
+			exit(0);
 	}
 }

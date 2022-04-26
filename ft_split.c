@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:20:19 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/22 17:47:32 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/26 18:51:15 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -81,7 +81,8 @@ char	**ft_split(char *s, char c)
 
 	if (!s)
 		return (NULL);
-	split = (char **)malloc((sizeof(char *) * word_counter((char *)s, c) + 1));
+	split = (char **)malloc((sizeof(char *) * 9
+				* word_counter((char *)s, c) + 1));
 	if (!split)
 		return (NULL);
 	split = spliter(split, s, c);
@@ -100,5 +101,9 @@ int	main(void)
 		printf("%s\n", sp[i]);
 		i ++;
 	}
+	i = -1;
+	while (sp[++i] != NULL)
+		free(sp[i]);
+	free(sp);
 	return (0);
 }*/
