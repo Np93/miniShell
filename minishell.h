@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/26 20:31:45 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/27 20:27:50 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,9 +150,13 @@ char	**split_grep(char **argv);
 int		choose_redi(t_para *para, int i);
 int		redi1(t_para *para, int i);
 int		redi1_2(t_para *para, pid_t pid[2], int fd[2], int i);
+void	rm_sp_grep(char **argv);
 int		ft_exec_red(t_para *para, char *str);
 int		ft_exec_red2(t_para *para, char **argv, char **all_path);
 void	ft_freeee_split_redi(t_para *para);
 int		redi2(t_para *para, int i);
+int		redi2_1(t_para *para, int i, int fd[20], int j);
+int		redi3(t_para *para, int i);
+int		redi3_1(t_para *para, int i, int fd[20], int j);
 
 #endif

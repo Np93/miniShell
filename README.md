@@ -72,7 +72,7 @@ ft_cd_tool.c : ft_memcmp, ft_strncmp, get_env (fichier norminette)
 
 unquoter : unquoter(2, 3, 4, 5, 7)
 
-redirect_utils.c : ft_freeee_split_redi, choose_redi, ft_exec_red(+2)
+redirect_utils.c : ft_freeee_split_redi, choose_redi, rm_sp_grep, ft_exec_red(+2)
 
 redirecter1.c : redi1(+1_2)
 
@@ -390,6 +390,13 @@ il vide le split_redi en settant tous ses args a NULL pour eviter des baits
 
 
 
+`void	rm_sp_grep`
+
+vire les espace devant les arg de grep en redirection car c'est chiant si c'est la 1ere fct d'un pipe
+
+
+
+
 `int	ft_exec_red(t_para *para, char *str)`
 
 il execute les commande que lui envoie les differents redirecteurs selon la `char *str`. Si la commande s'est lancée sans  probleme, retourne 0 sinon retourne 1.
@@ -399,3 +406,6 @@ il execute les commande que lui envoie les differents redirecteurs selon la `cha
 `int	redi1(t_para para) (+2)`
 
 la redirection qui correspond au pipe "|". elle renvoie 0 si ok, et l'index de split_redi qui foire en cas d'echec.
+
+
+

@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 19:36:36 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/26 21:03:17 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/27 20:24:34 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -32,9 +32,9 @@ int	choose_redi(t_para *para, int i)
 		ret = redi1(para, i);
 	else if (ft_strstr(para->split_redi[i], ">>"))
 		ret = redi2(para, i);
-/*	else if (ft_strstr(para->split_redi[i], ">"))
+	else if (ft_strstr(para->split_redi[i], ">"))
 		ret = redi3(para, i);
-	else if (ft_strstr(para->split_redi[i], "<<"))
+/*	else if (ft_strstr(para->split_redi[i], "<<"))
 		ret = redi4(para, i);
 	else if (ft_strstr(para->split_redi[i], "<"))
 		ret = redi5(para, i);
@@ -61,7 +61,6 @@ void	rm_sp_grep(char **argv)
 			free(argv[i]);
 			argv[i] = tmp;
 			free(tmp);
-			printf("'%s'\n", argv[i]);
 		}
 	}
 }
@@ -75,12 +74,12 @@ int	ft_exec_red(t_para *para, char *str)
 	if (!argv)
 		error_handler(0, para);
 	if (ft_strstr(str, "grep") == 4)
-		argv = ft_split(str, 34);
-	else
 	{
-		argv = ft_split(str, ' ');
+		argv = ft_split(str, 34);
 		rm_sp_grep(argv);
 	}
+	else
+		argv = ft_split(str, ' ');
 	ft_check_path(argv);
 	all_path = all_path_exec(para, argv[0]);
 	return (ft_exec_red2(para, argv, all_path));
