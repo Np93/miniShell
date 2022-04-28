@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/27 20:27:50 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/04/28 17:58:08 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,5 +158,7 @@ int		redi2(t_para *para, int i);
 int		redi2_1(t_para *para, int i, int fd[20], int j);
 int		redi3(t_para *para, int i);
 int		redi3_1(t_para *para, int i, int fd[20], int j);
+void	file_eraser(t_para *para);
+int		pipe_af_red(t_para *para, int i);
 
 #endif

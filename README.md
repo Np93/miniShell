@@ -1,10 +1,11 @@
 A faire :
 - < : 
-- > : Reno
+- > : Done
 - << :
-- >> : Reno
+- >> : Done
 - | : Done
 - $? : Done
+- LEAKS : 
 
 
 //Contenu des fichiers//
@@ -74,7 +75,9 @@ unquoter : unquoter(2, 3, 4, 5, 7)
 
 redirect_utils.c : ft_freeee_split_redi, choose_redi, rm_sp_grep, ft_exec_red(+2)
 
-redirecter1.c : redi1(+1_2)
+redirecter1and2.c : redi1(+1_2), redi2(+2_1)
+
+redirecter3 : redi3(+3_1), file_eraser, pipe_af_red;
 
 
 
@@ -403,9 +406,30 @@ il execute les commande que lui envoie les differents redirecteurs selon la `cha
 
 
 
-`int	redi1(t_para para) (+2)`
+`int	redi1(t_para para) (+1_2)`
 
 la redirection qui correspond au pipe "|". elle renvoie 0 si ok, et l'index de split_redi qui foire en cas d'echec.
 
 
 
+`int	redi2(t_para *para) (+2_1)`
+
+la redirection de sortie en mode append ">>". Renvoie 0 si ok et lindex qui foire si echec.
+
+
+
+`int	redi3(t_para *para) (+3_1)`
+
+la redi de sortie en mode once ">". Renvoie 0 si ok et l'index qui foire en cas d'echec.
+
+
+
+`int	pipe_af_red(t_para *para)`
+
+(coupure due a la norminette) fait les pipes necessaires apres avoir redirigé la sortie. renvoie 0 si ok et l'index qui foie si echec
+
+
+
+`void	file_eraser(t_para *para)`
+
+quand on fait des redi de sortie en mode once ">" on doit supprimer le contenu du fichier en question si il existait deja.
