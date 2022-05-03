@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 16:31:42 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/27 16:21:45 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/03 19:54:11 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -20,8 +20,8 @@ int	grepr(t_para *para)
 	if (pid == 0)
 	{
 		if (grepxec(para) == 0)
-			return (0);
-		return (1);
+			exit(0);
+		exit(1);
 	}
 	else
 	{
@@ -41,12 +41,12 @@ int	grepxec(t_para *para)
 		argv = split_grep(argv);
 	if (execve("/usr/bin/grep", argv, para->env) == -1)
 	{
-		free(argv);
+		free_malloc2(argv);
 		return (0);
 	}
 	else
 	{
-		free(argv);
+		free_malloc2(argv);
 		return (1);
 	}
 }
@@ -61,7 +61,10 @@ char	**split_grep(char **argv)
 	while (split[i + 1] != NULL)
 		i++;
 	if (i == 0)
+	{
+		free(argv[2]);
 		argv[2] = ft_strdup(split[0]);
+	}
 	else
 	{
 		i = -1;
@@ -69,6 +72,6 @@ char	**split_grep(char **argv)
 			argv[i + 2] = ft_strdup(split[i]);
 		argv[i + 2] = NULL;
 	}
-	free(split);
+	free_malloc2(split);
 	return (argv);
 }

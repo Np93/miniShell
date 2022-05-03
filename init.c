@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 22:10:47 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/03 18:28:19 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/03 23:42:33 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -22,14 +22,24 @@ char	*prompt_init(int argc, char **argv)
 	return (prompt);
 }
 
-void	free_malloc(char *str)
+void	free_malloc_cd(char *str, t_para *para)
 {
-	if (str)
+	if (str != NULL && !ft_strstr(para->current, "cd"))
 		free(str);
 }
 
 void	free_malloc2(char **sp)
 {
-	if (sp)
-		free(sp);
+	int	i;
+
+	i = -1;
+	while (sp[++i] != NULL)
+		free(sp[i]);
+	free(sp);
+}
+
+void	free_malloc(char *str)
+{
+	if (str != NULL)
+		free(str);
 }

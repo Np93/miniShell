@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/03 19:03:33 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/03 23:42:13 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,5 +163,6 @@ void	file_eraser(t_para *para);
 int		pipe_af_red(t_para *para, int i);
 void	free_malloc(char *str);
 void	free_malloc2(char **sp);
+void	free_malloc_cd(char *str, t_para *para);
 
 #endif

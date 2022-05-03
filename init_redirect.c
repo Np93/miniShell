@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 14:38:23 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/05 18:02:13 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/03 22:19:13 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -30,9 +30,7 @@ char	*cpy_bf_redi(char *str, int i)
 	if (str[j] == ' ')
 		j++;
 	while (j < i)
-	{
 		ret[a++] = str[j++];
-	}
 	ret[a] = '\0';
 	return (ret);
 }
@@ -40,15 +38,15 @@ char	*cpy_bf_redi(char *str, int i)
 char	*int_to_str_redi(int code)
 {
 	if (code == 0)
-		return (">");
+		return (ft_strdup(">"));
 	else if (code == 1)
-		return (">>");
+		return (ft_strdup(">>"));
 	else if (code == 2)
-		return ("<");
+		return (ft_strdup("<"));
 	else if (code == 3)
-		return ("<<");
+		return (ft_strdup("<<"));
 	else if (code == 4)
-		return ("|");
+		return (ft_strdup("|"));
 	else
 		return (NULL);
 }

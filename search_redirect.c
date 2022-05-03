@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 23:11:51 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/21 17:14:53 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/03 21:51:00 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -102,7 +102,7 @@ char	*grep_spec(char *str, t_para *para, int mod)
 	ret = ft_strdup(p->str);
 	if (mod == 0)
 		free(str);
-	free(p);
+	(free(p->str), free(p));
 	return (ret);
 }
 

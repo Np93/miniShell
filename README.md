@@ -57,7 +57,7 @@ welcome2.c : les welcome 6 a 10
 
 ft_termios.c : ft_termios
 
-ft_readline.c : ft_readline(+2), int_to_str_redi, cpy_bf_redi
+ft_readline.c : ft_readline(+2), int_to_str_redi
 
 search_redirect.c : search_redirect(+2 & 3), grep_spec(+1)
 
