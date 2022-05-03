@@ -1,7 +1,7 @@
 A faire :
-- < : 
+- < : Nico (dossier vide) 
 - > : Done
-- << :
+- << : Nico
 - >> : Done
 - | : Done
 - $? : Done
@@ -78,6 +78,8 @@ redirect_utils.c : ft_freeee_split_redi, choose_redi, rm_sp_grep, ft_exec_red(+2
 redirecter1and2.c : redi1(+1_2), redi2(+2_1)
 
 redirecter3 : redi3(+3_1), file_eraser, pipe_af_red;
+
+redireter4and5 : redi5(+3_1);
 
 
 
