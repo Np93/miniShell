@@ -44,6 +44,7 @@ SRCS		= 	main.c\
 				redirect_utils.c\
 				redirecter1and2.c\
 				redirecter3.c\
+				redirecter4and5.c\
 
 OBJS		= ${SRCS:.c=.o}
 
