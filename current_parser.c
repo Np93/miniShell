@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 18:55:51 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/12 23:04:33 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/03 19:03:50 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -30,15 +30,21 @@ char	*get_dollar(char *current, int i, t_para *para)
 	if (ret != NULL)
 		return (ret);
 	else
-		return (strdup(""));
+		return ("");
 }
 
 void	current_parser2(t_para *para, t_parse *p)
 {
+	int	a;
+
+	a = 0;
 	p->k = 0;
 	p->tmp = get_dollar(para->current, ++p->i, para);
 	if (para->current[p->i] == '?')
+	{
+		a = 1;
 		p->i++;
+	}
 	else
 	{
 		while (para->current[p->i] != ' ' && para->current[p->i] != 39
@@ -47,6 +53,8 @@ void	current_parser2(t_para *para, t_parse *p)
 	}
 	while (p->tmp[p->k] != '\0')
 		p->str[p->j++] = p->tmp[p->k++];
+	if (a == 1)
+		free(p->tmp);
 }
 
 int	current_parser3(t_para *para, t_parse *p)
@@ -95,6 +103,7 @@ int	current_parser(t_para *para)
 	t_parse	*p;
 	int		err;
 
+	free_malloc(para->out);
 	if ((ft_strstr(para->current, "grep") == 4
 			|| ft_strstr(para->current, "grep") == 5)
 		&& (para->current[0] == 'g' || para->current[0] == 34
@@ -111,10 +120,6 @@ int	current_parser(t_para *para)
 	p->j = 0;
 	err = current_parser6(para, p);
 	para->out = ft_strdup(p->str);
-	free(p);
-	if (err != 0)
-		return (err);
-	if (verif_fquote(para, para->current))
-		return (3);
-	return (0);
+	(free(p->str), free(p));
+	return (current_parser8(err, para));
 }

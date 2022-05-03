@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 18:52:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/31 17:08:48 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/03 19:01:10 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -60,4 +60,13 @@ void	current_parser7(t_para *para, t_parse *p)
 	}
 	else
 		p->i++;
+}
+
+int	current_parser8(int err, t_para *para)
+{
+	if (err != 0)
+		return (err);
+	if (verif_fquote(para, para->current))
+		return (3);
+	return (0);
 }

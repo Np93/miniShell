@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/26 19:42:39 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/03 18:45:34 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -46,11 +46,11 @@ char	**cpy_env(char **env)
 	return (cpy);
 }
 
-void	init_para(t_para **para, char **argv, char **env)
+void	init_para(t_para **para, char **env)
 {
 	(*para) = (t_para *)malloc(sizeof(t_para) * 99);
 	(*para)->split_redi = malloc(sizeof(char *) * 999);
-	(*para)->argv = argv;
+	(*para)->out = malloc(sizeof(char) * 999);
 	(*para)->env = env;
 	g_glob.exit_status = 0;
 }
@@ -67,7 +67,7 @@ int	main(int argc, char **argv, char **env)
 	welcome();
 	g_glob.main = 1;
 	ft_signal();
-	init_para(&para, argv, env);
+	init_para(&para, env);
 	ft_termios(para);
 	para->prompt = prompt_init(argc, argv);
 	while (1)

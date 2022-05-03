@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 18:46:42 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/27 19:54:48 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/03 17:48:28 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -59,6 +59,8 @@ void	launch_redi2(t_para *para)
 	ret = choose_redi(para, i);
 	if (ret != 0)
 	{
+		if (para->bait)
+			free(para->bait);
 		para->bait = ft_strdup(para->split_redi[ret]);
 		cmd_not_found(para->bait);
 		kill(0, SIGUSR1);

@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/28 17:58:08 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/03 19:03:33 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int		current_parser4(t_para *para, t_parse *p);
 int		current_parser5(t_para *para, t_parse *p);
 int		current_parser6(t_para *para, t_parse *p);
 void	current_parser7(t_para *para, t_parse *p);
+int		current_parser8(int err, t_para *para);
 char	*get_dollar(char *current, int i, t_para *para);
 void	error_handler(int error, t_para *para);
 char	*ft_getenv(t_para *para, char *var);
@@ -160,5 +161,7 @@ int		redi3(t_para *para, int i);
 int		redi3_1(t_para *para, int i, int fd[20], int j);
 void	file_eraser(t_para *para);
 int		pipe_af_red(t_para *para, int i);
+void	free_malloc(char *str);
+void	free_malloc2(char **sp);
 
 #endif
