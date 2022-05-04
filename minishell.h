@@ -165,5 +165,7 @@ int		pipe_af_red(t_para *para, int i);
 void	free_malloc(char *str);
 void	free_malloc2(char **sp);
 void	free_malloc_cd(char *str, t_para *para);
+int		redi5(t_para *para, int i);
+int		redi5_1(t_para *para, int i, int fd[20], int j);
 
 #endif
