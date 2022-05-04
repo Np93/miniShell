@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:50:46 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/05 18:49:41 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/04 19:37:20 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -22,6 +22,7 @@ char	*last_path(char *arg)
 	while (path[i + 1] != NULL)
 		i++;
 	ret = ft_strdup(path[i]);
+	free(arg);
 	free(path);
 	return (ret);
 }

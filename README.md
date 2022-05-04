@@ -41,7 +41,7 @@ current_parser2.c : current_parser5 (+ 6 et 7)
 
 error_handler : error_handler
 
-ft_cd.c : ft_memcmp, ft_getenv, ft_cd
+ft_cd.c : ft_memcmp, get_env, ft_cd
 
 cmd_not_found.c : cmd_cmp, verif_fquote, cmd_not_found, cmd_not_found2
 
