@@ -79,7 +79,11 @@ redirecter1and2.c : redi1(+1_2), redi2(+2_1)
 
 redirecter3 : redi3(+3_1), file_eraser, pipe_af_red;
 
-redireter4and5 : redi5(+5_1);
+redireter4and5.c : redi5(+5_1);
+
+ft_strcmp.c : ft_strcmp;
+
+ft_putendl_fd.c : ft_putendl_fd
 
 
 

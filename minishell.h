@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/04 20:10:46 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/05 22:35:23 by nhirzel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,8 @@ int		redi5(t_para *para, int i);
 int		redi5_1(t_para *para, int i, int fd[20], int j);
 int		redi4(t_para *para, int i);
 int		redi4_1(t_para *para, int i, int fd[20], int j);
+int		ft_strcmp(char *s1, char *s2);
+void	ft_putendl_fd(char *s, int fd);
 int		ft_strcmp(char *s1, char *s2);
 void	ft_putendl_fd(char *s, int fd);
 
