@@ -105,6 +105,14 @@ int	redi5_1(t_para *para, int i, int fd[20], int j)
 	{
 		fd[j] = open(para->split_redi[i + 1],
 				O_RDONLY, S_IRUSR | S_IWUSR);
+		if (fd[j] == -1)
+		{
+			if (ft_strcmp("<<", para->split_redi[i]) != 0)
+			{
+				printf("zsh: no such file or directory\n");
+				return (1);
+			}
+		}
 		if (1 < i)
 		{
 			if (ft_strstr(para->split_redi[i - 2], "<"))
