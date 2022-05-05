@@ -31,8 +31,8 @@ int	choose_redi(t_para *para, int i)
 		ret = redi2(para, i);
 	else if (ft_strstr(para->split_redi[i], ">"))
 		ret = redi3(para, i);
-/*	else if (ft_strstr(para->split_redi[i], "<<"))
-		ret = redi4(para, i);*/
+	else if (ft_strstr(para->split_redi[i], "<<"))
+		ret = redi4(para, i);
 	else if (ft_strstr(para->split_redi[i], "<"))
 		ret = redi5(para, i);
 	return (ret);
