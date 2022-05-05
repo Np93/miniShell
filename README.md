@@ -1,7 +1,7 @@
 A faire :
-- < : Nico (dossier vide) 
+- < : Done 
 - > : Done
-- << : Nico
+- << : Done
 - >> : Done
 - | : Done
 - $? : Done
