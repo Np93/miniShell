@@ -167,5 +167,9 @@ void	free_malloc2(char **sp);
 void	free_malloc_cd(char *str, t_para *para);
 int		redi5(t_para *para, int i);
 int		redi5_1(t_para *para, int i, int fd[20], int j);
+int		redi4(t_para *para, int i);
+int		redi4_1(t_para *para, int i, int fd[20], int j);
+int		ft_strcmp(char *s1, char *s2);
+void	ft_putendl_fd(char *s, int fd);
 
 #endif
