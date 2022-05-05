@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 18:19:29 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/22 15:54:39 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/05 22:34:20 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -22,6 +22,7 @@ int	ft_export(t_para *para)
 	j = 0;
 	arg = ft_strdup(para->current + ft_strstr(para->current, "export "));
 	split = ft_split(arg, ' ');
+	free(arg);
 	while (para->env[j] != NULL)
 		j++;
 	while (split[i] != NULL)
@@ -31,10 +32,33 @@ int	ft_export(t_para *para)
 		else
 			para->env[j++] = ft_strdup(split[i++]);
 	}
-	free(arg);
-	free(split);
+	free_malloc2(split);
 	para->env[j] = NULL;
 	return (1);
+}
+
+int	env_cmp(char *arg, t_para *para)
+{
+	int	i;
+
+	i = -1;
+	printf("arg = %s\n", arg);
+	while (para->env_cpy[++i] != NULL)
+	{
+		printf("strstr = %d\n", ft_strstr(para->env_cpy[i], arg));
+		printf("strlen = %d\n", ft_strlen(arg));
+		if (ft_strstr(para->env_cpy[i], arg) == ft_strlen(arg))
+			printf("match found\n");
+		printf("\n\n\n");
+	}
+	return (1);
+
+	while (para->env_cpy[++i] != NULL)
+	{
+		if (ft_strstr(para->env_cpy[i], arg) == ft_strlen(arg))
+			return (1);
+	}
+	return (0);
 }
 
 void	ft_unset2(t_para *para, char *arg)
@@ -49,6 +73,8 @@ void	ft_unset2(t_para *para, char *arg)
 		para->env[i] = para->env[i + 1];
 		i++;
 	}
+	if (!env_cmp(arg, para))
+		free_malloc(para->env[i]);
 	para->env[i] = NULL;
 }
 
@@ -59,6 +85,11 @@ int	ft_unset(t_para *para)
 	int		i;
 
 	i = 0;
+	if (ft_strstr(para->out, "="))
+	{
+		error_handler(8, para);
+		return (0);
+	}
 	arg = ft_strdup(para->out + ft_strstr(para->out, "unset "));
 	split = ft_split(arg, ' ');
 	while (split[i] != NULL)
@@ -71,8 +102,7 @@ int	ft_unset(t_para *para)
 			i++;
 		}
 	}
-	free(arg);
-	free(split);
+	(free(arg), free_malloc2(split));
 	return (1);
 }
 

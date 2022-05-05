@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/04 20:10:46 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/05 22:02:21 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ typedef struct s_para {
 	int				cmd;
 	char			**argv;
 	char			**env;
+	char			**env_cpy;
 	char			**split_redi;
+	int				cd;
 	struct termios	term;
 }			t_para;
 
@@ -93,6 +95,9 @@ char	*get_dollar(char *current, int i, t_para *para);
 void	error_handler(int error, t_para *para);
 char	*ft_getenv(t_para *para, char *var);
 void	ft_cd(t_para *para);
+void	update_pwd(char **env, t_para *para);
+void	update_oldpwd(char **env, char *oldpwd, t_para *para);
+char	*path_is(char *para_out);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*get_env(char **env, char *envi);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
