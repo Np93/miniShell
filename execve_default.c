@@ -6,13 +6,21 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 16:21:38 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/04 20:36:34 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/05 19:31:45 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
 
 void	free_exec(char **argv, char **path)
 {
+	int	i;
+
+	i = -1;
+	while (argv[++i] != NULL)
+		free(argv[i]);
+	i = -1;
+	while (path[++i] != NULL)
+		free(path[i]);
 	free(argv);
 	free(path);
 }
@@ -52,8 +60,8 @@ int	exec_and_return2(char **all_path, char **argv, t_para *para, int i)
 		if (pid == 0)
 		{
 			if (execve(all_path[i], argv, para->env) == -1)
-				return (0);
-			return (1);
+				exit(0);
+			exit(1);
 		}
 		else
 		{
@@ -93,7 +101,6 @@ int	ft_execve(t_para *para)
 	char	**all_path;
 	char	**argv;
 
-	all_path = NULL;
 	argv = ft_split(para->out, ' ');
 	ft_check_path(argv);
 	all_path = all_path_exec(para, argv[0]);
