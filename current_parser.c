@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 18:55:51 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/03 23:43:01 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/05 19:49:03 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -103,7 +103,7 @@ int	current_parser(t_para *para)
 	t_parse	*p;
 	int		err;
 
-	free_malloc_cd(para->out, para);
+	free_malloc(para->out);
 	if ((ft_strstr(para->current, "grep") == 4
 			|| ft_strstr(para->current, "grep") == 5)
 		&& (para->current[0] == 'g' || para->current[0] == 34

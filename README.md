@@ -21,7 +21,7 @@ ft_strstr.c : ft_strlen, ft_strstr
 
 ft_calloc.c : ft_bzero, ft_calloc
 
-ft_strdup.c : ft_strdup
+ft_strdup.c : ft_strdup(+2)
 
 ft_env.c : ft_env, ft_export, ft_unset(et ft_unset2), ft_getenv
 
@@ -33,13 +33,13 @@ ft_split.c : ft_split
 
 ft_strjoin.c : ft_strjoin
 
-init.c : prompt_init
+init.c : prompt_init, free_malloc, free_malloc2
 
 current_parser.c : get_dollar, current_parser(+ 2, 3 et 4)
 
 current_parser2.c : current_parser5 (+ 6 et 7)
 
-error_handler : error_handler
+error_handler : error_handler (+2), error_unset
 
 ft_cd.c : ft_memcmp, get_env, ft_cd
 
@@ -79,11 +79,15 @@ redirecter1and2.c : redi1(+1_2), redi2(+2_1)
 
 redirecter3 : redi3(+3_1), file_eraser, pipe_af_red;
 
+<<<<<<< HEAD
 redireter4and5.c : redi5(+5_1);
 
 ft_strcmp.c : ft_strcmp;
 
 ft_putendl_fd.c : ft_putendl_fd
+=======
+redirecter4and5 : redi5(+5_1);
+>>>>>>> 4b566d06ffa1629636a2200aa8e3e1281cfe170b
 
 
 

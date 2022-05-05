@@ -6,12 +6,12 @@
 /*   By: nhirzel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 19:53:20 by nhirzel           #+#    #+#             */
-/*   Updated: 2022/04/19 22:37:21 by nhirzel          ###   ########.fr       */
+/*   Updated: 2022/05/05 20:35:26 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
 
-static void	update_oldpwd(char **env, char *oldpwd)
+void	update_oldpwd(char **env, char *oldpwd, t_para *para)
 {
 	int		i;
 	char	*temp;
@@ -22,13 +22,16 @@ static void	update_oldpwd(char **env, char *oldpwd)
 		if (ft_strncmp(env[i], "OLDPWD=", 7) == 0)
 		{
 			temp = ft_strjoin("OLDPWD=", oldpwd);
-			env[i] = temp;
+			if (para->cd == 1)
+				free(env[i]);
+			env[i] = ft_strdup(temp);
 		}
 		i++;
 	}
+	free(temp);
 }
 
-static void	update_pwd(char **env)
+void	update_pwd(char **env, t_para *para)
 {
 	int		i;
 	char	*temp;
@@ -41,10 +44,13 @@ static void	update_pwd(char **env)
 		{
 			getcwd(pwd, 4096);
 			temp = ft_strjoin("PWD=", pwd);
-			env[i] = temp;
+			if (para->cd == 1)
+				free(env[i]);
+			env[i] = ft_strdup(temp);
 		}
 		i++;
 	}
+	free(temp);
 }
 
 int	magic(t_para *para)
@@ -78,25 +84,42 @@ void	ft_cd(t_para *para)
 
 	getcwd(temp_pwd, 4096);
 	if (magic(para) == 1)
-		path = ("/Users");
+		path = ft_strdup("/Users");
 	else
 	{
-		while (*para->out != ' ')
+	/*	while (*para->out != ' ')
 			para->out++;
 		if (*para->out == ' ')
 		{
 			while (*para->out == ' ')
 				para->out++;
 		}
-		path = para->out;
+		path = para->out;*/
+		path = path_is(para->out);
 	}
 	if (chdir(path) == 0)
 	{
-		update_oldpwd(para->env, temp_pwd);
-		update_pwd(para->env);
+		update_oldpwd(para->env, temp_pwd, para);
+		update_pwd(para->env, para);
+		para->cd = 1;
 	}
 	else
 		error_handler(7, para);
+	free(path);
+}
+
+char	*path_is(char *para_out)
+{
+	int		i;
+	char	*path;
+
+	i = 0;
+	while (para_out[i] != ' ')
+		i++;
+	while (para_out[i] == ' ')
+		i++;
+	path = ft_strdup(para_out + i);
+	return (path);
 }
 //		printf("Error : %s\n", strerror(errno));
 //		//a la place de error_handler7 si veut erreur sys exacte

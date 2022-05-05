@@ -6,10 +6,33 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 20:12:19 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/11 23:10:21 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/05 20:59:27 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
+
+void	error_unset(t_para *para)
+{
+	int		i;
+	char	**sp;
+
+	i = -1;
+	sp = ft_split(para->out, ' ');
+	while (sp[++i] != NULL)
+	{
+		if (ft_strstr(sp[i], "="))
+			printf("minishell: unset: `%s': not a valid identifier\n", sp[i]);
+	}
+	free_malloc2(sp);
+}
+
+void	error_handler2(int error, t_para *para)
+{
+	if (error == 7)
+		printf("cd Error loser ╭∩╮(･◡･)╭∩╮\n");
+	if (error == 8)
+		error_unset(para);
+}
 
 void	error_handler(int error, t_para *para)
 {
@@ -36,6 +59,5 @@ void	error_handler(int error, t_para *para)
 		printf("An error occured with the termios structure\n");
 		exit(0);
 	}
-	if (error == 7)
-		printf("cd Error loser ╭∩╮(･◡･)╭∩╮\n");
+	error_handler2(error, para);
 }
