@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 16:21:38 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/05 19:31:45 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/10 00:31:40 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -28,13 +28,13 @@ void	free_exec(char **argv, char **path)
 char	**all_path_exec(t_para *para, char *end)
 {
 	char	**all_path;
-	char	*path;
+	char	path[4097];
 	int		i;
 	char	*final;
 
 	final = ft_strjoin("/", end);
 	i = 0;
-	path = ft_getenv(para, "PWD");
+	getcwd(path, 4096);
 	all_path = ft_split(ft_getenv(para, "PATH"), ':');
 	while (all_path[i] != NULL)
 		i++;

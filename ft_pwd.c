@@ -6,17 +6,15 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 18:38:44 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/09 23:50:58 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/10 00:39:02 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
 
-void	ft_pwd(t_para *para)
+void	ft_pwd(void)
 {
-	int	i;
+	char	pwd[4097];
 
-	i = 0;
-	while (!ft_strstr(para->env[i], "PWD="))
-		i++;
-	printf("%s\n", para->env[i] + ft_strstr(para->env[i], "PWD="));
+	getcwd(pwd, 4096);
+	printf("%s\n", pwd);
 }

@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 18:19:29 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/05 22:34:20 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/10 01:25:24 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -37,44 +37,22 @@ int	ft_export(t_para *para)
 	return (1);
 }
 
-int	env_cmp(char *arg, t_para *para)
-{
-	int	i;
-
-	i = -1;
-	printf("arg = %s\n", arg);
-	while (para->env_cpy[++i] != NULL)
-	{
-		printf("strstr = %d\n", ft_strstr(para->env_cpy[i], arg));
-		printf("strlen = %d\n", ft_strlen(arg));
-		if (ft_strstr(para->env_cpy[i], arg) == ft_strlen(arg))
-			printf("match found\n");
-		printf("\n\n\n");
-	}
-	return (1);
-
-	while (para->env_cpy[++i] != NULL)
-	{
-		if (ft_strstr(para->env_cpy[i], arg) == ft_strlen(arg))
-			return (1);
-	}
-	return (0);
-}
-
 void	ft_unset2(t_para *para, char *arg)
 {
 	int	i;
 
 	i = 0;
-	while (para->env[i][ft_strstr(para->env[i], arg)] != '=')
+	while (ft_strstr(para->env[i], arg) != (ft_strlen(arg)))
 		i++;
+	if (para->env[i] == NULL)
+		return ;
+	if (!env_cmp(arg, para))
+		free_malloc(para->env[i]);
 	while (para->env[i + 1] != NULL)
 	{
 		para->env[i] = para->env[i + 1];
 		i++;
 	}
-	if (!env_cmp(arg, para))
-		free_malloc(para->env[i]);
 	para->env[i] = NULL;
 }
 

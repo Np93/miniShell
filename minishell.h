@@ -6,11 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/05/05 22:35:23 by nhirzel          ###   ########.fr       */
-=======
-/*   Updated: 2022/05/05 22:02:21 by rmonney          ###   ########.fr       */
->>>>>>> 4b566d06ffa1629636a2200aa8e3e1281cfe170b
+/*   Updated: 2022/05/10 00:37:49 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +75,9 @@ char	*ft_strdup(const char *s1);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
 void	ft_env(char **env);
-void	ft_pwd(t_para *para);
+char	**env_cpy(t_para *para, char **env);
+int		env_cmp(char *arg, t_para *para);
+void	ft_pwd(void);
 int		ft_export(t_para *para);
 int		ft_unset(t_para *para);
 void	ft_unset2(t_para *para, char *arg);

@@ -6,7 +6,7 @@
 /*   By: nhirzel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 19:53:20 by nhirzel           #+#    #+#             */
-/*   Updated: 2022/05/05 20:35:26 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/10 01:04:12 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -25,10 +25,17 @@ void	update_oldpwd(char **env, char *oldpwd, t_para *para)
 			if (para->cd == 1)
 				free(env[i]);
 			env[i] = ft_strdup(temp);
+			free(temp);
+			return ;
 		}
 		i++;
 	}
-	free(temp);
+	if (env[i] == NULL)
+	{
+		temp = ft_strjoin("OLDPWD=", oldpwd);
+		env[i++] = ft_strdup(temp);
+		free(temp);
+	}
 }
 
 void	update_pwd(char **env, t_para *para)
@@ -38,19 +45,26 @@ void	update_pwd(char **env, t_para *para)
 	char	pwd[4097];
 
 	i = 0;
+	getcwd(pwd, 4096);
 	while (env[i])
 	{
 		if (ft_strncmp(env[i], "PWD=", 4) == 0)
 		{
-			getcwd(pwd, 4096);
 			temp = ft_strjoin("PWD=", pwd);
 			if (para->cd == 1)
 				free(env[i]);
 			env[i] = ft_strdup(temp);
+			free(temp);
+			return ;
 		}
 		i++;
 	}
-	free(temp);
+	if (env[i] == NULL)
+	{
+		temp = ft_strjoin("PWD=", pwd);
+		env[i++] = ft_strdup(temp);
+		free(temp);
+	}
 }
 
 int	magic(t_para *para)
@@ -86,17 +100,7 @@ void	ft_cd(t_para *para)
 	if (magic(para) == 1)
 		path = ft_strdup("/Users");
 	else
-	{
-	/*	while (*para->out != ' ')
-			para->out++;
-		if (*para->out == ' ')
-		{
-			while (*para->out == ' ')
-				para->out++;
-		}
-		path = para->out;*/
 		path = path_is(para->out);
-	}
 	if (chdir(path) == 0)
 	{
 		update_oldpwd(para->env, temp_pwd, para);
