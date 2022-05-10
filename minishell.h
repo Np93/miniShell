@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/10 03:15:29 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/10 21:53:19 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ t_glob	g_glob;
 
 int		search_fct(char *str);
 void	do_fct(int cmd, t_para *para);
+void	do_fct2(int cmd, t_para *para);
 void	cmd_not_found(char *str);
 void	ft_echo(int mode, char *str);
 int		ft_strstr(char *str, char *tofind);

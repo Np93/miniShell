@@ -13,7 +13,7 @@ A faire :
 
 main.c : welcome, cpy_env, init_para, main
 
-search_fct.c : search_fct, do_fct, no_path
+search_fct.c : search_fct, do_fct(+2), no_path
 
 echo.c : ft_echo
 

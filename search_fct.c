@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 17:51:16 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/10 02:58:36 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/10 21:53:01 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -62,11 +62,15 @@ int	search_fct(char *str)
 
 void	do_fct(int cmd, t_para *para)
 {
+	int	ret;
+
+	ret = 0;
 	if (cmd == 0)
 	{
-		if (ft_execve(para) == 0)
+		ret = ft_execve(para);
+		if (ret == 0)
 			cmd_not_found(para->out);
-		else if (ft_execve(para) == -1)
+		else if (ret == -1)
 			no_path(para->out);
 		return ;
 	}
@@ -78,7 +82,14 @@ void	do_fct(int cmd, t_para *para)
 		ft_cd(para);
 	else if (cmd == 4)
 		ft_pwd();
-	else if (cmd == 5)
+	else
+		do_fct2(cmd, para);
+	g_glob.exit_status = 0;
+}
+
+void	do_fct2(int cmd, t_para *para)
+{
+	if (cmd == 5)
 		ft_export(para);
 	else if (cmd == 6)
 		ft_unset(para);
