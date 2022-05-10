@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 16:21:38 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/10 00:31:40 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/10 02:45:07 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -32,10 +32,14 @@ char	**all_path_exec(t_para *para, char *end)
 	int		i;
 	char	*final;
 
+	all_path = NULL;
 	final = ft_strjoin("/", end);
 	i = 0;
 	getcwd(path, 4096);
-	all_path = ft_split(ft_getenv(para, "PATH"), ':');
+	if (ft_getenv(para, "PATH") != NULL)
+		all_path = ft_split(ft_getenv(para, "PATH"), ':');
+	else
+		all_path = malloc(sizeof(char *) * 992);
 	while (all_path[i] != NULL)
 		i++;
 	all_path[i++] = ft_strdup(path);
@@ -102,6 +106,13 @@ int	ft_execve(t_para *para)
 	char	**argv;
 
 	argv = ft_split(para->out, ' ');
+	if (check_bin(argv))
+		return (exec_bin(argv, para));
+	if (ft_getenv(para, "PATH") == NULL)
+	{
+		free_malloc2(argv);
+		return (-1);
+	}
 	ft_check_path(argv);
 	all_path = all_path_exec(para, argv[0]);
 	return (exec_and_return(all_path, argv, para));

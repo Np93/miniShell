@@ -13,7 +13,7 @@ A faire :
 
 main.c : welcome, cpy_env, init_para, main
 
-search_fct.c : search_fct, do_fct
+search_fct.c : search_fct, do_fct, no_path
 
 echo.c : ft_echo
 
@@ -24,6 +24,8 @@ ft_calloc.c : ft_bzero, ft_calloc
 ft_strdup.c : ft_strdup(+2)
 
 ft_env.c : ft_env, ft_export, ft_unset(et ft_unset2), ft_getenv
+
+ft_env2.c : env_cpy, env_cmp
 
 ft_pwd.c : ft_pwd
 
@@ -79,15 +81,11 @@ redirecter1and2.c : redi1(+1_2), redi2(+2_1)
 
 redirecter3 : redi3(+3_1), file_eraser, pipe_af_red;
 
-<<<<<<< HEAD
 redireter4and5.c : redi5(+5_1);
 
 ft_strcmp.c : ft_strcmp;
 
 ft_putendl_fd.c : ft_putendl_fd
-=======
-redirecter4and5 : redi5(+5_1);
->>>>>>> 4b566d06ffa1629636a2200aa8e3e1281cfe170b
 
 
 
@@ -216,7 +214,7 @@ meme que bash : supprime les variable d'environnement designees si elles existen
 
 
 
-`void ft_pwd(t_para *para)`
+`void ft_pwd(void)`
 
 meme que bash : ecrit le chemin ou on se trouve
 

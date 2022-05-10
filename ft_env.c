@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 18:19:29 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/10 01:25:24 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/10 03:03:57 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -20,6 +20,8 @@ int	ft_export(t_para *para)
 
 	i = 0;
 	j = 0;
+	if (para->out[6] == '\0')
+		return (empty_export(para));
 	arg = ft_strdup(para->current + ft_strstr(para->current, "export "));
 	split = ft_split(arg, ' ');
 	free(arg);

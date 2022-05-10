@@ -6,10 +6,33 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 17:51:16 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/10 00:38:20 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/10 02:58:36 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
+
+void	no_path(char *str)
+{
+	int		i;
+	char	*out;
+
+	i = 0;
+	while (str[i] != ' ' && str[i] != '\0')
+		i++;
+	out = malloc(sizeof(char) * i + 1);
+	if (!out)
+		error_handler(0, NULL);
+	i = 0;
+	while (str[i] != ' ' && str[i] != '\0')
+	{
+		out[i] = str[i];
+		i++;
+	}
+	out[i] = '\0';
+	printf("minishell: %s: no such file or directory\n", out);
+	g_glob.exit_status = 127;
+	free(out);
+}
 
 int	search_fct(char *str)
 {
@@ -24,9 +47,9 @@ int	search_fct(char *str)
 		return (3);
 	else if (ft_strstr(str, "pwd") == 3)
 		return (4);
-	else if (ft_strstr(str, "export") == 6 && str[6] == ' ')
+	else if (ft_strstr(str, "export") == 6)
 		return (5);
-	else if (ft_strstr(str, "unset") == 5 && str[5] == ' ')
+	else if (ft_strstr(str, "unset") == 5)
 		return (6);
 	else if (ft_strstr(str, "env") == 3)
 		return (7);
@@ -43,6 +66,8 @@ void	do_fct(int cmd, t_para *para)
 	{
 		if (ft_execve(para) == 0)
 			cmd_not_found(para->out);
+		else if (ft_execve(para) == -1)
+			no_path(para->out);
 		return ;
 	}
 	else if (cmd == 1)

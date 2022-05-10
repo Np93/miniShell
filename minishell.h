@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/10 00:37:49 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/10 03:15:29 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ int		cmd_cmp(char *str);
 void	ft_signal(void);
 void	sig_handler(int sig);
 int		ft_execve(t_para *para);
+void	no_path(char *str);
 char	**all_path_exec(t_para *para, char *end);
 void	free_exec(char **argv, char **path);
 int		exec_and_return(char **all_path, char **argv, t_para *para);
@@ -180,5 +181,8 @@ int		ft_strcmp(char *s1, char *s2);
 void	ft_putendl_fd(char *s, int fd);
 int		ft_strcmp(char *s1, char *s2);
 void	ft_putendl_fd(char *s, int fd);
+int		check_bin(char **argv);
+int		exec_bin(char **argv, t_para *para);
+int		empty_export(t_para *para);
 
 #endif
