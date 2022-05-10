@@ -25,7 +25,7 @@ ft_strdup.c : ft_strdup(+2)
 
 ft_env.c : ft_env, ft_export, ft_unset(et ft_unset2), ft_getenv
 
-ft_env2.c : env_cpy, env_cmp
+ft_env2.c : env_cpy, env_cmp, empty_export
 
 ft_pwd.c : ft_pwd
 
