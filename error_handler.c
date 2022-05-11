@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 20:12:19 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/05 20:59:27 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/11 23:03:56 by nhirzel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -29,7 +29,7 @@ void	error_unset(t_para *para)
 void	error_handler2(int error, t_para *para)
 {
 	if (error == 7)
-		printf("cd Error loser ╭∩╮(･◡･)╭∩╮\n");
+		printf("Error : %s ╭∩╮(･◡･)╭∩╮\n", strerror(errno));
 	if (error == 8)
 		error_unset(para);
 }
