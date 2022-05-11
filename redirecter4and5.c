@@ -6,7 +6,7 @@
 /*   By: nhirzel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 19:53:20 by nhirzel           #+#    #+#             */
-/*   Updated: 2022/05/05 23:09:15 by nhirzel          ###   ########.fr       */
+/*   Updated: 2022/05/11 22:54:00 by nhirzel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -76,7 +76,7 @@ int	redi5_1(t_para *para, int i, int fd[20], int j)
 {
 	while (ft_strstr(para->split_redi[i], "<"))
 	{
-		fd[j] = open(para->split_redi[i + 1],
+		fd[j++] = open(para->split_redi[i + 1],
 				O_RDONLY, S_IRUSR | S_IWUSR);
 		if (fd[j] == -1)
 		{
