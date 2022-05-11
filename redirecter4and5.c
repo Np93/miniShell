@@ -6,7 +6,7 @@
 /*   By: nhirzel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 19:53:20 by nhirzel           #+#    #+#             */
-/*   Updated: 2022/05/11 23:32:57 by nhirzel          ###   ########.fr       */
+/*   Updated: 2022/05/11 23:41:10 by nhirzel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -82,7 +82,7 @@ int	redi5_1(t_para *para, int i, int fd[20], int j)
 		{
 			if (ft_strcmp("<<", para->split_redi[i]) != 0)
 			{
-				printf("Error: No such file or directory ╭∩╮(･◡･)╭∩╮\n");
+				printf("Error: No such file or directory 🐚\n");
 				return (0);
 			}
 		}

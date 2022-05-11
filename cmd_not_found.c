@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 22:42:04 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/05 21:50:55 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/11 23:47:24 by nhirzel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -83,13 +83,13 @@ void	cmd_not_found(char *str)
 		i++;
 	}
 	out[i] = '\0';
-	printf("minishell: %s: command not found\n", out);
+	printf("minishell: %s: command not found🐚\n", out);
 	g_glob.exit_status = 127;
 	free(out);
 }
 
 void	cmd_not_found2(char *str)
 {
-	printf("minishell: %s: command not found\n", str);
+	printf("minishell: %s: command not found🐚\n", str);
 	g_glob.exit_status = 127;
 }
