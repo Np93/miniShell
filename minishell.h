@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/10 21:53:19 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/12 04:51:45 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,18 @@ typedef struct s_glob {
 }			t_glob;
 
 t_glob	g_glob;
+
+typedef struct s_hd {
+	char	**limit;
+	int		j;
+	char	*line;
+	int		fdt;
+	pid_t	pid;
+	char	**argv;
+	int		fdp[2];
+	int		fdin;
+	int		fdout;
+}			t_hd;
 
 # define STDIN STDIN_FILENO
 # define STDOUT STDOUT_FILENO
@@ -176,8 +188,8 @@ void	free_malloc2(char **sp);
 void	free_malloc_cd(char *str, t_para *para);
 int		redi5(t_para *para, int i);
 int		redi5_1(t_para *para, int i, int fd[20], int j);
-int		redi4(t_para *para, int i);
-int		redi4_1(t_para *para, int i, int fd[20], int j);
+//int		redi4(t_para *para, int i);
+//int		redi4_1(t_para *para, int i, int fd[20], int j);
 int		ft_strcmp(char *s1, char *s2);
 void	ft_putendl_fd(char *s, int fd);
 int		ft_strcmp(char *s1, char *s2);
@@ -185,5 +197,17 @@ void	ft_putendl_fd(char *s, int fd);
 int		check_bin(char **argv);
 int		exec_bin(char **argv, t_para *para);
 int		empty_export(t_para *para);
+int		redi4(t_para *para, int i);
+int		redi4_1(t_para *para, int i);
+int		redi4_2(t_para *para, int i, t_hd *hd);
+int		redi4_3(t_para *para, t_hd *hd);
+int		check_hd(t_para *para);
+void	hd_in_out(t_para *para, t_hd *hd);
+int		pipe_af_hd(t_para *para, int i, t_hd *hd);
+int		pipe_af_hd1(t_para *para, int fd[2], int i, t_hd *hd);
+void	init_hd(t_hd *hd);
+int		set_limit_and_red(t_hd *hd, t_para *para, int i);
+void	readline_hd(t_hd *hd);
+int		is_redi_hd(t_hd *hd, t_para *para);
 
 #endif

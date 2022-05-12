@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 20:26:32 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/03 17:57:36 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/11 00:45:23 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -82,5 +82,6 @@ int	pipe_af_red(t_para *para, int i)
 		if (ft_exec_red(para, para->split_redi[i - 1]))
 			return (i - 1);
 	}
+	exit(0);
 	return (0);
 }

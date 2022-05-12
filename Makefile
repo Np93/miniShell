@@ -6,7 +6,7 @@
 #    By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 19:09:32 by rmonney           #+#    #+#              #
-#    Updated: 2022/05/09 22:11:17 by rmonney          ###   ########.fr        #
+#    Updated: 2022/05/12 05:07:31 by rmonney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= 	main.c\
@@ -44,10 +44,13 @@ SRCS		= 	main.c\
 				redirect_utils.c\
 				redirecter1and2.c\
 				redirecter3.c\
-				redirecter4and5.c\
+				redirecter5.c\
 				ft_strcmp.c\
 				ft_putendl_fd.c\
 				ft_env2.c\
+				redirecter4.c\
+				hd_utils.c\
+				hd_utils2.c\
 
 OBJS		= ${SRCS:.c=.o}
 
