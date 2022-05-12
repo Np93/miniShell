@@ -6,7 +6,7 @@
 /*   By: nhirzel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 19:53:20 by nhirzel           #+#    #+#             */
-/*   Updated: 2022/05/10 01:04:12 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/12 23:15:58 by nhirzel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -125,5 +125,3 @@ char	*path_is(char *para_out)
 	path = ft_strdup(para_out + i);
 	return (path);
 }
-//		printf("Error : %s\n", strerror(errno));
-//		//a la place de error_handler7 si veut erreur sys exacte
