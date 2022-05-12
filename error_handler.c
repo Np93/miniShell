@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 20:12:19 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/12 23:15:34 by nhirzel          ###   ########.fr       */
+/*   Updated: 2022/05/12 23:29:39 by nhirzel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -50,10 +50,10 @@ void	error_handler(int error, t_para *para)
 	if (error == 3)
 		cmd_not_found2(para->bait);
 	if (error == 4)
-		printf("Usage : ./minishell ([username])🐚\n");
+		printf("Usage : ./minishell ([username]) 🐚\n");
 	if (error == 5)
 	{
-		printf("Fd is non TTY🐚\n");
+		printf("Fd is non TTY 🐚\n");
 		exit(0);
 	}
 	if (error == 6)
