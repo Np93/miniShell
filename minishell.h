@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/12 04:51:45 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/13 06:48:01 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_para {
 	char			**env_cpy;
 	char			**split_redi;
 	int				cd;
+	int				a;
+	int				redi;
 	struct termios	term;
 }			t_para;
 
@@ -149,10 +151,13 @@ void	ft_readline2(t_para *para);
 int		search_redirect(t_para *para);
 int		search_redirect2(char *str, int i);
 int		search_redirect3(t_para *para, int i);
+int		search_redirect4(t_para *para, int i);
+int		search_redirect5(t_para *para, int i);
 void	launch_redi(t_para *para);
 void	launch_redi1(t_para *para);
 void	launch_redi2(t_para *para);
 char	*cpy_bf_redi(char *str, int i);
+char	*cpy_af_redi(char *str, int i);
 char	*int_to_str_redi(int code);
 char	*unquoter(char *str, t_para *para);
 void	unquoter2(t_para *para, t_parse *p, char *str);
@@ -188,8 +193,6 @@ void	free_malloc2(char **sp);
 void	free_malloc_cd(char *str, t_para *para);
 int		redi5(t_para *para, int i);
 int		redi5_1(t_para *para, int i, int fd[20], int j);
-//int		redi4(t_para *para, int i);
-//int		redi4_1(t_para *para, int i, int fd[20], int j);
 int		ft_strcmp(char *s1, char *s2);
 void	ft_putendl_fd(char *s, int fd);
 int		ft_strcmp(char *s1, char *s2);
@@ -208,6 +211,6 @@ int		pipe_af_hd1(t_para *para, int fd[2], int i, t_hd *hd);
 void	init_hd(t_hd *hd);
 int		set_limit_and_red(t_hd *hd, t_para *para, int i);
 void	readline_hd(t_hd *hd);
-int		is_redi_hd(t_hd *hd, t_para *para);
+int		is_redi_hd(t_hd *hd, t_para *para, int i);
 
 #endif

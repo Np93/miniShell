@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 18:46:42 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/11 23:29:13 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/13 07:04:35 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -18,7 +18,7 @@ void	launch_redi(t_para *para)
 	a = -1;
 	while (para->split_redi[++a] != NULL)
 	{
-		if (!(a % 2))
+		if (1)
 		{
 			if ((ft_strstr(para->split_redi[a], "grep") == 4
 					|| ft_strstr(para->split_redi[a], "grep") == 5)
@@ -76,6 +76,8 @@ char	*unquoter(char *str, t_para *para)
 	char	*ret;
 	t_parse	*p;
 
+	if (str[0] == '|' || str[0] == '>' || str[0] == '<')
+		return (str);
 	p = malloc(sizeof(t_parse));
 	if (!p)
 		error_handler(0, para);
@@ -84,13 +86,11 @@ char	*unquoter(char *str, t_para *para)
 	p->str = malloc(sizeof(char) * ft_strlen(str) * 99);
 	if (!p->str)
 		error_handler(0, para);
-	ret = malloc(sizeof(char *));
-	if (!ret)
-		error_handler(0, para);
 	unquoter6(para, p, str);
-	ret = ft_strdup(p->str);
-	free(p);
 	free(str);
+	ret = ft_strdup(p->str);
+	free(p->str);
+	free(p);
 	return (ret);
 }
 

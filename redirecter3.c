@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 20:26:32 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/11 00:45:23 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/13 05:48:51 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -56,17 +56,17 @@ void	file_eraser(t_para *para)
 {
 	int		i;
 
-	i = 1;
+	i = 0;
 	while (para->split_redi[i] != NULL)
 	{
 		if (ft_strstr(para->split_redi[i], ">")
 			&& para->split_redi[i][1] == '\0')
 		{
 			unlink(para->split_redi[i + 1]);
-			i += 2;
+			i++;
 		}
 		else
-			i += 2;
+			i++;
 	}
 }
 

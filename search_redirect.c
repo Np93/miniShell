@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 23:11:51 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/03 21:51:00 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/13 06:51:26 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -54,30 +54,24 @@ int	search_redirect3(t_para *para, int i)
 int	search_redirect(t_para *para)
 {
 	int	i;
-	int	a;
 
-	a = -1;
+	para->a = -1;
 	i = 0;
 	ft_freeee_split_redi(para);
-	while (para->current[i] != '\0')
+	if (para->current[0] == '<')
+		i = search_redirect4(para, i);
+	else
+		i = search_redirect5(para, i);
+	if (para->a != -1 && para->current[0] != '<')
 	{
-		i = search_redirect3(para, i);
-		if (search_redirect2(para->current, i) != -1)
-		{
-			para->split_redi[++a] = cpy_bf_redi(para->current, i);
-			para->split_redi[++a]
-				= int_to_str_redi(search_redirect2(para->current, i));
-			i += (search_redirect2(para->current, i) % 2) + 1;
-		}
-		else
-			i++;
-	}
-	if (a != -1)
-	{
-		para->split_redi[++a] = cpy_bf_redi(para->current, i);
+		para->split_redi[++para->a] = cpy_bf_redi(para->current, i);
 		return (1);
 	}
-	return (a + 1);
+	if (para->a != -1)
+		para->redi = 1;
+	else
+		para->redi = 0;
+	return (para->a + 1);
 }
 
 char	*grep_spec(char *str, t_para *para, int mod)

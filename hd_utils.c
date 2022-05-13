@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 03:56:05 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/12 04:42:28 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/13 05:42:47 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -15,15 +15,15 @@ void	hd_in_out(t_para *para, t_hd *hd)
 {
 	int	i;
 
-	i = 1;
+	i = 0;
 	while (para->split_redi[i] != NULL)
 	{
 		if (ft_strstr(para->split_redi[i], ">"))
 		{
-			if (para->split_redi[i][1] == '\0')
+			if (ft_strcmp(para->split_redi[i], ">") == 0)
 				hd->fdout = open(para->split_redi[i + 1],
 						O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR);
-			else
+			else if (ft_strcmp(para->split_redi[i], ">>") == 0)
 				hd->fdout = open(para->split_redi[i + 1],
 						O_RDWR | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
 		}
@@ -34,7 +34,7 @@ void	hd_in_out(t_para *para, t_hd *hd)
 			else
 				hd->fdin = i + 1;
 		}
-		i += 2;
+		i++;
 	}
 	if (ft_strstr(para->split_redi[i - 2], "<<") && 0 < hd->fdin)
 		hd->fdin = 0;
@@ -44,12 +44,12 @@ int	check_hd(t_para *para)
 {
 	int	i;
 
-	i = 1;
+	i = 0;
 	while (para->split_redi[i] != NULL)
 	{
 		if (ft_strstr(para->split_redi[i], "<<"))
 			return (1);
-		i += 2;
+		i++;
 	}
 	return (0);
 }
@@ -69,15 +69,17 @@ void	init_hd(t_hd *hd)
 
 int	set_limit_and_red(t_hd *hd, t_para *para, int i)
 {
-	while (1 <= i)
+	while (0 <= i)
 	{
-		if (ft_strstr(para->split_redi[i], "<<"))
+		if (ft_strcmp(para->split_redi[i], "<<") == 0)
 			hd->limit[hd->j++] = ft_strdup(para->split_redi[i + 1]);
-		if (i != 1)
-			i -= 2;
+		if (0 < i)
+			i--;
 		else
 			break ;
-	}	
+	}
+	if (ft_strcmp(para->split_redi[0], "<<") != 0)
+		i++;
 	while (ft_strstr(para->split_redi[i], "|"))
 		i += 2;
 	hd->limit[hd->j] = NULL;

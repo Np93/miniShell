@@ -6,10 +6,70 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 14:38:23 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/10 03:32:02 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/13 06:58:05 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
+
+int	search_redirect5(t_para *para, int i)
+{
+	while (para->current[i] != '\0')
+	{
+		i = search_redirect3(para, i);
+		if (search_redirect2(para->current, i) != -1)
+		{
+			para->split_redi[++para->a] = cpy_bf_redi(para->current, i);
+			para->split_redi[++para->a]
+				= int_to_str_redi(search_redirect2(para->current, i));
+			i += (search_redirect2(para->current, i) % 2) + 1;
+		}
+		else
+			i++;
+	}
+	return (i);
+}
+
+int	search_redirect4(t_para *para, int i)
+{
+	while (para->current[i] != '\0')
+	{
+		i = search_redirect3(para, i);
+		if (search_redirect2(para->current, i) != -1)
+		{
+			para->split_redi[++para->a]
+				= int_to_str_redi(search_redirect2(para->current, i));
+			i += (search_redirect2(para->current, i) % 2) + 1;
+			para->split_redi[++para->a] = cpy_af_redi(para->current, i);
+		}
+		else
+			i++;
+	}
+	return (i);
+}
+
+char	*cpy_af_redi(char *str, int i)
+{
+	char	*ret;
+	int		j;
+	int		a;
+
+	a = 0;
+	j = i;
+	while (str[j] != '<' && str[j] != '>'
+		&& str[j] != '|' && str[j] != '\0')
+		j++;
+	ret = malloc(sizeof(char) * (j - i) * 45 + 1);
+	if (!ret)
+		error_handler(0, NULL);
+	if (str[i] == ' ')
+		i++;
+	if (str[j - 1] == ' ')
+		j -= 2;
+	while (i <= j)
+		ret[a++] = str[i++];
+	ret[a] = '\0';
+	return (ret);
+}
 
 char	*cpy_bf_redi(char *str, int i)
 {
@@ -19,10 +79,10 @@ char	*cpy_bf_redi(char *str, int i)
 
 	a = 0;
 	j = i - 1;
-	while (str[j - 1] != '<' && str[j - 1] != '>'
-		&& str[j - 1] != '|' && j != 0)
+	while (j != 0 && str[j - 1] != '<' && str[j - 1] != '>'
+		&& str[j - 1] != '|')
 		j--;
-	ret = malloc(sizeof(char) * (i - j) + 1);
+	ret = malloc(sizeof(char) * (i - j) * 42 + 1 );
 	if (!ret)
 		error_handler(0, NULL);
 	if (str[i - 1] == ' ')

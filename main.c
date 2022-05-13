@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/10 03:32:07 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/13 06:48:21 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -54,6 +54,7 @@ void	init_para(t_para **para, char **env)
 	(*para)->env = env;
 	(*para)->env_cpy = env_cpy(*para, env);
 	(*para)->cd = 0;
+	(*para)->redi = 0;
 	g_glob.exit_status = 0;
 }
 

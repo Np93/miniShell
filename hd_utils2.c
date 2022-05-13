@@ -6,12 +6,12 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 04:10:51 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/12 04:54:20 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/13 05:38:53 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
 
-int	is_redi_hd(t_hd *hd, t_para *para)
+int	is_redi_hd(t_hd *hd, t_para *para, int i)
 {
 	if (hd->fdin < 0)
 	{
@@ -22,6 +22,8 @@ int	is_redi_hd(t_hd *hd, t_para *para)
 		error_handler(9, para);
 		return (0);
 	}
+	if (i == 0)
+		return (0);
 	if (hd->fdout != 0 && 0 <= hd->fdin)
 		dup2(hd->fdout, STDOUT);
 	if (hd->fdin != 0)

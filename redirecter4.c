@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 22:11:34 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/12 23:22:53 by nhirzel          ###   ########.fr       */
+/*   Updated: 2022/05/13 06:01:44 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -38,8 +38,8 @@ int	redi4_1(t_para *para, int i)
 	init_hd(hd);
 	i = set_limit_and_red(hd, para, i);
 	readline_hd(hd);
-	if (is_redi_hd(hd, para) == 0)
-		return (0);
+	if (is_redi_hd(hd, para, i) == 0)
+		exit(0);
 	return (redi4_2(para, i, hd));
 }
 

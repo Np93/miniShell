@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 18:21:15 by rmonney           #+#    #+#             */
-/*   Updated: 2022/03/07 15:18:03 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/13 07:20:21 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -21,14 +21,17 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-int	ft_strstr2(char *str, char *tofind)
+int	ft_strstr2(char *str, char *tofind, int i)
 {
-	int	i;
+	int	j;
 
-	i = 0;
-	while (str[i] == tofind[i] && str[i] != '\0')
+	j = 0;
+	while (str[i] == tofind[j] && str[i] != '\0')
+	{
 		i++;
-	if (tofind[i] == '\0')
+		j++;
+	}
+	if (tofind[j] == '\0')
 		return (1);
 	else
 		return (0);
@@ -45,7 +48,7 @@ int	ft_strstr(char *str, char *tofind)
 			i++;
 		else
 		{
-			if (ft_strstr2(str + i, tofind))
+			if (ft_strstr2(str, tofind, i))
 				return (i + ft_strlen(tofind));
 			else
 				i++;
@@ -56,8 +59,8 @@ int	ft_strstr(char *str, char *tofind)
 /*
 int main()
 {
-	char *str = "lalatina lala ";
-	char *tofind = "lala ";
+	char *str = "jesus";
+	char *tofind = "suasd";
 
 	if (ft_strstr(str, tofind))
 		printf("found one in position %d\n", ft_strstr(str, tofind));
