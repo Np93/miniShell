@@ -6,21 +6,18 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 19:36:36 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/13 06:53:29 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/13 08:36:34 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
 
 void	ft_freeee_split_redi(t_para *para)
 {
-	int		i;
+	int	i;
 
 	i = -1;
-	if (para->redi == 1)
-	{
-		while (para->split_redi[++i] != NULL)
-			free(para->split_redi[i]);
-	}
+	while (para->split_redi[++i] != NULL)
+		free(para->split_redi[i]);
 }
 
 int	choose_redi(t_para *para, int i)

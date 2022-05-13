@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 20:26:16 by rmonney           #+#    #+#             */
-/*   Updated: 2022/04/26 19:41:57 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/13 08:34:43 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -20,7 +20,10 @@ void	ft_readline2(t_para *para)
 		else
 		{
 			if (search_redirect(para))
+			{
 				launch_redi(para);
+				ft_freeee_split_redi(para);
+			}
 			else
 			{
 				para->cmd = search_fct(para->out);

@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 23:11:51 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/13 06:51:26 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/13 08:52:58 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -57,7 +57,6 @@ int	search_redirect(t_para *para)
 
 	para->a = -1;
 	i = 0;
-	ft_freeee_split_redi(para);
 	if (para->current[0] == '<')
 		i = search_redirect4(para, i);
 	else
@@ -69,8 +68,6 @@ int	search_redirect(t_para *para)
 	}
 	if (para->a != -1)
 		para->redi = 1;
-	else
-		para->redi = 0;
 	return (para->a + 1);
 }
 

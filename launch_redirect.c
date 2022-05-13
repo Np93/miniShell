@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 18:46:42 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/13 07:04:35 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/13 08:52:11 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -18,17 +18,14 @@ void	launch_redi(t_para *para)
 	a = -1;
 	while (para->split_redi[++a] != NULL)
 	{
-		if (1)
-		{
-			if ((ft_strstr(para->split_redi[a], "grep") == 4
-					|| ft_strstr(para->split_redi[a], "grep") == 5)
-				&& (para->split_redi[a][0] == 'g'
-				|| para->split_redi[a][0] == 34
-				|| para->split_redi[a][0] == 39))
-				para->split_redi[a] = grep_spec(para->split_redi[a], para, 0);
-			else
-				para->split_redi[a] = unquoter(para->split_redi[a], para);
-		}
+		if ((ft_strstr(para->split_redi[a], "grep") == 4
+				|| ft_strstr(para->split_redi[a], "grep") == 5)
+			&& (para->split_redi[a][0] == 'g'
+			|| para->split_redi[a][0] == 34
+			|| para->split_redi[a][0] == 39))
+			para->split_redi[a] = grep_spec(para->split_redi[a], para, 0);
+		else
+			para->split_redi[a] = unquoter(para->split_redi[a], para);
 	}
 	launch_redi1(para);
 }
@@ -77,7 +74,11 @@ char	*unquoter(char *str, t_para *para)
 	t_parse	*p;
 
 	if (str[0] == '|' || str[0] == '>' || str[0] == '<')
-		return (str);
+	{
+		ret = ft_strdup(str);
+		free(str);
+		return (ret);
+	}
 	p = malloc(sizeof(t_parse));
 	if (!p)
 		error_handler(0, para);

@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 14:38:23 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/13 06:58:05 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/13 08:42:27 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -58,7 +58,7 @@ char	*cpy_af_redi(char *str, int i)
 	while (str[j] != '<' && str[j] != '>'
 		&& str[j] != '|' && str[j] != '\0')
 		j++;
-	ret = malloc(sizeof(char) * (j - i) * 45 + 1);
+	ret = malloc(sizeof(char) * (j - i) * 459 + 1);
 	if (!ret)
 		error_handler(0, NULL);
 	if (str[i] == ' ')
@@ -82,7 +82,7 @@ char	*cpy_bf_redi(char *str, int i)
 	while (j != 0 && str[j - 1] != '<' && str[j - 1] != '>'
 		&& str[j - 1] != '|')
 		j--;
-	ret = malloc(sizeof(char) * (i - j) * 42 + 1 );
+	ret = malloc(sizeof(char) * (i - j) * 429 + 1 );
 	if (!ret)
 		error_handler(0, NULL);
 	if (str[i - 1] == ' ')
