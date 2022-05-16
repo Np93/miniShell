@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 14:38:23 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/13 08:42:27 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/16 22:23:01 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -44,6 +44,7 @@ int	search_redirect4(t_para *para, int i)
 		else
 			i++;
 	}
+	para->split_redi[++para->a] = NULL;
 	return (i);
 }
 

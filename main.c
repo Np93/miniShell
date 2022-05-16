@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/13 08:04:48 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/16 22:28:11 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -49,7 +49,6 @@ char	**cpy_env(char **env)
 void	init_para(t_para **para, char **env)
 {
 	(*para) = (t_para *)malloc(sizeof(t_para) * 99);
-	(*para)->split_redi = malloc(sizeof(char *) * 995);
 	(*para)->out = malloc(sizeof(char) * 999);
 	(*para)->env = env;
 	(*para)->env_cpy = env_cpy(*para, env);
