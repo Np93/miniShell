@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 04:10:51 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/13 05:38:53 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/16 23:12:23 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -71,6 +71,7 @@ int	pipe_af_hd1(t_para *para, int fd[2], int i, t_hd *hd)
 	{
 		(close(fd[1]), close(fd[0]));
 		waitpid(0, NULL, 0);
+		exit(0);
 		return (0);
 	}
 	return (0);

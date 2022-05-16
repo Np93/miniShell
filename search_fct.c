@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 17:51:16 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/10 21:53:01 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/16 22:31:05 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -38,7 +38,7 @@ int	search_fct(char *str)
 {
 	if (ft_strstr(str, "echo") == 4 && str[4] == ' ')
 	{
-		if (ft_strstr(str, "echo -n") == 7 && str[7] == ' ')
+		if (ft_strstr(str, "echo -n") == 7 && (str[7] == ' ' || str[7] == '\0'))
 			return (1);
 		else
 			return (2);
