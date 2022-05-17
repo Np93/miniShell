@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 17:30:45 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/17 21:03:46 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/17 21:21:23 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -23,7 +23,10 @@ void	sig_handler(int sig)
 	if (sig == SIGINT)
 	{
 		if (g_glob.main == 8)
+		{
+			unlink("tmp");
 			exit(0);
+		}
 		if (g_glob.main == 1)
 		{
 			rl_replace_line("", 0);

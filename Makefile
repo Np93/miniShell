@@ -6,7 +6,7 @@
 #    By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 19:09:32 by rmonney           #+#    #+#              #
-#    Updated: 2022/05/12 05:07:31 by rmonney          ###   ########.fr        #
+#    Updated: 2022/05/17 22:58:22 by rmonney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= 	main.c\
@@ -48,6 +48,7 @@ SRCS		= 	main.c\
 				ft_strcmp.c\
 				ft_putendl_fd.c\
 				ft_env2.c\
+				ft_env3.c\
 				redirecter4.c\
 				hd_utils.c\
 				hd_utils2.c\

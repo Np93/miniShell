@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/13 06:48:01 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/17 22:57:52 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_para {
 	char			**argv;
 	char			**env;
 	char			**env_cpy;
+	char			**env_malloc;
 	char			**split_redi;
 	int				cd;
 	int				a;
@@ -212,5 +213,8 @@ void	init_hd(t_hd *hd);
 int		set_limit_and_red(t_hd *hd, t_para *para, int i);
 void	readline_hd(t_hd *hd);
 int		is_redi_hd(t_hd *hd, t_para *para, int i);
+int		is_env_malc(t_para *para, char *arg);
+void	add_env_malc(t_para *para, char *arg);
+void	rm_env_malc(t_para *para, char *arg);
 
 #endif
