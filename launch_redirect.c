@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 18:46:42 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/13 08:52:11 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/17 21:16:43 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -35,13 +35,16 @@ void	launch_redi1(t_para *para)
 	int	pid;
 
 	pid = fork();
+	g_glob.main = 0;
 	if (pid == 0)
 	{
+		g_glob.main = 8;
 		launch_redi2(para);
 		exit(0);
 	}
 	else
 		waitpid(pid, NULL, 0);
+	g_glob.main = 1;
 }
 
 void	launch_redi2(t_para *para)
