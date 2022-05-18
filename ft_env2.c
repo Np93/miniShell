@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 22:10:03 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/17 22:59:16 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/18 02:00:37 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -35,35 +35,26 @@ int	empty_export(t_para *para)
 	return (1);
 }
 
-char	**env_cpy(t_para *para, char **env)
-{
-	char	**env_cpy;
-	int		i;
-
-	env_cpy = malloc(sizeof(char *) * 998);
-	if (!env_cpy)
-		error_handler(0, para);
-	i = -1;
-	while (env[++i] != NULL)
-		env_cpy[i] = ft_strdup(env[i]);
-	env_cpy[i] = NULL;
-	return (env_cpy);
-}
-
-int	env_cmp(char *arg, t_para *para)
+char	*ft_getenv(t_para *para, char *var)
 {
 	int	i;
 
-	if (ft_strstr(arg, "PWD"))
+	i = 0;
+	while (para->env[i] != NULL)
 	{
-		if (ft_getenv(para, arg) && para->cd == 1)
-			return (0);
+		if (ft_strstr(para->env[i], var) == ft_strlen(var))
+			return (&(*(para->env[i] + ft_strlen(var) + 1)));
+		else
+			i++;
 	}
-	i = -1;
-	while (para->env_cpy[++i] != NULL)
-	{
-		if (ft_strstr(para->env_cpy[i], arg) == ft_strlen(arg))
-			return (1);
-	}
-	return (0);
+	return (NULL);
+}
+
+void	ft_env(char **env)
+{
+	int	i;
+
+	i = 0;
+	while (env[i] != NULL)
+		printf("%s\n", env[i++]);
 }

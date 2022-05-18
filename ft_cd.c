@@ -6,7 +6,7 @@
 /*   By: nhirzel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 19:53:20 by nhirzel           #+#    #+#             */
-/*   Updated: 2022/05/12 23:15:58 by nhirzel          ###   ########.fr       */
+/*   Updated: 2022/05/18 01:43:53 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -22,7 +22,7 @@ void	update_oldpwd(char **env, char *oldpwd, t_para *para)
 		if (ft_strncmp(env[i], "OLDPWD=", 7) == 0)
 		{
 			temp = ft_strjoin("OLDPWD=", oldpwd);
-			if (para->cd == 1)
+			if (is_env_malc(para, "OLDPWD"))
 				free(env[i]);
 			env[i] = ft_strdup(temp);
 			free(temp);
@@ -51,7 +51,7 @@ void	update_pwd(char **env, t_para *para)
 		if (ft_strncmp(env[i], "PWD=", 4) == 0)
 		{
 			temp = ft_strjoin("PWD=", pwd);
-			if (para->cd == 1)
+			if (is_env_malc(para, "PWD"))
 				free(env[i]);
 			env[i] = ft_strdup(temp);
 			free(temp);
@@ -105,7 +105,7 @@ void	ft_cd(t_para *para)
 	{
 		update_oldpwd(para->env, temp_pwd, para);
 		update_pwd(para->env, para);
-		para->cd = 1;
+		(add_env_malc(para, "PWD"), add_env_malc(para, "OLDPWD"));
 	}
 	else
 		error_handler(7, para);

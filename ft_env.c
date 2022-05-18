@@ -6,36 +6,66 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 18:19:29 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/10 03:03:57 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/18 02:20:48 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
 
+int	ft_export3(t_para *para, char *arg)
+{
+	int	j;
+
+	j = 0;
+	while (para->env[j] != NULL)
+	{
+		if (ft_strstr(para->env[j], arg) == ft_strlen(arg))
+			break ;
+		j++;
+	}
+	return (j);
+}
+
+void	ft_export2(t_para *para, char *arg, char **split, int i)
+{
+	int	j;
+
+	while (split[i] != NULL)
+	{
+		if (ft_strstr(split[i], "="))
+		{
+			arg = cpy_bf_equal(split[i]);
+			j = ft_export3(para, arg);
+			if (para->env[j] != NULL)
+			{
+				if (is_env_malc(para, arg))
+					free(para->env[j]);
+				para->env[j] = ft_strdup(split[i]);
+				add_env_malc(para, arg);
+			}
+			else
+			{
+				para->env[j++] = ft_strdup(split[i]);
+				para->env[j] = NULL;
+				add_env_malc(para, arg);
+			}
+			free(arg);
+		}
+		i++;
+	}
+}
+
 int	ft_export(t_para *para)
 {
 	char	*arg;
-	int		i;
-	int		j;
 	char	**split;
 
-	i = 0;
-	j = 0;
 	if (para->out[6] == '\0')
 		return (empty_export(para));
 	arg = ft_strdup(para->current + ft_strstr(para->current, "export "));
 	split = ft_split(arg, ' ');
 	free(arg);
-	while (para->env[j] != NULL)
-		j++;
-	while (split[i] != NULL)
-	{
-		if (!ft_strstr(split[i], "="))
-			i++;
-		else
-			para->env[j++] = ft_strdup(split[i++]);
-	}
+	ft_export2(para, arg, split, 0);
 	free_malloc2(split);
-	para->env[j] = NULL;
 	return (1);
 }
 
@@ -48,8 +78,9 @@ void	ft_unset2(t_para *para, char *arg)
 		i++;
 	if (para->env[i] == NULL)
 		return ;
-	if (!env_cmp(arg, para))
-		free_malloc(para->env[i]);
+	if (is_env_malc(para, arg))
+		free(para->env[i]);
+	rm_env_malc(para, arg);
 	while (para->env[i + 1] != NULL)
 	{
 		para->env[i] = para->env[i + 1];
@@ -84,28 +115,4 @@ int	ft_unset(t_para *para)
 	}
 	(free(arg), free_malloc2(split));
 	return (1);
-}
-
-void	ft_env(char **env)
-{
-	int	i;
-
-	i = 0;
-	while (env[i] != NULL)
-		printf("%s\n", env[i++]);
-}
-
-char	*ft_getenv(t_para *para, char *var)
-{
-	int	i;
-
-	i = 0;
-	while (para->env[i] != NULL)
-	{
-		if (ft_strstr(para->env[i], var) == ft_strlen(var))
-			return (&(*(para->env[i] + ft_strlen(var) + 1)));
-		else
-			i++;
-	}
-	return (NULL);
 }

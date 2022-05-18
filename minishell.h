@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/17 22:57:52 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/18 01:46:13 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,8 @@ typedef struct s_para {
 	int				cmd;
 	char			**argv;
 	char			**env;
-	char			**env_cpy;
 	char			**env_malloc;
 	char			**split_redi;
-	int				cd;
 	int				a;
 	int				redi;
 	struct termios	term;
@@ -63,8 +61,6 @@ typedef struct s_glob {
 	int		main;
 }			t_glob;
 
-t_glob	g_glob;
-
 typedef struct s_hd {
 	char	**limit;
 	int		j;
@@ -80,6 +76,8 @@ typedef struct s_hd {
 # define STDIN STDIN_FILENO
 # define STDOUT STDOUT_FILENO
 
+t_glob	g_glob;
+
 int		search_fct(char *str);
 void	do_fct(int cmd, t_para *para);
 void	do_fct2(int cmd, t_para *para);
@@ -91,8 +89,6 @@ char	*ft_strdup(const char *s1);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
 void	ft_env(char **env);
-char	**env_cpy(t_para *para, char **env);
-int		env_cmp(char *arg, t_para *para);
 void	ft_pwd(void);
 int		ft_export(t_para *para);
 int		ft_unset(t_para *para);
@@ -216,5 +212,6 @@ int		is_redi_hd(t_hd *hd, t_para *para, int i);
 int		is_env_malc(t_para *para, char *arg);
 void	add_env_malc(t_para *para, char *arg);
 void	rm_env_malc(t_para *para, char *arg);
+char	*cpy_bf_equal(char *split);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:48:40 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/16 22:28:11 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/18 01:42:27 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -50,9 +50,9 @@ void	init_para(t_para **para, char **env)
 {
 	(*para) = (t_para *)malloc(sizeof(t_para) * 99);
 	(*para)->out = malloc(sizeof(char) * 999);
+	(*para)->env_malloc = malloc(sizeof(char *) * 143);
+	(*para)->env_malloc[0] = NULL;
 	(*para)->env = env;
-	(*para)->env_cpy = env_cpy(*para, env);
-	(*para)->cd = 0;
 	(*para)->redi = 0;
 	g_glob.exit_status = 0;
 }
