@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/18 01:46:13 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/24 00:59:02 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,5 +213,9 @@ int		is_env_malc(t_para *para, char *arg);
 void	add_env_malc(t_para *para, char *arg);
 void	rm_env_malc(t_para *para, char *arg);
 char	*cpy_bf_equal(char *split);
+int		ft_check_cmd(t_para *para);
+int		ft_check_cmd2(t_para *para, char *str);
+int		ft_check_cmd3(char **argv, char **all_path);
+int		ft_check_cmd4(char *str);
 
 #endif

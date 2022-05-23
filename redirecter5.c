@@ -6,7 +6,7 @@
 /*   By: nhirzel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 19:53:20 by nhirzel           #+#    #+#             */
-/*   Updated: 2022/05/12 23:22:07 by nhirzel          ###   ########.fr       */
+/*   Updated: 2022/05/23 22:23:06 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -26,7 +26,7 @@ int	redi5(t_para *para, int i)
 	else
 	{
 		waitpid(pid, NULL, 0);
-		return (0);
+		return (-1);
 	}
 	return (0);
 }

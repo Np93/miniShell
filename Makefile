@@ -6,7 +6,7 @@
 #    By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 19:09:32 by rmonney           #+#    #+#              #
-#    Updated: 2022/05/17 22:58:22 by rmonney          ###   ########.fr        #
+#    Updated: 2022/05/24 00:33:42 by rmonney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= 	main.c\
@@ -42,6 +42,7 @@ SRCS		= 	main.c\
 				init_redirect.c\
 				unquoter.c\
 				redirect_utils.c\
+				redirect_utils2.c\
 				redirecter1and2.c\
 				redirecter3.c\
 				redirecter5.c\

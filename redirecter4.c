@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 22:11:34 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/17 20:57:15 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/23 22:22:52 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -25,7 +25,7 @@ int	redi4(t_para *para, int i)
 	{
 		waitpid(pid, NULL, 0);
 		unlink("tmp");
-		return (0);
+		return (-1);
 	}
 	return (0);
 }
@@ -76,7 +76,7 @@ int	redi4_3(t_para *para, t_hd *hd)
 	{
 		(close(hd->fdp[1]), close(hd->fdp[0]));
 		waitpid(0, NULL, 0);
-		exit(0);
+		exit(-1);
 		return (0);
 	}
 }

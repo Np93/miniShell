@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 19:47:16 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/11 02:16:09 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/23 23:39:10 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -38,21 +38,16 @@ int	redi1_2(t_para *para, pid_t pid[2], int fd[2], int i)
 	{
 		(close(fd[0]), dup2(fd[1], STDOUT), close(fd[1]));
 		if (1 < i)
-		{
-			if (choose_redi(para, (i - 2)))
-				return (i - 2);
-		}
+			return (choose_redi(para, (i - 2)));
 		else
-		{
-			if (ft_exec_red(para, para->split_redi[i - 1]))
-				return (i - 1);
-		}
+			return (ft_exec_red(para, para->split_redi[i - 1]));
 	}
 	else
 	{
 		(close(fd[1]), close(fd[0]));
-		(waitpid(pid[1], NULL, 0), waitpid(pid[0], NULL, 0));
-		return (0);
+		waitpid(pid[1], NULL, 0);
+		waitpid(pid[0], NULL, 0);
+		return (-1);
 	}
 	return (0);
 }
@@ -73,7 +68,7 @@ int	redi2(t_para *para, int i)
 	else
 	{
 		waitpid(pid, NULL, 0);
-		return (0);
+		return (-1);
 	}
 	return (0);
 }

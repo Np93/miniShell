@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 18:46:42 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/17 21:16:43 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/24 01:12:51 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -34,6 +34,11 @@ void	launch_redi1(t_para *para)
 {
 	int	pid;
 
+	if (ft_check_cmd(para))
+	{
+		g_glob.main = 1;
+		return ;
+	}
 	pid = fork();
 	g_glob.main = 0;
 	if (pid == 0)
@@ -60,7 +65,7 @@ void	launch_redi2(t_para *para)
 		ret = redi4(para, i);
 	else
 		ret = choose_redi(para, i);
-	if (ret != 0)
+	if (ret != -1)
 	{
 		if (para->bait)
 			free(para->bait);
