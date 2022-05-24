@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 20:12:19 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/24 01:46:06 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/25 01:42:41 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -21,7 +21,7 @@ void	error_unset(t_para *para)
 	while (sp[++i] != NULL)
 	{
 		if (ft_strstr(sp[i], "="))
-			printf("minishell: unset: `%s': not a valid identifier\n 🐚", sp[i]);
+			printf("minishell: unset: `%s': not a valid identifier 🐚\n", sp[i]);
 	}
 	free_malloc2(sp);
 }
@@ -33,7 +33,7 @@ void	error_handler2(int error, t_para *para)
 	if (error == 8)
 		error_unset(para);
 	if (error == 9)
-		printf("minishell: %s: No such file or directory\n 🐚", para->bait);
+		printf("minishell: %s: No such file or directory 🐚\n", para->bait);
 	if (error == 10)
 		printf("minishell: syntax error near unexpected token `newline' 🐚\n");
 }
@@ -60,7 +60,7 @@ void	error_handler(int error, t_para *para)
 	}
 	if (error == 6)
 	{
-		printf("An error occured with the termios structure\n 🐚");
+		printf("An error occured with the termios structure 🐚\n");
 		exit(0);
 	}
 	error_handler2(error, para);
