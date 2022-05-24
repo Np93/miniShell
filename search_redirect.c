@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 23:11:51 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/16 22:24:33 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/24 03:00:42 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -58,11 +58,11 @@ int	search_redirect(t_para *para)
 	para->a = -1;
 	para->split_redi = malloc(sizeof(char *) * 995);
 	i = 0;
-	if (para->current[0] == '<')
+	if (para->current[0] == '<' || para->current[0] == '>')
 		i = search_redirect4(para, i);
 	else
 		i = search_redirect5(para, i);
-	if (para->a != -1 && para->current[0] != '<')
+	if (para->a != -1 && para->current[0] != '<' && para->current[0] != '>')
 	{
 		para->split_redi[++para->a] = cpy_bf_redi(para->current, i);
 		para->split_redi[++para->a] = NULL;

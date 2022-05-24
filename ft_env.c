@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 18:19:29 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/18 02:20:48 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/24 05:15:08 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -18,7 +18,8 @@ int	ft_export3(t_para *para, char *arg)
 	j = 0;
 	while (para->env[j] != NULL)
 	{
-		if (ft_strstr(para->env[j], arg) == ft_strlen(arg))
+		if (ft_strstr(para->env[j], arg)
+			&& para->env[j][ft_strlen(arg)] == '=')
 			break ;
 		j++;
 	}

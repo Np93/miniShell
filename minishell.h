@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:32:24 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/24 00:59:02 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/24 04:09:38 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,8 @@ char	*cpy_bf_equal(char *split);
 int		ft_check_cmd(t_para *para);
 int		ft_check_cmd2(t_para *para, char *str);
 int		ft_check_cmd3(char **argv, char **all_path);
-int		ft_check_cmd4(char *str);
+int		ft_check_cmd4(int i, t_para *para);
+void	file_opener(t_para *para);
+char	**all_path_exec2(t_para *para, char *end);
 
 #endif

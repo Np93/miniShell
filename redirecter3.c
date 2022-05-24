@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 20:26:32 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/23 22:22:25 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/24 03:38:40 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -83,5 +83,5 @@ int	pipe_af_red(t_para *para, int i)
 			return (i - 1);
 	}
 	exit(-1);
-	return (0);
+	return (-1);
 }

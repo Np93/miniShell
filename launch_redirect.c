@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 18:46:42 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/24 01:12:51 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/24 04:06:53 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -34,11 +34,6 @@ void	launch_redi1(t_para *para)
 {
 	int	pid;
 
-	if (ft_check_cmd(para))
-	{
-		g_glob.main = 1;
-		return ;
-	}
 	pid = fork();
 	g_glob.main = 0;
 	if (pid == 0)
@@ -54,7 +49,6 @@ void	launch_redi1(t_para *para)
 
 void	launch_redi2(t_para *para)
 {
-	int	ret;
 	int	i;
 
 	i = 0;
@@ -62,18 +56,15 @@ void	launch_redi2(t_para *para)
 		i++;
 	i -= 2;
 	if (check_hd(para))
-		ret = redi4(para, i);
-	else
-		ret = choose_redi(para, i);
-	if (ret != -1)
+		redi4(para, i);
+	else if (ft_check_cmd(para))
 	{
-		if (para->bait)
-			free(para->bait);
-		para->bait = ft_strdup(para->split_redi[ret]);
-		cmd_not_found(para->bait);
+		file_opener(para);
 		kill(0, SIGUSR1);
 		exit(0);
 	}
+	else
+		choose_redi(para, i);
 }
 
 char	*unquoter(char *str, t_para *para)
