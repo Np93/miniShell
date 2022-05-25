@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 00:33:52 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/24 04:10:13 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/25 16:42:54 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -72,9 +72,6 @@ int	ft_check_cmd2(t_para *para, char *str)
 
 	if (ft_strstr(str, ">") || ft_strstr(str, "<"))
 		return (0);
-	argv = malloc(sizeof(argv));
-	if (!argv)
-		error_handler(0, para);
 	if (ft_strstr(str, "grep") == 4)
 	{
 		argv = ft_split(str, 34);
@@ -96,14 +93,14 @@ int	ft_check_cmd3(char **argv, char **all_path)
 	{
 		if (access(all_path[i], F_OK) == 0)
 		{
-			(free(argv), free(all_path));
+			(free_malloc2(argv), free_malloc2(all_path));
 			return (0);
 		}
 		else
 			i++;
 	}
 	printf("minishell: %s: command not found 🐚\n", argv[0]);
-	(free(argv), free(all_path));
+	(free_malloc2(argv), free_malloc2(all_path));
 	return (1);
 }
 

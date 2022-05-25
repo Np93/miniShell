@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 20:26:16 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/24 05:15:22 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/25 16:23:52 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -71,7 +71,6 @@ void	last_cmd(t_para *para, int i)
 		if (a != 0)
 			a++;
 		tmp = ft_strjoin("_=", (para->out + a));
-		tmp = ft_strdup(tmp);
 		last_cmd2(para, tmp);
 	}
 	free(tmp);
