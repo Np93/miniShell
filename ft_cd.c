@@ -6,7 +6,7 @@
 /*   By: nhirzel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 19:53:20 by nhirzel           #+#    #+#             */
-/*   Updated: 2022/05/18 01:43:53 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/25 17:41:51 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -91,7 +91,7 @@ int	magic(t_para *para)
 	return (0);
 }
 
-void	ft_cd(t_para *para)
+int	ft_cd(t_para *para)
 {
 	char	temp_pwd[4097];
 	char	*path;
@@ -108,8 +108,13 @@ void	ft_cd(t_para *para)
 		(add_env_malc(para, "PWD"), add_env_malc(para, "OLDPWD"));
 	}
 	else
+	{
 		error_handler(7, para);
+		free(path);
+		return (1);
+	}
 	free(path);
+	return (0);
 }
 
 char	*path_is(char *para_out)

@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 20:26:16 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/25 16:23:52 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/25 18:05:01 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -78,9 +78,7 @@ void	last_cmd(t_para *para, int i)
 
 void	ft_readline2(t_para *para)
 {
-	int	i;
-
-	i = 0;
+	para->i = 0;
 	if (*para->current != '\0')
 	{
 		if (current_parser(para))
@@ -90,16 +88,19 @@ void	ft_readline2(t_para *para)
 			if (search_redirect(para))
 			{
 				launch_redi(para);
-				i = 1;
+				para->i = 1;
 				ft_freeee_split_redi(para);
 			}
 			else
 			{
-				para->cmd = search_fct(para->out);
-				do_fct(para->cmd, para);
+				if (para->i != 1)
+				{
+					para->cmd = search_fct(para->out);
+					do_fct(para->cmd, para);
+				}
 			}
 		}
-		last_cmd(para, i);
+		last_cmd(para, para->i);
 	}
 }
 

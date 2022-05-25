@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 23:11:51 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/24 03:00:42 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/25 18:05:14 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -55,6 +55,11 @@ int	search_redirect(t_para *para)
 {
 	int	i;
 
+	if (ft_strstr(para->current, "<<<"))
+	{
+		error_handler(11, para);
+		return (0);
+	}
 	para->a = -1;
 	para->split_redi = malloc(sizeof(char *) * 995);
 	i = 0;
@@ -69,9 +74,7 @@ int	search_redirect(t_para *para)
 		para->redi = 1;
 		return (1);
 	}
-	if (para->a != -1)
-		para->redi = 1;
-	else
+	if (para->a == -1)
 		ft_freeee_split_redi(para);
 	return (para->a + 1);
 }

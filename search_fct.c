@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 17:51:16 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/16 22:31:05 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/25 17:41:13 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -78,21 +78,30 @@ void	do_fct(int cmd, t_para *para)
 		ft_echo(1, para->out + 8);
 	else if (cmd == 2)
 		ft_echo(2, para->out + 5);
-	else if (cmd == 3)
-		ft_cd(para);
-	else if (cmd == 4)
-		ft_pwd();
 	else
-		do_fct2(cmd, para);
+	{
+		if (do_fct2(cmd, para))
+			return ;
+	}
 	g_glob.exit_status = 0;
 }
 
-void	do_fct2(int cmd, t_para *para)
+int	do_fct2(int cmd, t_para *para)
 {
-	if (cmd == 5)
+	if (cmd == 3)
+	{
+		if (ft_cd(para) == 1)
+			return (1);
+	}
+	else if (cmd == 4)
+		ft_pwd();
+	else if (cmd == 5)
 		ft_export(para);
 	else if (cmd == 6)
-		ft_unset(para);
+	{
+		if (ft_unset(para) == 0)
+			return (1);
+	}
 	else if (cmd == 7)
 		ft_env(para->env);
 	else if (cmd == 8)
@@ -100,4 +109,5 @@ void	do_fct2(int cmd, t_para *para)
 	else if (cmd == 9)
 		grepr(para);
 	g_glob.exit_status = 0;
+	return (0);
 }

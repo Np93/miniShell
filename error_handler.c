@@ -6,7 +6,7 @@
 /*   By: rmonney <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 20:12:19 by rmonney           #+#    #+#             */
-/*   Updated: 2022/05/25 01:42:41 by rmonney          ###   ########.fr       */
+/*   Updated: 2022/05/25 18:07:08 by rmonney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -29,13 +29,24 @@ void	error_unset(t_para *para)
 void	error_handler2(int error, t_para *para)
 {
 	if (error == 7)
+	{
+		g_glob.exit_status = 1;
 		printf("Error : %s 🐚\n", strerror(errno));
+	}
 	if (error == 8)
+	{
+		g_glob.exit_status = 1;
 		error_unset(para);
+	}
 	if (error == 9)
 		printf("minishell: %s: No such file or directory 🐚\n", para->bait);
 	if (error == 10)
 		printf("minishell: syntax error near unexpected token `newline' 🐚\n");
+	if (error == 11)
+	{
+		para->i = 1;
+		printf("minishell: syntax error near unexpected token `<<<' 🐚\n");
+	}
 }
 
 void	error_handler(int error, t_para *para)
