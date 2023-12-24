@@ -1,2 +1,2 @@
 # miniShell
-création d'un mini Shell 
+création d'un mini Shell.
