@@ -1,0 +1,11 @@
+#executable
+minishell
+
+#les objets en .o
+*.o
+
+#les fichier swap
+*.swp
+
+#le DS_Store
+.DS_Store
